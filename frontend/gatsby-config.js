@@ -26,7 +26,7 @@ module.exports = {
     author: `@taylorbryant`,
   },
   plugins: [
-    `gatsby-plugin-eslint`,
+    // `gatsby-plugin-eslint`,
 
     // ========================================================================== //
     //     SEO

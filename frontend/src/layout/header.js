@@ -3,7 +3,7 @@ import { graphql, useStaticQuery, Link } from 'gatsby'
 import React, { useState, Fragment } from 'react'
 
 import { Popover, Transition } from '@headlessui/react'
-import logoSvg from "../images/logo.svg"
+import logoSvg from "../../static/svgs/Frame 1000002265.svg"
 import {
   ArrowPathIcon,
   Bars3Icon,
@@ -113,109 +113,39 @@ export const Header = () => {
   //   }
   // `)
   return (
-    <Popover className="relative bg-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+    <Popover className="w-[100vw] z-50 bg-white fixed">
+      {/* NAV */}
+      <div className="mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between border-b-2 border-gray-100 py-2 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="#">
               <span className="sr-only">Your Company</span>
-                <img className="h-14 w-auto" src={logoSvg}/>
+                <img className="h-20 w-auto" src={logoSvg}/>
             </a>
           </div>
           <div className="-my-2 -mr-2 md:hidden">
-            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-BEred-500">
               <span className="sr-only">Open menu</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </Popover.Button>
           </div>
-          <Popover.Group as="nav" className="hidden space-x-10 md:flex">
-            <Popover className="relative">
-              {({ open }) => (
-                <>
-                  <Popover.Button
-                    className={classNames(
-                      open ? 'text-gray-900' : 'text-gray-500',
-                      'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
-                    )}
-                  >
-                    <span>Solutions</span>
-                    <ChevronDownIcon
-                      className={classNames(
-                        open ? 'text-gray-600' : 'text-gray-400',
-                        'ml-2 h-5 w-5 group-hover:text-gray-500',
-                      )}
-                      aria-hidden="true"
-                    />
-                  </Popover.Button>
+          <Popover.Group as="nav" className="hidden space-x-10 md:flex"> 
 
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-200"
-                    enterFrom="opacity-0 translate-y-1"
-                    enterTo="opacity-100 translate-y-0"
-                    leave="transition ease-in duration-150"
-                    leaveFrom="opacity-100 translate-y-0"
-                    leaveTo="opacity-0 translate-y-1"
-                  >
-                    <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-screen max-w-md transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
-                      <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                        <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                          {solutions.map((item) => (
-                            <a
-                              key={item.name}
-                              href={item.href}
-                              className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
-                            >
-                              <item.icon
-                                className="h-6 w-6 flex-shrink-0 text-indigo-600"
-                                aria-hidden="true"
-                              />
-                              <div className="ml-4">
-                                <p className="text-base font-medium text-gray-900">
-                                  {item.name}
-                                </p>
-                                <p className="mt-1 text-sm text-gray-500">
-                                  {item.description}
-                                </p>
-                              </div>
-                            </a>
-                          ))}
-                        </div>
-                        <div className="space-y-6 bg-gray-50 px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                          {callsToAction.map((item) => (
-                            <div key={item.name} className="flow-root">
-                              <a
-                                href={item.href}
-                                className="-m-3 flex items-center rounded-md p-3 text-base font-medium text-gray-900 hover:bg-gray-100"
-                              >
-                                <item.icon
-                                  className="h-6 w-6 flex-shrink-0 text-gray-400"
-                                  aria-hidden="true"
-                                />
-                                <span className="ml-3">{item.name}</span>
-                              </a>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </Popover.Panel>
-                  </Transition>
-                </>
-              )}
-            </Popover>
-
-            <a
-              href="#"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
+            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+              Services
+            </a>
+            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+              About
+            </a>
+            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+              Podcast
+            </a>
+            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+              Booking
+            </a>
+            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
               Pricing
             </a>
-            <a
-              href="#"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Docs
-            </a>
 
             <Popover className="relative">
               {({ open }) => (
@@ -223,7 +153,7 @@ export const Header = () => {
                   <Popover.Button
                     className={classNames(
                       open ? 'text-gray-900' : 'text-gray-500',
-                      'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
+                      'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-BEred-500 focus:ring-offset-2',
                     )}
                   >
                     <span>More</span>
@@ -255,7 +185,7 @@ export const Header = () => {
                               className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
                             >
                               <item.icon
-                                className="h-6 w-6 flex-shrink-0 text-indigo-600"
+                                className="h-6 w-6 flex-shrink-0 text-BEred-600"
                                 aria-hidden="true"
                               />
                               <div className="ml-4">
@@ -293,7 +223,7 @@ export const Header = () => {
                           <div className="mt-5 text-sm">
                             <a
                               href="#"
-                              className="font-medium text-indigo-600 hover:text-indigo-500"
+                              className="font-medium text-BEred-600 hover:text-BEred-500"
                             >
                               View all posts
                               <span aria-hidden="true"> &rarr;</span>
@@ -307,23 +237,16 @@ export const Header = () => {
               )}
             </Popover>
           </Popover.Group>
+
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-            <a
-              href="#"
-              className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Sign in
-            </a>
-            <a
-              href="#"
-              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-            >
-              Sign up
-            </a>
+            <a href="#" className="whitespace-nowrap text-base font-medium bg-BEred rounded-full text-white px-5 shadow-lg py-2 rotate-[-15deg] hover:rotate-[0deg] transition-all">
+              Book Now
+            </a> 
           </div>
         </div>
       </div>
 
+      {/* MENU */}
       <Transition
         as={Fragment}
         enter="duration-200 ease-out"
@@ -370,7 +293,7 @@ export const Header = () => {
                   </div>
                 </div>
                 <div className="-mr-2">
-                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-BEred-500">
                     <span className="sr-only">Close menu</span>
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </Popover.Button>
@@ -385,7 +308,7 @@ export const Header = () => {
                       className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
                     >
                       <item.icon
-                        className="h-6 w-6 flex-shrink-0 text-indigo-600"
+                        className="h-6 w-6 flex-shrink-0 text-BEred-600"
                         aria-hidden="true"
                       />
                       <span className="ml-3 text-base font-medium text-gray-900">
@@ -424,14 +347,14 @@ export const Header = () => {
               <div>
                 <a
                   href="#"
-                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-BEred px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-BEred-700"
                 >
                   Sign up
                 </a>
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
                   Existing customer?{' '}
-                  <a href="#" className="text-indigo-600 hover:text-indigo-500">
-                    Sign in
+                  <a href="#" className="text-BEred-600 hover:text-BEred-500">
+                    Book
                   </a>
                 </p>
               </div>
