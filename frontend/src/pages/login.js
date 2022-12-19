@@ -19,7 +19,6 @@ function IndexPage() {
         keywords={[`gatsby`, `tailwind`, `react`, `tailwindcss`]}
         title="Home"
       />
- 
 
       <section className="">
         <SignIn />
