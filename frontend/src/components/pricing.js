@@ -272,9 +272,9 @@ function classNames(...classes) {
 export const Pricing = () => {
   return (
     <div className="bg-gray-50">
-      <header className="bg-indigo-600">
+      <header className="bg-red-600">
         <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
-          <div className="flex w-full items-center justify-between border-b border-indigo-500 py-6 lg:border-none">
+          <div className="flex w-full items-center justify-between border-b border-red-500 py-6 lg:border-none">
             <div className="flex items-center">
               <a href="#">
                 <span className="sr-only">Your Company</span>
@@ -282,7 +282,7 @@ export const Pricing = () => {
               </a>
               <div className="ml-10 hidden space-x-8 lg:block">
                 {navigation.map((item) => (
-                  <a key={item.name} href={item.href} className="text-base font-medium text-white hover:text-indigo-50">
+                  <a key={item.name} href={item.href} className="text-base font-medium text-white hover:text-red-50">
                     {item.name}
                   </a>
                 ))}
@@ -291,13 +291,13 @@ export const Pricing = () => {
             <div className="ml-10 space-x-4">
               <a
                 href="#"
-                className="inline-block rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-base font-medium text-white hover:bg-opacity-75"
+                className="inline-block rounded-md border border-transparent bg-red-500 py-2 px-4 text-base font-medium text-white hover:bg-opacity-75"
               >
                 Sign in
               </a>
               <a
                 href="#"
-                className="inline-block rounded-md border border-transparent bg-white py-2 px-4 text-base font-medium text-indigo-600 hover:bg-indigo-50"
+                className="inline-block rounded-md border border-transparent bg-white py-2 px-4 text-base font-medium text-red-600 hover:bg-red-50"
               >
                 <span className="md:hidden">Sign up</span>
                 <span className="hidden md:inline lg:hidden">Create account</span>
@@ -307,7 +307,7 @@ export const Pricing = () => {
           </div>
           <div className="mt-4 flex justify-center space-x-6 lg:hidden">
             {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="text-base font-medium text-white hover:text-indigo-50">
+              <a key={item.name} href={item.href} className="text-base font-medium text-white hover:text-red-50">
                 {item.name}
               </a>
             ))}
@@ -318,7 +318,7 @@ export const Pricing = () => {
       <main>
         {/* Pricing section */}
         <div>
-          <div className="relative bg-indigo-600">
+          <div className="relative bg-red-600">
             {/* Overlapping background */}
             <div aria-hidden="true" className="absolute bottom-0 hidden h-6 w-full bg-gray-50 lg:block" />
 
@@ -327,7 +327,7 @@ export const Pricing = () => {
                 <span className="block lg:inline">Simple pricing,</span>
                 <span className="block lg:inline">no commitment.</span>
               </h1>
-              <p className="mt-4 text-xl text-indigo-100">
+              <p className="mt-4 text-xl text-red-100">
                 Everything you need, nothing you don't. Pick a plan that best suits your business.
               </p>
             </div>
@@ -336,16 +336,16 @@ export const Pricing = () => {
 
             {/* Toggle */}
             <div className="relative mt-12 flex justify-center sm:mt-16">
-              <div className="flex rounded-lg bg-indigo-700 p-0.5">
+              <div className="flex rounded-lg bg-red-700 p-0.5">
                 <button
                   type="button"
-                  className="relative whitespace-nowrap rounded-md border-indigo-700 bg-white py-2 px-6 text-sm font-medium text-indigo-700 shadow-sm hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700"
+                  className="relative whitespace-nowrap rounded-md border-red-700 bg-white py-2 px-6 text-sm font-medium text-red-700 shadow-sm hover:bg-red-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-red-700"
                 >
                   Monthly billing
                 </button>
                 <button
                   type="button"
-                  className="relative ml-0.5 whitespace-nowrap rounded-md border border-transparent py-2 px-6 text-sm font-medium text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700"
+                  className="relative ml-0.5 whitespace-nowrap rounded-md border border-transparent py-2 px-6 text-sm font-medium text-red-200 hover:bg-red-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-red-700"
                 >
                   Yearly billing
                 </button>
@@ -357,7 +357,7 @@ export const Pricing = () => {
               {/* Decorative background */}
               <div
                 aria-hidden="true"
-                className="absolute inset-0 top-4 bottom-6 left-8 right-8 hidden rounded-tl-lg rounded-tr-lg bg-indigo-700 lg:block"
+                className="absolute inset-0 top-4 bottom-6 left-8 right-8 hidden rounded-tl-lg rounded-tr-lg bg-red-700 lg:block"
               />
 
               <div className="relative space-y-6 lg:grid lg:grid-cols-3 lg:space-y-0">
@@ -365,14 +365,14 @@ export const Pricing = () => {
                   <div
                     key={plan.title}
                     className={classNames(
-                      plan.featured ? 'bg-white ring-2 ring-indigo-700 shadow-md' : 'bg-indigo-700 lg:bg-transparent',
+                      plan.featured ? 'bg-white ring-2 ring-red-700 shadow-md' : 'bg-red-700 lg:bg-transparent',
                       'pt-6 px-6 pb-3 rounded-lg lg:px-8 lg:pt-12'
                     )}
                   >
                     <div>
                       <h3
                         className={classNames(
-                          plan.featured ? 'text-indigo-600' : 'text-white',
+                          plan.featured ? 'text-red-600' : 'text-white',
                           'text-base font-semibold'
                         )}
                       >
@@ -382,7 +382,7 @@ export const Pricing = () => {
                         <div className="mt-3 flex items-center">
                           <p
                             className={classNames(
-                              plan.featured ? 'text-indigo-600' : 'text-white',
+                              plan.featured ? 'text-red-600' : 'text-white',
                               'text-4xl font-bold tracking-tight'
                             )}
                           >
@@ -392,7 +392,7 @@ export const Pricing = () => {
                             <p className={classNames(plan.featured ? 'text-gray-700' : 'text-white', 'text-sm')}>
                               USD / mo
                             </p>
-                            <p className={classNames(plan.featured ? 'text-gray-500' : 'text-indigo-200', 'text-sm')}>
+                            <p className={classNames(plan.featured ? 'text-gray-500' : 'text-red-200', 'text-sm')}>
                               Billed yearly (${plan.priceYearly})
                             </p>
                           </div>
@@ -401,8 +401,8 @@ export const Pricing = () => {
                           href="#"
                           className={classNames(
                             plan.featured
-                              ? 'bg-indigo-600 text-white hover:bg-indigo-700'
-                              : 'bg-white text-indigo-600 hover:bg-indigo-50',
+                              ? 'bg-red-600 text-white hover:bg-red-700'
+                              : 'bg-white text-red-600 hover:bg-red-50',
                             'mt-6 w-full inline-block py-2 px-8 border border-transparent rounded-md shadow-sm text-center text-sm font-medium sm:mt-0 sm:w-auto lg:mt-6 lg:w-full'
                           )}
                         >
@@ -416,7 +416,7 @@ export const Pricing = () => {
                       className={classNames(
                         plan.featured
                           ? 'border-gray-200 divide-gray-200'
-                          : 'border-indigo-500 divide-indigo-500 divide-opacity-75',
+                          : 'border-red-500 divide-red-500 divide-opacity-75',
                         'mt-7 border-t divide-y lg:border-t-0'
                       )}
                     >
@@ -424,7 +424,7 @@ export const Pricing = () => {
                         <li key={mainFeature.id} className="flex items-center py-3">
                           <CheckIcon
                             className={classNames(
-                              plan.featured ? 'text-indigo-500' : 'text-indigo-200',
+                              plan.featured ? 'text-red-500' : 'text-red-200',
                               'w-5 h-5 flex-shrink-0'
                             )}
                             aria-hidden="true"
@@ -457,12 +457,12 @@ export const Pricing = () => {
                 <div key={plan.title} className="border-t border-gray-200">
                   <div
                     className={classNames(
-                      plan.featured ? 'border-indigo-600' : 'border-transparent',
+                      plan.featured ? 'border-red-600' : 'border-transparent',
                       '-mt-px pt-6 border-t-2 sm:w-1/2'
                     )}
                   >
                     <h3
-                      className={classNames(plan.featured ? 'text-indigo-600' : 'text-gray-900', 'text-sm font-bold')}
+                      className={classNames(plan.featured ? 'text-red-600' : 'text-gray-900', 'text-sm font-bold')}
                     >
                       {plan.title}
                     </h3>
@@ -483,7 +483,7 @@ export const Pricing = () => {
 
                     <div
                       className={classNames(
-                        plan.featured ? 'ring-2 ring-indigo-600 shadow-md' : 'ring-1 ring-black ring-opacity-5 shadow',
+                        plan.featured ? 'ring-2 ring-red-600 shadow-md' : 'ring-1 ring-black ring-opacity-5 shadow',
                         'relative py-3 px-4 bg-white rounded-lg sm:p-0 sm:bg-transparent sm:rounded-none sm:ring-0 sm:shadow-none'
                       )}
                     >
@@ -498,7 +498,7 @@ export const Pricing = () => {
                               {typeof feature.tiers[planIndex].value === 'string' ? (
                                 <span
                                   className={classNames(
-                                    feature.tiers[planIndex].featured ? 'text-indigo-600' : 'text-gray-900',
+                                    feature.tiers[planIndex].featured ? 'text-red-600' : 'text-gray-900',
                                     'text-sm font-medium'
                                   )}
                                 >
@@ -507,7 +507,7 @@ export const Pricing = () => {
                               ) : (
                                 <>
                                   {feature.tiers[planIndex].value === true ? (
-                                    <CheckIcon className="mx-auto h-5 w-5 text-indigo-600" aria-hidden="true" />
+                                    <CheckIcon className="mx-auto h-5 w-5 text-red-600" aria-hidden="true" />
                                   ) : (
                                     <XMarkIcon className="mx-auto h-5 w-5 text-gray-400" aria-hidden="true" />
                                   )}
@@ -527,7 +527,7 @@ export const Pricing = () => {
                     <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden sm:block">
                       <div
                         className={classNames(
-                          plan.featured ? 'ring-2 ring-indigo-600' : 'ring-1 ring-black ring-opacity-5',
+                          plan.featured ? 'ring-2 ring-red-600' : 'ring-1 ring-black ring-opacity-5',
                           'absolute right-0 w-1/2 h-full rounded-lg'
                         )}
                       />
@@ -549,7 +549,7 @@ export const Pricing = () => {
 
                     <div
                       className={classNames(
-                        plan.featured ? 'ring-2 ring-indigo-600 shadow-md' : 'ring-1 ring-black ring-opacity-5 shadow',
+                        plan.featured ? 'ring-2 ring-red-600 shadow-md' : 'ring-1 ring-black ring-opacity-5 shadow',
                         'relative py-3 px-4 bg-white rounded-lg sm:p-0 sm:bg-transparent sm:rounded-none sm:ring-0 sm:shadow-none'
                       )}
                     >
@@ -559,7 +559,7 @@ export const Pricing = () => {
                             <dt className="text-sm font-medium text-gray-600 sm:pr-4">{perk.title}</dt>
                             <dd className="text-center sm:px-4">
                               {perk.tiers[planIndex].value === true ? (
-                                <CheckIcon className="mx-auto h-5 w-5 text-indigo-600" aria-hidden="true" />
+                                <CheckIcon className="mx-auto h-5 w-5 text-red-600" aria-hidden="true" />
                               ) : (
                                 <XMarkIcon className="mx-auto h-5 w-5 text-gray-400" aria-hidden="true" />
                               )}
@@ -575,7 +575,7 @@ export const Pricing = () => {
                     <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden sm:block">
                       <div
                         className={classNames(
-                          plan.featured ? 'ring-2 ring-indigo-600' : 'ring-1 ring-black ring-opacity-5',
+                          plan.featured ? 'ring-2 ring-red-600' : 'ring-1 ring-black ring-opacity-5',
                           'absolute right-0 w-1/2 h-full rounded-lg'
                         )}
                       />
@@ -604,12 +604,12 @@ export const Pricing = () => {
                   >
                     <div
                       className={classNames(
-                        plan.featured ? 'border-indigo-600' : 'border-transparent',
+                        plan.featured ? 'border-red-600' : 'border-transparent',
                         'py-6 border-t-2'
                       )}
                     >
                       <p
-                        className={classNames(plan.featured ? 'text-indigo-600' : 'text-gray-900', 'text-sm font-bold')}
+                        className={classNames(plan.featured ? 'text-red-600' : 'text-gray-900', 'text-sm font-bold')}
                       >
                         {plan.title}
                       </p>
@@ -666,7 +666,7 @@ export const Pricing = () => {
                               {typeof tier.value === 'string' ? (
                                 <span
                                   className={classNames(
-                                    tier.featured ? 'text-indigo-600' : 'text-gray-900',
+                                    tier.featured ? 'text-red-600' : 'text-gray-900',
                                     'text-sm font-medium'
                                   )}
                                 >
@@ -675,7 +675,7 @@ export const Pricing = () => {
                               ) : (
                                 <>
                                   {tier.value === true ? (
-                                    <CheckIcon className="mx-auto h-5 w-5 text-indigo-600" aria-hidden="true" />
+                                    <CheckIcon className="mx-auto h-5 w-5 text-red-600" aria-hidden="true" />
                                   ) : (
                                     <XMarkIcon className="mx-auto h-5 w-5 text-gray-400" aria-hidden="true" />
                                   )}
@@ -698,7 +698,7 @@ export const Pricing = () => {
                     <div className="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5" />
                   </div>
                   <div className="w-1/4 px-4">
-                    <div className="h-full w-full rounded-lg ring-2 ring-indigo-600 ring-opacity-100" />
+                    <div className="h-full w-full rounded-lg ring-2 ring-red-600 ring-opacity-100" />
                   </div>
                   <div className="w-1/4 pl-4">
                     <div className="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5" />
@@ -753,7 +753,7 @@ export const Pricing = () => {
                           >
                             <span className="relative h-full w-full py-3">
                               {tier.value === true ? (
-                                <CheckIcon className="mx-auto h-5 w-5 text-indigo-600" aria-hidden="true" />
+                                <CheckIcon className="mx-auto h-5 w-5 text-red-600" aria-hidden="true" />
                               ) : (
                                 <XMarkIcon className="mx-auto h-5 w-5 text-gray-400" aria-hidden="true" />
                               )}
@@ -774,7 +774,7 @@ export const Pricing = () => {
                     <div className="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5" />
                   </div>
                   <div className="w-1/4 px-4">
-                    <div className="h-full w-full rounded-lg ring-2 ring-indigo-600 ring-opacity-100" />
+                    <div className="h-full w-full rounded-lg ring-2 ring-red-600 ring-opacity-100" />
                   </div>
                   <div className="w-1/4 pl-4">
                     <div className="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5" />
@@ -842,94 +842,6 @@ export const Pricing = () => {
             </div>
           </div>
         </section>
-
-        {/* Footer */}
-        <footer aria-labelledby="footer-heading">
-          <h2 id="footer-heading" className="sr-only">
-            Footer
-          </h2>
-          <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-            <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-              <div className="space-y-8 xl:col-span-1">
-                <img
-                  className="h-10"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                  alt="Company name"
-                />
-                <p className="text-base text-gray-500">
-                  Making the world a better place through constructing elegant hierarchies.
-                </p>
-                <div className="flex space-x-6">
-                  {footerNavigation.social.map((item) => (
-                    <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
-                      <span className="sr-only">{item.name}</span>
-                      <item.icon className="h-6 w-6" aria-hidden="true" />
-                    </a>
-                  ))}
-                </div>
-              </div>
-              <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-                <div className="md:grid md:grid-cols-2 md:gap-8">
-                  <div>
-                    <h3 className="text-base font-medium text-gray-900">Solutions</h3>
-                    <ul role="list" className="mt-4 space-y-4">
-                      {footerNavigation.solutions.map((item) => (
-                        <li key={item.name}>
-                          <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
-                            {item.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="mt-12 md:mt-0">
-                    <h3 className="text-base font-medium text-gray-900">Support</h3>
-                    <ul role="list" className="mt-4 space-y-4">
-                      {footerNavigation.support.map((item) => (
-                        <li key={item.name}>
-                          <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
-                            {item.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="md:grid md:grid-cols-2 md:gap-8">
-                  <div>
-                    <h3 className="text-base font-medium text-gray-900">Company</h3>
-                    <ul role="list" className="mt-4 space-y-4">
-                      {footerNavigation.company.map((item) => (
-                        <li key={item.name}>
-                          <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
-                            {item.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="mt-12 md:mt-0">
-                    <h3 className="text-base font-medium text-gray-900">Legal</h3>
-                    <ul role="list" className="mt-4 space-y-4">
-                      {footerNavigation.legal.map((item) => (
-                        <li key={item.name}>
-                          <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
-                            {item.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="mt-12 border-t border-gray-200 pt-8">
-              <p className="text-base text-gray-400 xl:text-center">
-                &copy; 2021 Your Company, Inc. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </footer>
       </main>
     </div>
   )

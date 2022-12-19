@@ -163,7 +163,11 @@ export const FeatureBreakdown = () => {
 //#endregion
 
 //#region base
-const features3 = [
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
+export const Feature = ({ features = [
   {
     name: 'Minimal and thoughtful',
     description:
@@ -178,28 +182,26 @@ const features3 = [
     imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-feature-07-detail-02.jpg',
     imageAlt: 'Detail of zipper pull with tan leather and silver rivet.',
   },
-]
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
-export const Feature = () => {
+],
+  headline = {
+    title: "Protect your device",
+    description: `As a digital creative, your laptop or tablet is at the center of your work. Keep your device safe with a
+            fabric sleeve that matches in quality and looks.`
+  } }) => {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl py-24 px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Protect your device</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{headline.title}</h2>
           <p className="mt-4 text-gray-500">
-            As a digital creative, your laptop or tablet is at the center of your work. Keep your device safe with a
-            fabric sleeve that matches in quality and looks.
+            {headline.description}
           </p>
         </div>
 
         <div className="mt-16 space-y-16">
-          {features3.map((feature, featureIdx) => (
+          {features.map(({ name, description, imageAlt, imageSrc }, featureIdx) => (
             <div
-              key={feature.name}
+              key={name}
               className="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8"
             >
               <div
@@ -208,8 +210,8 @@ export const Feature = () => {
                   'mt-6 lg:mt-0 lg:row-start-1 lg:col-span-5 xl:col-span-4'
                 )}
               >
-                <h3 className="text-lg font-medium text-gray-900">{feature.name}</h3>
-                <p className="mt-2 text-sm text-gray-500">{feature.description}</p>
+                <h3 className="text-lg font-medium text-gray-900">{name}</h3>
+                <p className="mt-2 text-sm text-gray-500">{description}</p>
               </div>
               <div
                 className={classNames(
@@ -218,7 +220,7 @@ export const Feature = () => {
                 )}
               >
                 <div className="aspect-w-5 aspect-h-2 overflow-hidden rounded-lg bg-gray-100">
-                  <img src={feature.imageSrc} alt={feature.imageAlt} className="object-cover object-center" />
+                  <img src={imageSrc} alt={imageAlt} className="object-cover object-center" />
                 </div>
               </div>
             </div>
@@ -231,8 +233,8 @@ export const Feature = () => {
 
 //#endregion
 
-//#region feature row 
-const features4 = [
+//#region feature row
+export const FeatureRow = ({ features = [
   {
     name: 'Three card types',
     description: 'Today, Next, and Someday cards allow you to defer your dreams into the future.',
@@ -257,9 +259,11 @@ const features4 = [
     imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-feature-08-detail-04.jpg',
     imageAlt: 'Stack of three green cardstock boxes with 3 hole cutouts showing cards inside.',
   },
-]
-
-export const FeatureRow = () => {
+], headline = {
+  title: "Simple productivity",
+  description: `Focus allows you to plan 10 daily tasks, while also thinking ahead about what's next. Forget distracting
+            digital apps and embrace these small, sturdy pieces of paper.`,
+} }) => {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl py-24 px-4 sm:py-32 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -267,22 +271,21 @@ export const FeatureRow = () => {
           <h2 id="features4-heading" className="font-medium text-gray-500">
             Focus
           </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Simple productivity</p>
+          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{headline.title}</p>
           <p className="mt-4 text-gray-500">
-            Focus allows you to plan 10 daily tasks, while also thinking ahead about what's next. Forget distracting
-            digital apps and embrace these small, sturdy pieces of paper.
+            {headline.description}
           </p>
         </div>
 
         <div className="mt-11 grid grid-cols-1 items-start gap-y-16 gap-x-6 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8">
-          {features4.map((feature) => (
-            <div key={feature.name} className="flex flex-col-reverse">
+          {features.map(({imageAlt,imageSrc,name,description}) => (
+            <div key={name} className="flex flex-col-reverse">
               <div className="mt-6">
-                <h3 className="text-sm font-medium text-gray-900">{feature.name}</h3>
-                <p className="mt-2 text-sm text-gray-500">{feature.description}</p>
+                <h3 className="text-sm font-medium text-gray-900">{name}</h3>
+                <p className="mt-2 text-sm text-gray-500">{description}</p>
               </div>
               <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100">
-                <img src={feature.imageSrc} alt={feature.imageAlt} className="object-cover object-center" />
+                <img src={imageSrc} alt={imageAlt} className="object-cover object-center" />
               </div>
             </div>
           ))}

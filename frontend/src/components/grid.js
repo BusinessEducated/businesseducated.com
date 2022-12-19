@@ -1,6 +1,6 @@
 import React from 'react';
- 
-import { ellipsesVerticalIcon, envelopeIcon,receiptRefundIcon, phoneIcon, usersIcon, clockIcon, checkBadgeIcon, banknotesIcon , academicIcon} from '../../static/svgs'
+
+import { ellipsesVerticalIcon, envelopeIcon, receiptRefundIcon, phoneIcon, usersIcon, clockIcon, checkBadgeIcon, banknotesIcon, academicIcon } from '../../static/svgs'
 //#region small card grid
 
 const projects = [
@@ -39,10 +39,10 @@ export const SmallCardGrid = () => {
               <div className="flex-shrink-0 pr-2">
                 <button
                   type="button"
-                  className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white bg-transparent text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white bg-transparent text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                 >
                   <span className="sr-only">Open options</span>
-                  <div dangerouslySetInnerHTML={{__html: ellipsesVerticalIcon}} className="h-5 w-5" aria-hidden="true" />
+                  <div dangerouslySetInnerHTML={{ __html: ellipsesVerticalIcon }} className="h-5 w-5" aria-hidden="true" />
                 </button>
               </div>
             </div>
@@ -55,7 +55,22 @@ export const SmallCardGrid = () => {
 //#endregion
 
 //#region horizontal link cards
-const people = [
+
+export const HorizontalLinkCards = ({ people=[
+  {
+    name: 'Leslie Alexander',
+    email: 'leslie.alexander@example.com',
+    role: 'Co-Founder / CEO',
+    imageUrl:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+  {
+    name: 'Leslie Alexander',
+    email: 'leslie.alexander@example.com',
+    role: 'Co-Founder / CEO',
+    imageUrl:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
   {
     name: 'Leslie Alexander',
     email: 'leslie.alexander@example.com',
@@ -64,24 +79,22 @@ const people = [
       'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
   },
   // More people...
-]
-
-export const HorizontalLinkCards = () => {
+] }) => {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-      {people.map((person) => (
+      {people.map(({email,imageUrl,name,role}) => (
         <div
-          key={person.email}
-          className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
+          key={email}
+          className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-red-500 focus-within:ring-offset-2 hover:border-gray-400"
         >
           <div className="flex-shrink-0">
-            <img className="h-10 w-10 rounded-full" src={person.imageUrl} alt="" />
+            <img className="h-10 w-10 rounded-full" src={imageUrl} alt="" />
           </div>
           <div className="min-w-0 flex-1">
             <a href="#" className="focus:outline-none">
               <span className="absolute inset-0" aria-hidden="true" />
-              <p className="text-sm font-medium text-gray-900">{person.name}</p>
-              <p className="truncate text-sm text-gray-500">{person.role}</p>
+              <p className="text-sm font-medium text-gray-900">{name}</p>
+              <p className="truncate text-sm text-gray-500">{role}</p>
             </a>
           </div>
         </div>
@@ -92,8 +105,12 @@ export const HorizontalLinkCards = () => {
 
 //#endregion
 
-//#region tight grid  
-const actions = [
+//#region tight grid
+function classNames2(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
+export const TightGrid = ({ actions = [
   {
     title: 'Request time off',
     href: '#',
@@ -137,42 +154,37 @@ const actions = [
     iconBackground: 'bg-indigo-50',
   },
 ]
-
-function classNames2(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
-export const TightGrid = () => {
+}) => {
   return (
     <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">
-      {actions.map((action, actionIdx) => (
+      {actions.map(({ title, iconBackground, href, icon, iconForeground }, actionIdx) => (
         <div
-          key={action.title}
+          key={title}
           className={classNames2(
             actionIdx === 0 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none' : '',
             actionIdx === 1 ? 'sm:rounded-tr-lg' : '',
             actionIdx === actions.length - 2 ? 'sm:rounded-bl-lg' : '',
             actionIdx === actions.length - 1 ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none' : '',
-            'relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500'
+            'relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-red-500'
           )}
         >
           <div>
             <span
               className={classNames2(
-                action.iconBackground,
-                action.iconForeground,
+                iconBackground,
+                iconForeground,
                 'rounded-lg inline-flex p-3 ring-4 ring-white'
               )}
             >
-              <div dangerouslySetInnerHtml={{__html: action.icon}} className="h-6 w-6" aria-hidden="true" />
+              <div dangerouslySetInnerHtml={{ __html: icon }} className="h-6 w-6" aria-hidden="true" />
             </span>
           </div>
           <div className="mt-8">
             <h3 className="text-lg font-medium">
-              <a href={action.href} className="focus:outline-none">
+              <a href={href} className="focus:outline-none">
                 {/* Extend touch target to entire panel */}
                 <span className="absolute inset-0" aria-hidden="true" />
-                {action.title}
+                {title}
               </a>
             </h3>
             <p className="mt-2 text-sm text-gray-500">
@@ -212,7 +224,7 @@ export const ImageGrid = () => {
     <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
       {files.map((file) => (
         <li key={file.source} className="relative">
-          <div className="group aspect-w-10 aspect-h-7 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+          <div className="group aspect-w-10 aspect-h-7 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-red-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
             <img src={file.source} alt="" className="pointer-events-none object-cover group-hover:opacity-75" />
             <button type="button" className="absolute inset-0 focus:outline-none">
               <span className="sr-only">View details for {file.title}</span>
@@ -271,7 +283,7 @@ export default function Example() {
                   href={`mailto:${person.email}`}
                   className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                 >
-                  <div dangerouslySetInnerHTML={{__html: envelopeIcon}} className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <div dangerouslySetInnerHTML={{ __html: envelopeIcon }} className="h-5 w-5 text-gray-400" aria-hidden="true" />
                   <span className="ml-3">Email</span>
                 </a>
               </div>
@@ -280,7 +292,7 @@ export default function Example() {
                   href={`tel:${person.telephone}`}
                   className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                 >
-                  <div dangerouslySetInnerHTML={{__html: phoneIcon}} className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <div dangerouslySetInnerHTML={{ __html: phoneIcon }} className="h-5 w-5 text-gray-400" aria-hidden="true" />
                   <span className="ml-3">Call</span>
                 </a>
               </div>
@@ -307,40 +319,68 @@ const people3 = [
   // More people3...
 ]
 
-export const GridList = () => {
+export const GridList = ({people=[
+  {
+    name: 'Jane Cooper',
+    title: 'Regional Paradigm Technician',
+    role: 'Admin',
+    email: 'janecooper@example.com',
+    telephone: '+1-202-555-0170',
+    imageUrl:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+  },
+  {
+    name: 'Jane Cooper',
+    title: 'Regional Paradigm Technician',
+    role: 'Admin',
+    email: 'janecooper@example.com',
+    telephone: '+1-202-555-0170',
+    imageUrl:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+  },
+  {
+    name: 'Jane Cooper',
+    title: 'Regional Paradigm Technician',
+    role: 'Admin',
+    email: 'janecooper@example.com',
+    telephone: '+1-202-555-0170',
+    imageUrl:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+  },
+]}) => {
   return (
     <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {people3.map((person) => (
-        <li key={person.email} className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
+      {people.map(({email,imageUrl,name,role,telephone,title}) => (
+        <li key={email} className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
           <div className="flex w-full items-center justify-between space-x-6 p-6">
             <div className="flex-1 truncate">
               <div className="flex items-center space-x-3">
-                <h3 className="truncate text-sm font-medium text-gray-900">{person.name}</h3>
+                <h3 className="truncate text-sm font-medium text-gray-900">{name}</h3>
                 <span className="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
-                  {person.role}
+                  {role}
                 </span>
               </div>
-              <p className="mt-1 truncate text-sm text-gray-500">{person.title}</p>
+              <p className="mt-1 truncate text-sm text-gray-500">{title}</p>
             </div>
-            <img className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src={person.imageUrl} alt="" />
+            <img className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src={imageUrl} alt="" />
           </div>
           <div>
             <div className="-mt-px flex divide-x divide-gray-200">
               <div className="flex w-0 flex-1">
                 <a
-                  href={`mailto:${person.email}`}
+                  href={`mailto:${email}`}
                   className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                 >
-                  <div dangerouslySetInnerHTML={{__html: envelopeIcon}} className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <div dangerouslySetInnerHTML={{ __html: envelopeIcon }} className="h-5 w-5 text-gray-400" aria-hidden="true" />
                   <span className="ml-3">Email</span>
                 </a>
               </div>
               <div className="-ml-px flex w-0 flex-1">
                 <a
-                  href={`tel:${person.telephone}`}
+                  href={`tel:${telephone}`}
                   className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                 >
-                  <div dangerouslySetInnerHTML={{__html: phoneIcon}} className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <div dangerouslySetInnerHTML={{ __html: phoneIcon }} className="h-5 w-5 text-gray-400" aria-hidden="true" />
                   <span className="ml-3">Call</span>
                 </a>
               </div>
