@@ -31,7 +31,7 @@ module.exports = {
     // ========================================================================== //
     //     SEO
     // ========================================================================== //
-    `gatsby-plugin-sitemap`,
+    // `gatsby-plugin-sitemap`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-manifest`,
