@@ -1,15 +1,6 @@
 import React from 'react';
-
-import {
-  AcademicCapIcon,
-  BanknotesIcon,
-  CheckBadgeIcon,
-  ClockIcon,
-  ReceiptRefundIcon,
-  UsersIcon,
-} from '@heroicons/react/24/outline'
-import { EllipsisVerticalIcon ,EnvelopeIcon, PhoneIcon} from '@heroicons/react/20/solid'
-
+ 
+import { ellipsesVerticalIcon, envelopeIcon,receiptRefundIcon, phoneIcon, usersIcon, clockIcon, checkBadgeIcon, banknotesIcon , academicIcon} from '../../static/svgs'
 //#region small card grid
 
 const projects = [
@@ -51,7 +42,7 @@ export const SmallCardGrid = () => {
                   className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white bg-transparent text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   <span className="sr-only">Open options</span>
-                  <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
+                  <div dangerouslySetInnerHTML={{__html: ellipsesVerticalIcon}} className="h-5 w-5" aria-hidden="true" />
                 </button>
               </div>
             </div>
@@ -106,42 +97,42 @@ const actions = [
   {
     title: 'Request time off',
     href: '#',
-    icon: ClockIcon,
+    icon: clockIcon,
     iconForeground: 'text-teal-700',
     iconBackground: 'bg-teal-50',
   },
   {
     title: 'Benefits',
     href: '#',
-    icon: CheckBadgeIcon,
+    icon: checkBadgeIcon,
     iconForeground: 'text-purple-700',
     iconBackground: 'bg-purple-50',
   },
   {
     title: 'Schedule a one-on-one',
     href: '#',
-    icon: UsersIcon,
+    icon: usersIcon,
     iconForeground: 'text-sky-700',
     iconBackground: 'bg-sky-50',
   },
   {
     title: 'Payroll',
     href: '#',
-    icon: BanknotesIcon,
+    icon: banknotesIcon,
     iconForeground: 'text-yellow-700',
     iconBackground: 'bg-yellow-50',
   },
   {
     title: 'Submit an expense',
     href: '#',
-    icon: ReceiptRefundIcon,
+    icon: receiptRefundIcon,
     iconForeground: 'text-rose-700',
     iconBackground: 'bg-rose-50',
   },
   {
     title: 'Training',
     href: '#',
-    icon: AcademicCapIcon,
+    icon: academicIcon,
     iconForeground: 'text-indigo-700',
     iconBackground: 'bg-indigo-50',
   },
@@ -173,7 +164,7 @@ export const TightGrid = () => {
                 'rounded-lg inline-flex p-3 ring-4 ring-white'
               )}
             >
-              <action.icon className="h-6 w-6" aria-hidden="true" />
+              <div dangerouslySetInnerHtml={{__html: action.icon}} className="h-6 w-6" aria-hidden="true" />
             </span>
           </div>
           <div className="mt-8">
@@ -280,7 +271,7 @@ export default function Example() {
                   href={`mailto:${person.email}`}
                   className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                 >
-                  <EnvelopeIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <div dangerouslySetInnerHTML={{__html: envelopeIcon}} className="h-5 w-5 text-gray-400" aria-hidden="true" />
                   <span className="ml-3">Email</span>
                 </a>
               </div>
@@ -289,7 +280,7 @@ export default function Example() {
                   href={`tel:${person.telephone}`}
                   className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                 >
-                  <PhoneIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <div dangerouslySetInnerHTML={{__html: phoneIcon}} className="h-5 w-5 text-gray-400" aria-hidden="true" />
                   <span className="ml-3">Call</span>
                 </a>
               </div>
@@ -340,7 +331,7 @@ export const GridList = () => {
                   href={`mailto:${person.email}`}
                   className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                 >
-                  <EnvelopeIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <div dangerouslySetInnerHTML={{__html: envelopeIcon}} className="h-5 w-5 text-gray-400" aria-hidden="true" />
                   <span className="ml-3">Email</span>
                 </a>
               </div>
@@ -349,7 +340,7 @@ export const GridList = () => {
                   href={`tel:${person.telephone}`}
                   className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                 >
-                  <PhoneIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <div dangerouslySetInnerHTML={{__html: phoneIcon}} className="h-5 w-5 text-gray-400" aria-hidden="true" />
                   <span className="ml-3">Call</span>
                 </a>
               </div>
