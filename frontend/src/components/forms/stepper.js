@@ -29,11 +29,11 @@ export const CircleVerticalStepper = () => {
             {step.status === 'complete' ? (
               <>
                 {stepIdx !== steps1.length - 1 ? (
-                  <div className="absolute top-4 left-4 -ml-px mt-0.5 h-full w-0.5 bg-indigo-600" aria-hidden="true" />
+                  <div className="absolute top-4 left-4 -ml-px mt-0.5 h-full w-0.5 bg-emerald-600" aria-hidden="true" />
                 ) : null}
                 <a href={step.href} className="group relative flex items-start">
                   <span className="flex h-9 items-center">
-                    <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 group-hover:bg-indigo-800">
+                    <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 group-hover:bg-emerald-800">
                       <CheckIcon className="h-5 w-5 text-white" aria-hidden="true" />
                     </span>
                   </span>
@@ -50,12 +50,12 @@ export const CircleVerticalStepper = () => {
                 ) : null}
                 <a href={step.href} className="group relative flex items-start" aria-current="step">
                   <span className="flex h-9 items-center" aria-hidden="true">
-                    <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border-2 border-indigo-600 bg-white">
-                      <span className="h-2.5 w-2.5 rounded-full bg-indigo-600" />
+                    <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border-2 border-emerald-600 bg-white">
+                      <span className="h-2.5 w-2.5 rounded-full bg-emerald-600" />
                     </span>
                   </span>
                   <span className="ml-4 flex min-w-0 flex-col">
-                    <span className="text-sm font-medium text-indigo-600">{step.name}</span>
+                    <span className="text-sm font-medium text-emerald-600">{step.name}</span>
                     <span className="text-sm text-gray-500">{step.description}</span>
                   </span>
                 </a>
@@ -109,11 +109,11 @@ export const CircleHorizontalStepper = () => {
             {step.status === 'complete' ? (
               <>
                 <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                  <div className="h-0.5 w-full bg-indigo-600" />
+                  <div className="h-0.5 w-full bg-emerald-600" />
                 </div>
                 <a
                   href="#"
-                  className="relative flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 hover:bg-indigo-900"
+                  className="relative flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 hover:bg-emerald-900"
                 >
                   <CheckIcon className="h-5 w-5 text-white" aria-hidden="true" />
                   <span className="sr-only">{step.name}</span>
@@ -126,10 +126,10 @@ export const CircleHorizontalStepper = () => {
                 </div>
                 <a
                   href="#"
-                  className="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-indigo-600 bg-white"
+                  className="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-emerald-600 bg-white"
                   aria-current="step"
                 >
-                  <span className="h-2.5 w-2.5 rounded-full bg-indigo-600" aria-hidden="true" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-600" aria-hidden="true" />
                   <span className="sr-only">{step.name}</span>
                 </a>
               </>
@@ -201,7 +201,7 @@ export const PanelStepper = () => {
                       )}
                     >
                       <span className="flex-shrink-0">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-600">
                           <CheckIcon className="h-6 w-6 text-white" aria-hidden="true" />
                         </span>
                       </span>
@@ -214,7 +214,7 @@ export const PanelStepper = () => {
                 ) : step.status === 'current' ? (
                   <a href={step.href} aria-current="step">
                     <span
-                      className="absolute top-0 left-0 h-full w-1 bg-indigo-600 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
+                      className="absolute top-0 left-0 h-full w-1 bg-emerald-600 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                       aria-hidden="true"
                     />
                     <span
@@ -224,12 +224,12 @@ export const PanelStepper = () => {
                       )}
                     >
                       <span className="flex-shrink-0">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-indigo-600">
-                          <span className="text-indigo-600">{step.id}</span>
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-emerald-600">
+                          <span className="text-emerald-600">{step.id}</span>
                         </span>
                       </span>
                       <span className="mt-0.5 ml-4 flex min-w-0 flex-col">
-                        <span className="text-sm font-medium text-indigo-600">{step.name}</span>
+                        <span className="text-sm font-medium text-emerald-600">{step.name}</span>
                         <span className="text-sm font-medium text-gray-500">{step.description}</span>
                       </span>
                     </span>
@@ -300,18 +300,18 @@ export const LineStepper = () => {
             {step.status === 'complete' ? (
               <a
                 href={step.href}
-                className="group flex flex-col border-l-4 border-indigo-600 py-2 pl-4 hover:border-indigo-800 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0"
+                className="group flex flex-col border-l-4 border-emerald-600 py-2 pl-4 hover:border-emerald-800 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0"
               >
-                <span className="text-sm font-medium text-indigo-600 group-hover:text-indigo-800">{step.id}</span>
+                <span className="text-sm font-medium text-emerald-600 group-hover:text-emerald-800">{step.id}</span>
                 <span className="text-sm font-medium">{step.name}</span>
               </a>
             ) : step.status === 'current' ? (
               <a
                 href={step.href}
-                className="flex flex-col border-l-4 border-indigo-600 py-2 pl-4 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0"
+                className="flex flex-col border-l-4 border-emerald-600 py-2 pl-4 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0"
                 aria-current="step"
               >
-                <span className="text-sm font-medium text-indigo-600">{step.id}</span>
+                <span className="text-sm font-medium text-emerald-600">{step.id}</span>
                 <span className="text-sm font-medium">{step.name}</span>
               </a>
             ) : (
@@ -333,7 +333,7 @@ export const LineStepper = () => {
 //#endregion
 
 //#region arrow stepper 
-const steps4 = [
+const steps5 = [
   { id: '01', name: 'Job details', href: '#', status: 'complete' },
   { id: '02', name: 'Application form', href: '#', status: 'current' },
   { id: '03', name: 'Preview', href: '#', status: 'upcoming' },
@@ -343,12 +343,12 @@ export const ArrowStepper = () => {
   return (
     <nav aria-label="Progress">
       <ol role="list" className="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
-        {steps4.map((step, stepIdx) => (
+        {steps5.map((step, stepIdx) => (
           <li key={step.name} className="relative md:flex md:flex-1">
             {step.status === 'complete' ? (
               <a href={step.href} className="group flex w-full items-center">
                 <span className="flex items-center px-6 py-4 text-sm font-medium">
-                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-600 group-hover:bg-indigo-800">
+                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-emerald-600 group-hover:bg-emerald-800">
                     <CheckIcon className="h-6 w-6 text-white" aria-hidden="true" />
                   </span>
                   <span className="ml-4 text-sm font-medium text-gray-900">{step.name}</span>
@@ -356,10 +356,10 @@ export const ArrowStepper = () => {
               </a>
             ) : step.status === 'current' ? (
               <a href={step.href} className="flex items-center px-6 py-4 text-sm font-medium" aria-current="step">
-                <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-indigo-600">
-                  <span className="text-indigo-600">{step.id}</span>
+                <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-emerald-600">
+                  <span className="text-emerald-600">{step.id}</span>
                 </span>
-                <span className="ml-4 text-sm font-medium text-indigo-600">{step.name}</span>
+                <span className="ml-4 text-sm font-medium text-emerald-600">{step.name}</span>
               </a>
             ) : (
               <a href={step.href} className="group flex items-center">
