@@ -25,7 +25,7 @@ export const TabA = () => {
         <select
           id="tabs"
           name="tabs"
-          className="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+          className="block w-full rounded-md border-gray-300 focus:border-red-500 focus:ring-red-500"
           defaultValue={tabs.find((tab) => tab.current).name}
         >
           {tabs.map((tab) => (
@@ -42,7 +42,7 @@ export const TabA = () => {
                 href={tab.href}
                 className={classNames1(
                   tab.current
-                    ? 'border-indigo-500 text-indigo-600'
+                    ? 'border-red-500 text-red-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
                   'group inline-flex items-center py-4 px-1 border-b-2 font-medium text-sm'
                 )}
@@ -50,7 +50,7 @@ export const TabA = () => {
               >
                 <tab.icon
                   className={classNames1(
-                    tab.current ? 'text-indigo-500' : 'text-gray-400 group-hover:text-gray-500',
+                    tab.current ? 'text-red-500' : 'text-gray-400 group-hover:text-gray-500',
                     '-ml-0.5 mr-2 h-5 w-5'
                   )}
                   aria-hidden="true"
@@ -104,7 +104,7 @@ export const TabB = () => {
         <select
           id="tabs"
           name="tabs"
-          className="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+          className="block w-full rounded-md border-gray-300 focus:border-red-500 focus:ring-red-500"
           defaultValue={tabs2.find((tab) => tab.current).name}
         >
           {tabs2.map((tab) => (
@@ -119,7 +119,7 @@ export const TabB = () => {
               key={tab.name}
               href={tab.href}
               className={classNames2(
-                tab.current ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:text-gray-700',
+                tab.current ? 'bg-red-100 text-red-700' : 'text-gray-500 hover:text-gray-700',
                 'px-3 py-2 font-medium text-sm rounded-md'
               )}
               aria-current={tab.current ? 'page' : undefined}
@@ -158,7 +158,7 @@ export const TabUnerline = () => {
         <select
           id="tabs"
           name="tabs"
-          className="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+          className="block w-full rounded-md border-gray-300 focus:border-red-500 focus:ring-red-500"
           defaultValue={tabs3.find((tab) => tab.current).name}
         >
           {tabs3.map((tab) => (
@@ -175,7 +175,7 @@ export const TabUnerline = () => {
                 href={tab.href}
                 className={classNames3(
                   tab.current
-                    ? 'border-indigo-500 text-indigo-600'
+                    ? 'border-red-500 text-red-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
                   'w-1/4 py-4 px-1 text-center border-b-2 font-medium text-sm'
                 )}
@@ -218,7 +218,7 @@ export const TabBadges = () => {
         <select
           id="tabs"
           name="tabs"
-          className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+          className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm"
           defaultValue={tabs4.find((tab) => tab.current).name}
         >
           {tabs4.map((tab) => (
@@ -235,7 +235,7 @@ export const TabBadges = () => {
                 href="#"
                 className={classNames4(
                   tab.current
-                    ? 'border-indigo-500 text-indigo-600'
+                    ? 'border-red-500 text-red-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200',
                   'whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm'
                 )}
@@ -245,7 +245,7 @@ export const TabBadges = () => {
                 {tab.count ? (
                   <span
                     className={classNames4(
-                      tab.current ? 'bg-indigo-100 text-indigo-600' : 'bg-gray-100 text-gray-900',
+                      tab.current ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-900',
                       'hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block'
                     )}
                   >

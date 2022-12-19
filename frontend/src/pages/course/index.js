@@ -354,7 +354,7 @@ export const Shop = () => {
                           key={category.name}
                           className={({ selected }) =>
                             classNames(
-                              selected ? 'text-indigo-600 border-indigo-600' : 'text-gray-900 border-transparent',
+                              selected ? 'text-red-600 border-red-600' : 'text-gray-900 border-transparent',
                               'flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium'
                             )
                           }
@@ -481,14 +481,14 @@ export const Shop = () => {
                           <div className="relative flex">
                             <Popover.Button
                               className={classNames(
-                                open ? 'text-indigo-600' : 'text-gray-700 hover:text-gray-800',
+                                open ? 'text-red-600' : 'text-gray-700 hover:text-gray-800',
                                 'relative z-10 flex items-center justify-center text-sm font-medium transition-colors duration-200 ease-out'
                               )}
                             >
                               {category.name}
                               <span
                                 className={classNames(
-                                  open ? 'bg-indigo-600' : '',
+                                  open ? 'bg-red-600' : '',
                                   'absolute inset-x-0 bottom-0 h-0.5 transition-colors duration-200 ease-out sm:mt-5 sm:translate-y-px sm:transform'
                                 )}
                                 aria-hidden="true"
@@ -596,7 +596,7 @@ export const Shop = () => {
                 <span className="sr-only">Your Company</span>
                 <img
                   className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                  src="https://tailwindui.com/img/logos/mark.svg?color=red&shade=600"
                   alt=""
                 />
               </a>
@@ -689,7 +689,7 @@ export const Shop = () => {
                           name="price[]"
                           defaultValue={option.value}
                           type="checkbox"
-                          className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-red-600 focus:ring-red-500"
                           defaultChecked={option.checked}
                         />
                         <label htmlFor={`price-${optionIdx}`} className="ml-3 min-w-0 flex-1 text-gray-600">
@@ -709,7 +709,7 @@ export const Shop = () => {
                           name="color[]"
                           defaultValue={option.value}
                           type="checkbox"
-                          className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-red-600 focus:ring-red-500"
                           defaultChecked={option.checked}
                         />
                         <label htmlFor={`color-${optionIdx}`} className="ml-3 min-w-0 flex-1 text-gray-600">
@@ -731,7 +731,7 @@ export const Shop = () => {
                           name="size[]"
                           defaultValue={option.value}
                           type="checkbox"
-                          className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-red-600 focus:ring-red-500"
                           defaultChecked={option.checked}
                         />
                         <label htmlFor={`size-${optionIdx}`} className="ml-3 min-w-0 flex-1 text-gray-600">
@@ -751,7 +751,7 @@ export const Shop = () => {
                           name="category[]"
                           defaultValue={option.value}
                           type="checkbox"
-                          className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-red-600 focus:ring-red-500"
                           defaultChecked={option.checked}
                         />
                         <label htmlFor={`category-${optionIdx}`} className="ml-3 min-w-0 flex-1 text-gray-600">
@@ -866,47 +866,47 @@ export const Shop = () => {
           <div className="min-w-0 flex-1">
             <a
               href="#"
-              className="inline-flex h-10 items-center rounded-md border border-gray-300 bg-white px-4 hover:bg-gray-100 focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-indigo-600"
+              className="inline-flex h-10 items-center rounded-md border border-gray-300 bg-white px-4 hover:bg-gray-100 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-red-600"
             >
               Previous
             </a>
           </div>
           <div className="hidden space-x-2 sm:flex">
-            {/* Current: "border-indigo-600 ring-1 ring-indigo-600", Default: "border-gray-300" */}
+            {/* Current: "border-red-600 ring-1 ring-red-600", Default: "border-gray-300" */}
             <a
               href="#"
-              className="inline-flex h-10 items-center rounded-md border border-gray-300 bg-white px-4 hover:bg-gray-100 focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-indigo-600"
+              className="inline-flex h-10 items-center rounded-md border border-gray-300 bg-white px-4 hover:bg-gray-100 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-red-600"
             >
               1
             </a>
             <a
               href="#"
-              className="inline-flex h-10 items-center rounded-md border border-gray-300 bg-white px-4 hover:bg-gray-100 focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-indigo-600"
+              className="inline-flex h-10 items-center rounded-md border border-gray-300 bg-white px-4 hover:bg-gray-100 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-red-600"
             >
               2
             </a>
             <a
               href="#"
-              className="inline-flex h-10 items-center rounded-md border border-indigo-600 bg-white px-4 ring-1 ring-indigo-600 hover:bg-gray-100 focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-indigo-600"
+              className="inline-flex h-10 items-center rounded-md border border-red-600 bg-white px-4 ring-1 ring-red-600 hover:bg-gray-100 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-red-600"
             >
               3
             </a>
             <span className="inline-flex h-10 items-center px-1.5 text-gray-500">...</span>
             <a
               href="#"
-              className="inline-flex h-10 items-center rounded-md border border-gray-300 bg-white px-4 hover:bg-gray-100 focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-indigo-600"
+              className="inline-flex h-10 items-center rounded-md border border-gray-300 bg-white px-4 hover:bg-gray-100 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-red-600"
             >
               8
             </a>
             <a
               href="#"
-              className="inline-flex h-10 items-center rounded-md border border-gray-300 bg-white px-4 hover:bg-gray-100 focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-indigo-600"
+              className="inline-flex h-10 items-center rounded-md border border-gray-300 bg-white px-4 hover:bg-gray-100 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-red-600"
             >
               9
             </a>
             <a
               href="#"
-              className="inline-flex h-10 items-center rounded-md border border-gray-300 bg-white px-4 hover:bg-gray-100 focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-indigo-600"
+              className="inline-flex h-10 items-center rounded-md border border-gray-300 bg-white px-4 hover:bg-gray-100 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-red-600"
             >
               10
             </a>
@@ -914,7 +914,7 @@ export const Shop = () => {
           <div className="flex min-w-0 flex-1 justify-end">
             <a
               href="#"
-              className="inline-flex h-10 items-center rounded-md border border-gray-300 bg-white px-4 hover:bg-gray-100 focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-indigo-600"
+              className="inline-flex h-10 items-center rounded-md border border-gray-300 bg-white px-4 hover:bg-gray-100 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-red-600"
             >
               Next
             </a>

@@ -4,7 +4,7 @@ const posts = [
   {
     title: 'Boost your conversion rate',
     href: '#',
-    category: { name: 'Article', href: '#', color: 'bg-indigo-100 text-indigo-800' },
+    category: { name: 'Article', href: '#', color: 'bg-red-100 text-red-800' },
     description:
       'Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor lacus arcu.',
     date: 'Mar 16, 2020',

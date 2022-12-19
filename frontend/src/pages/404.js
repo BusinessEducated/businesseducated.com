@@ -25,13 +25,13 @@ export const NotFoundPage = () => {
                     <span className="sr-only">Your Company</span>
                     <img
                       className="h-12 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                      src="https://tailwindui.com/img/logos/mark.svg?color=red&shade=600"
                       alt=""
                     />
                   </a>
                 </div>
                 <div className="my-auto flex-shrink-0 py-16 sm:py-32">
-                  <p className="text-base font-semibold text-indigo-600">404</p>
+                  <p className="text-base font-semibold text-red-600">404</p>
                   <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
                     Page not found
                   </h1>
@@ -41,7 +41,7 @@ export const NotFoundPage = () => {
                   <div className="mt-6">
                     <a
                       href="#"
-                      className="text-base font-medium text-indigo-600 hover:text-indigo-500"
+                      className="text-base font-medium text-red-600 hover:text-red-500"
                     >
                       Go back home
                       <span aria-hidden="true"> &rarr;</span>

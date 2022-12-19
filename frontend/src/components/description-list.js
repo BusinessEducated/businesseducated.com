@@ -18,7 +18,7 @@ export const DescriptionList = () => {
               <span className="ml-4 flex-shrink-0">
                 <button
                   type="button"
-                  className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="rounded-md bg-white font-medium text-red-600 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                 >
                   Update
                 </button>
@@ -32,7 +32,7 @@ export const DescriptionList = () => {
               <span className="ml-4 flex-shrink-0">
                 <button
                   type="button"
-                  className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="rounded-md bg-white font-medium text-red-600 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                 >
                   Update
                 </button>
@@ -46,7 +46,7 @@ export const DescriptionList = () => {
               <span className="ml-4 flex-shrink-0">
                 <button
                   type="button"
-                  className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="rounded-md bg-white font-medium text-red-600 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                 >
                   Update
                 </button>
@@ -60,7 +60,7 @@ export const DescriptionList = () => {
               <span className="ml-4 flex-shrink-0">
                 <button
                   type="button"
-                  className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="rounded-md bg-white font-medium text-red-600 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                 >
                   Update
                 </button>
@@ -78,7 +78,7 @@ export const DescriptionList = () => {
               <span className="ml-4 flex-shrink-0">
                 <button
                   type="button"
-                  className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="rounded-md bg-white font-medium text-red-600 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                 >
                   Update
                 </button>
@@ -97,7 +97,7 @@ export const DescriptionList = () => {
                   <div className="ml-4 flex flex-shrink-0 space-x-4">
                     <button
                       type="button"
-                      className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="rounded-md bg-white font-medium text-red-600 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                     >
                       Update
                     </button>
@@ -106,7 +106,7 @@ export const DescriptionList = () => {
                     </span>
                     <button
                       type="button"
-                      className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="rounded-md bg-white font-medium text-red-600 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                     >
                       Remove
                     </button>
@@ -120,7 +120,7 @@ export const DescriptionList = () => {
                   <div className="ml-4 flex flex-shrink-0 space-x-4">
                     <button
                       type="button"
-                      className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="rounded-md bg-white font-medium text-red-600 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                     >
                       Update
                     </button>
@@ -129,7 +129,7 @@ export const DescriptionList = () => {
                     </span>
                     <button
                       type="button"
-                      className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="rounded-md bg-white font-medium text-red-600 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                     >
                       Remove
                     </button>

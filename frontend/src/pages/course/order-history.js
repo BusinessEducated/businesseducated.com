@@ -173,7 +173,7 @@ export const OrderHistory = () => {
                           key={category.name}
                           className={({ selected }) =>
                             classNames(
-                              selected ? 'text-indigo-600 border-indigo-600' : 'text-gray-900 border-transparent',
+                              selected ? 'text-red-600 border-red-600' : 'text-gray-900 border-transparent',
                               'flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium'
                             )
                           }
@@ -366,7 +366,7 @@ export const OrderHistory = () => {
                       <span className="sr-only">Your Company</span>
                       <img
                         className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        src="https://tailwindui.com/img/logos/mark.svg?color=red&shade=600"
                         alt=""
                       />
                     </a>
@@ -384,7 +384,7 @@ export const OrderHistory = () => {
                                   <Popover.Button
                                     className={classNames(
                                       open
-                                        ? 'border-indigo-600 text-indigo-600'
+                                        ? 'border-red-600 text-red-600'
                                         : 'border-transparent text-gray-700 hover:text-gray-800',
                                       'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
                                     )}
@@ -534,7 +534,7 @@ export const OrderHistory = () => {
                   <a href="#" className="lg:hidden">
                     <span className="sr-only">Your Company</span>
                     <img
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                      src="https://tailwindui.com/img/logos/mark.svg?color=red&shade=600"
                       alt=""
                       className="h-8 w-auto"
                     />
@@ -597,11 +597,11 @@ export const OrderHistory = () => {
                 <div className="space-y-5 sm:flex sm:items-baseline sm:justify-between sm:space-y-0 md:min-w-0 md:flex-1">
                   <p className="text-sm font-medium text-gray-500">{order.status}</p>
                   <div className="flex text-sm font-medium">
-                    <a href={order.href} className="text-indigo-600 hover:text-indigo-500">
+                    <a href={order.href} className="text-red-600 hover:text-red-500">
                       Manage order
                     </a>
                     <div className="ml-4 border-l border-gray-200 pl-4 sm:ml-6 sm:pl-6">
-                      <a href={order.invoiceHref} className="text-indigo-600 hover:text-indigo-500">
+                      <a href={order.invoiceHref} className="text-red-600 hover:text-red-500">
                         View Invoice
                       </a>
                     </div>
@@ -635,13 +635,13 @@ export const OrderHistory = () => {
                     <div className="mt-6 space-y-4 sm:mt-0 sm:ml-6 sm:w-40 sm:flex-none">
                       <button
                         type="button"
-                        className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-2.5 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-full sm:flex-grow-0"
+                        className="flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 py-2 px-2.5 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-full sm:flex-grow-0"
                       >
                         Buy again
                       </button>
                       <button
                         type="button"
-                        className="flex w-full items-center justify-center rounded-md border border-gray-300 bg-white py-2 px-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-full sm:flex-grow-0"
+                        className="flex w-full items-center justify-center rounded-md border border-gray-300 bg-white py-2 px-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-full sm:flex-grow-0"
                       >
                         Shop similar
                       </button>

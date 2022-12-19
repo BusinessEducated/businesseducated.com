@@ -295,7 +295,7 @@
 //                           key={category.name}
 //                           className={({ selected }) =>
 //                             classNames(
-//                               selected ? 'text-indigo-600 border-indigo-600' : 'text-gray-900 border-transparent',
+//                               selected ? 'text-red-600 border-red-600' : 'text-gray-900 border-transparent',
 //                               'flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium'
 //                             )
 //                           }
@@ -390,7 +390,7 @@
 //       </Transition.Root>
 
 //       <header className="relative bg-white">
-//         <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+//         <p className="flex h-10 items-center justify-center bg-red-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
 //           Save 20% when you buy two or more kits
 //         </p>
 
@@ -412,7 +412,7 @@
 //                   <span className="sr-only">Your Company</span>
 //                   <img
 //                     className="h-8 w-auto"
-//                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+//                     src="https://tailwindui.com/img/logos/mark.svg?color=red&shade=600"
 //                     alt=""
 //                   />
 //                 </a>
@@ -429,7 +429,7 @@
 //                             <Popover.Button
 //                               className={classNames(
 //                                 open
-//                                   ? 'border-indigo-600 text-indigo-600'
+//                                   ? 'border-red-600 text-red-600'
 //                                   : 'border-transparent text-gray-700 hover:text-gray-800',
 //                                 'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
 //                               )}
@@ -614,13 +614,13 @@
 //             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
 //               <button
 //                 type="button"
-//                 className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+//                 className="flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 py-3 px-8 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50"
 //               >
 //                 Pay {product.price}
 //               </button>
 //               <button
 //                 type="button"
-//                 className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-50 py-3 px-8 text-base font-medium text-indigo-700 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+//                 className="flex w-full items-center justify-center rounded-md border border-transparent bg-red-50 py-3 px-8 text-base font-medium text-red-700 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50"
 //               >
 //                 Preview
 //               </button>
@@ -641,7 +641,7 @@
 //               <h3 className="text-sm font-medium text-gray-900">License</h3>
 //               <p className="mt-4 text-sm text-gray-500">
 //                 {license.summary}{' '}
-//                 <a href={license.href} className="font-medium text-indigo-600 hover:text-indigo-500">
+//                 <a href={license.href} className="font-medium text-red-600 hover:text-red-500">
 //                   Read full license
 //                 </a>
 //               </p>
@@ -694,7 +694,7 @@
 //                     className={({ selected }) =>
 //                       classNames(
 //                         selected
-//                           ? 'border-indigo-600 text-indigo-600'
+//                           ? 'border-red-600 text-red-600'
 //                           : 'border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300',
 //                         'whitespace-nowrap border-b-2 py-6 text-sm font-medium'
 //                       )
@@ -706,7 +706,7 @@
 //                     className={({ selected }) =>
 //                       classNames(
 //                         selected
-//                           ? 'border-indigo-600 text-indigo-600'
+//                           ? 'border-red-600 text-red-600'
 //                           : 'border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300',
 //                         'whitespace-nowrap border-b-2 py-6 text-sm font-medium'
 //                       )
@@ -718,7 +718,7 @@
 //                     className={({ selected }) =>
 //                       classNames(
 //                         selected
-//                           ? 'border-indigo-600 text-indigo-600'
+//                           ? 'border-red-600 text-red-600'
 //                           : 'border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300',
 //                         'whitespace-nowrap border-b-2 py-6 text-sm font-medium'
 //                       )
@@ -798,7 +798,7 @@
 //         <div className="mx-auto mt-24 max-w-2xl sm:mt-32 lg:max-w-none">
 //           <div className="flex items-center justify-between space-x-4">
 //             <h2 className="text-lg font-medium text-gray-900">Customers also viewed</h2>
-//             <a href="#" className="whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500">
+//             <a href="#" className="whitespace-nowrap text-sm font-medium text-red-600 hover:text-red-500">
 //               View all
 //               <span aria-hidden="true"> &rarr;</span>
 //             </a>
@@ -839,7 +839,7 @@
 //             {/* Image section */}
 //             <div className="col-span-1 md:col-span-2 lg:col-start-1 lg:row-start-1">
 //               <img
-//                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+//                 src="https://tailwindui.com/img/logos/mark.svg?color=red&shade=600"
 //                 alt=""
 //                 className="h-8 w-auto"
 //               />
@@ -900,12 +900,12 @@
 //                   type="text"
 //                   autoComplete="email"
 //                   required
-//                   className="block w-full rounded-md border border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:min-w-0 sm:max-w-xs sm:flex-1 lg:max-w-none"
+//                   className="block w-full rounded-md border border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 sm:min-w-0 sm:max-w-xs sm:flex-1 lg:max-w-none"
 //                 />
 //                 <div className="mt-4 sm:mt-0 sm:ml-4 sm:flex-shrink-0 lg:mt-4 lg:ml-0 xl:mt-0 xl:ml-4">
 //                   <button
 //                     type="submit"
-//                     className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+//                     className="flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
 //                   >
 //                     Sign up
 //                   </button>

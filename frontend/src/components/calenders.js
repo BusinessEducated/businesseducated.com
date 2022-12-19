@@ -198,7 +198,7 @@ export const CalenderMonth = () => {
             <div className="ml-6 h-6 w-px bg-gray-300" />
             <button
               type="button"
-              className="ml-6 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="ml-6 rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
             >
               Add event
             </button>
@@ -346,7 +346,7 @@ export const CalenderMonth = () => {
                   dateTime={day.date}
                   className={
                     day.isToday
-                      ? 'flex h-6 w-6 items-center justify-center rounded-full bg-indigo-600 font-semibold text-white'
+                      ? 'flex h-6 w-6 items-center justify-center rounded-full bg-red-600 font-semibold text-white'
                       : undefined
                   }
                 >
@@ -357,12 +357,12 @@ export const CalenderMonth = () => {
                     {day.events.slice(0, 2).map((event) => (
                       <li key={event.id}>
                         <a href={event.href} className="group flex">
-                          <p className="flex-auto truncate font-medium text-gray-900 group-hover:text-indigo-600">
+                          <p className="flex-auto truncate font-medium text-gray-900 group-hover:text-red-600">
                             {event.name}
                           </p>
                           <time
                             dateTime={event.datetime}
-                            className="ml-3 hidden flex-none text-gray-500 group-hover:text-indigo-600 xl:block"
+                            className="ml-3 hidden flex-none text-gray-500 group-hover:text-red-600 xl:block"
                           >
                             {event.time}
                           </time>
@@ -384,7 +384,7 @@ export const CalenderMonth = () => {
                   day.isCurrentMonth ? 'bg-white' : 'bg-gray-50',
                   (day.isSelected || day.isToday) && 'font-semibold',
                   day.isSelected && 'text-white',
-                  !day.isSelected && day.isToday && 'text-indigo-600',
+                  !day.isSelected && day.isToday && 'text-red-600',
                   !day.isSelected && day.isCurrentMonth && !day.isToday && 'text-gray-900',
                   !day.isSelected && !day.isCurrentMonth && !day.isToday && 'text-gray-500',
                   'flex h-14 flex-col py-2 px-3 hover:bg-gray-100 focus:z-10'
@@ -394,7 +394,7 @@ export const CalenderMonth = () => {
                   dateTime={day.date}
                   className={classNames(
                     day.isSelected && 'flex h-6 w-6 items-center justify-center rounded-full',
-                    day.isSelected && day.isToday && 'bg-indigo-600',
+                    day.isSelected && day.isToday && 'bg-red-600',
                     day.isSelected && !day.isToday && 'bg-gray-900',
                     'ml-auto'
                   )}
@@ -571,7 +571,7 @@ export const CalenderWeek = () => {
             <div className="ml-6 h-6 w-px bg-gray-300" />
             <button
               type="button"
-              className="ml-6 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="ml-6 rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
             >
               Add event
             </button>
@@ -696,7 +696,7 @@ export const CalenderWeek = () => {
               </button>
               <button type="button" className="flex flex-col items-center pt-2 pb-3">
                 W{' '}
-                <span className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 font-semibold text-white">
+                <span className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-red-600 font-semibold text-white">
                   12
                 </span>
               </button>
@@ -729,7 +729,7 @@ export const CalenderWeek = () => {
               <div className="flex items-center justify-center py-3">
                 <span className="flex items-baseline">
                   Wed{' '}
-                  <span className="ml-1.5 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 font-semibold text-white">
+                  <span className="ml-1.5 flex h-8 w-8 items-center justify-center rounded-full bg-red-600 font-semibold text-white">
                     12
                   </span>
                 </span>
@@ -1154,7 +1154,7 @@ export const CalenderDay = () => {
             <div className="ml-6 h-6 w-px bg-gray-300" />
             <button
               type="button"
-              className="ml-6 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="ml-6 rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
             >
               Add event
             </button>
@@ -1272,14 +1272,14 @@ export const CalenderDay = () => {
           >
             <button type="button" className="flex flex-col items-center pt-3 pb-1.5">
               <span>W</span>
-              {/* Default: "text-gray-900", Selected: "bg-gray-900 text-white", Today (Not Selected): "text-indigo-600", Today (Selected): "bg-indigo-600 text-white" */}
+              {/* Default: "text-gray-900", Selected: "bg-gray-900 text-white", Today (Not Selected): "text-red-600", Today (Selected): "bg-red-600 text-white" */}
               <span className="mt-3 flex h-8 w-8 items-center justify-center rounded-full text-base font-semibold text-gray-900">
                 19
               </span>
             </button>
             <button type="button" className="flex flex-col items-center pt-3 pb-1.5">
               <span>T</span>
-              <span className="mt-3 flex h-8 w-8 items-center justify-center rounded-full text-base font-semibold text-indigo-600">
+              <span className="mt-3 flex h-8 w-8 items-center justify-center rounded-full text-base font-semibold text-red-600">
                 20
               </span>
             </button>
@@ -1502,11 +1502,11 @@ export const CalenderDay = () => {
                 <li className="relative mt-px flex" style={{ gridRow: '134 / span 18' }}>
                   <a
                     href="#"
-                    className="group absolute inset-1 flex flex-col overflow-y-auto rounded-lg bg-indigo-50 p-2 text-xs leading-5 hover:bg-indigo-100"
+                    className="group absolute inset-1 flex flex-col overflow-y-auto rounded-lg bg-red-50 p-2 text-xs leading-5 hover:bg-red-100"
                   >
-                    <p className="order-1 font-semibold text-indigo-700">Sightseeing</p>
-                    <p className="order-1 text-indigo-500 group-hover:text-indigo-700">Eiffel Tower</p>
-                    <p className="text-indigo-500 group-hover:text-indigo-700">
+                    <p className="order-1 font-semibold text-red-700">Sightseeing</p>
+                    <p className="order-1 text-red-500 group-hover:text-red-700">Eiffel Tower</p>
+                    <p className="text-red-500 group-hover:text-red-700">
                       <time dateTime="2022-01-22T11:00">11:00 AM</time>
                     </p>
                   </a>
@@ -1554,7 +1554,7 @@ export const CalenderDay = () => {
                   day.isSelected && 'text-white',
                   !day.isSelected && day.isCurrentMonth && !day.isToday && 'text-gray-900',
                   !day.isSelected && !day.isCurrentMonth && !day.isToday && 'text-gray-400',
-                  day.isToday && !day.isSelected && 'text-indigo-600',
+                  day.isToday && !day.isSelected && 'text-red-600',
                   dayIdx === 0 && 'rounded-tl-lg',
                   dayIdx === 6 && 'rounded-tr-lg',
                   dayIdx === dayss.length - 7 && 'rounded-bl-lg',
@@ -1565,7 +1565,7 @@ export const CalenderDay = () => {
                   dateTime={day.date}
                   className={classNames3(
                     'mx-auto flex h-7 w-7 items-center justify-center rounded-full',
-                    day.isSelected && day.isToday && 'bg-indigo-600',
+                    day.isSelected && day.isToday && 'bg-red-600',
                     day.isSelected && !day.isToday && 'bg-gray-900'
                   )}
                 >
@@ -1749,7 +1749,7 @@ export const CalenderYear = () => {
             <div className="ml-6 h-6 w-px bg-gray-300" />
             <button
               type="button"
-              className="ml-6 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="ml-6 rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
             >
               Add event
             </button>
@@ -1890,7 +1890,7 @@ export const CalenderYear = () => {
                     <time
                       dateTime={day.date}
                       className={classNames4(
-                        day.isToday && 'bg-indigo-600 font-semibold text-white',
+                        day.isToday && 'bg-red-600 font-semibold text-white',
                         'mx-auto flex h-7 w-7 items-center justify-center rounded-full'
                       )}
                     >
@@ -2061,7 +2061,7 @@ export const CalenderDouble = () => {
                   <time
                     dateTime={day.date}
                     className={classNames5(
-                      day.isToday && 'bg-indigo-600 font-semibold text-white',
+                      day.isToday && 'bg-red-600 font-semibold text-white',
                       'mx-auto flex h-7 w-7 items-center justify-center rounded-full'
                     )}
                   >

@@ -14,7 +14,7 @@ const navigation = [
   { name: 'Recent', href: '#', icon: ClockIcon, current: false },
 ]
 const teams = [
-  { name: 'Engineering', href: '#', bgColorClass: 'bg-indigo-500' },
+  { name: 'Engineering', href: '#', bgColorClass: 'bg-red-500' },
   { name: 'Human Resources', href: '#', bgColorClass: 'bg-green-500' },
   { name: 'Customer Success', href: '#', bgColorClass: 'bg-yellow-500' },
 ]
@@ -333,7 +333,7 @@ export const Dashboard = () => {
                   type="text"
                   name="search"
                   id="search"
-                  className="block w-full rounded-md border-gray-300 pl-9 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  className="block w-full rounded-md border-gray-300 pl-9 focus:border-red-500 focus:ring-red-500 sm:text-sm"
                   placeholder="Search"
                 />
               </div>
@@ -737,7 +737,7 @@ export const Dashboard = () => {
                           {project.lastUpdated}
                         </td>
                         <td className="whitespace-nowrap px-6 py-3 text-right text-sm font-medium">
-                          <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                          <a href="#" className="text-red-600 hover:text-red-900">
                             Edit
                           </a>
                         </td>

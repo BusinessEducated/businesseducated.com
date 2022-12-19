@@ -270,7 +270,7 @@ export const Shop = () => {
                             key={category.name}
                             className={({ selected }) =>
                               classNames(
-                                selected ? 'text-indigo-600 border-indigo-600' : 'text-gray-900 border-transparent',
+                                selected ? 'text-red-600 border-red-600' : 'text-gray-900 border-transparent',
                                 'flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium'
                               )
                             }
@@ -368,7 +368,7 @@ export const Shop = () => {
         </Transition.Root>
 
         <header className="relative bg-white">
-          <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+          <p className="flex h-10 items-center justify-center bg-red-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
             Get free delivery on orders over $100
           </p>
 
@@ -390,7 +390,7 @@ export const Shop = () => {
                     <span className="sr-only">Your Company</span>
                     <img
                       className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                      src="https://tailwindui.com/img/logos/mark.svg?color=red&shade=600"
                       alt=""
                     />
                   </a>
@@ -407,7 +407,7 @@ export const Shop = () => {
                               <Popover.Button
                                 className={classNames(
                                   open
-                                    ? 'border-indigo-600 text-indigo-600'
+                                    ? 'border-red-600 text-red-600'
                                     : 'border-transparent text-gray-700 hover:text-gray-800',
                                   'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
                                 )}
@@ -610,7 +610,7 @@ export const Shop = () => {
                                       name={`${section.id}[]`}
                                       defaultValue={option.value}
                                       type="checkbox"
-                                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                      className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
                                     />
                                     <label
                                       htmlFor={`${section.id}-${optionIdx}-mobile`}
@@ -697,7 +697,7 @@ export const Shop = () => {
                                 name={`${section.id}[]`}
                                 defaultValue={option.value}
                                 type="checkbox"
-                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
                               />
                               <label htmlFor={`${section.id}-${optionIdx}`} className="ml-3 text-sm text-gray-600">
                                 {option.label}
@@ -760,7 +760,7 @@ export const Shop = () => {
                 {/* Image section */}
                 <div className="col-span-1 md:col-span-2 lg:col-start-1 lg:row-start-1">
                   <img
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    src="https://tailwindui.com/img/logos/mark.svg?color=red&shade=600"
                     alt=""
                     className="h-8 w-auto"
                   />
@@ -821,12 +821,12 @@ export const Shop = () => {
                       type="text"
                       autoComplete="email"
                       required
-                      className="w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                      className="w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500"
                     />
                     <div className="ml-4 flex-shrink-0">
                       <button
                         type="submit"
-                        className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        className="flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                       >
                         Sign up
                       </button>

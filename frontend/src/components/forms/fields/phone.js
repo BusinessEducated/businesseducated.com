@@ -15,7 +15,7 @@ export const PhoneInput = () => {
             id="country"
             name="country"
             autoComplete="country"
-            className="h-full rounded-md border-transparent bg-transparent py-0 pl-3 pr-7 text-gray-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="h-full rounded-md border-transparent bg-transparent py-0 pl-3 pr-7 text-gray-500 focus:border-red-500 focus:ring-red-500 sm:text-sm"
           >
             <option>US</option>
             <option>CA</option>
@@ -26,7 +26,7 @@ export const PhoneInput = () => {
           type="text"
           name="phone-number"
           id="phone-number"
-          className="block w-full rounded-md border-gray-300 pl-16 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          className="block w-full rounded-md border-gray-300 pl-16 focus:border-red-500 focus:ring-red-500 sm:text-sm"
           placeholder="+1 (555) 987-6543"
         />
       </div>

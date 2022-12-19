@@ -7,7 +7,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export const ContactForm = () => {
+export const JoinPodcast = () => {
   const [agreed, setAgreed] = useState(false)
 
   return (
@@ -216,4 +216,4 @@ export const ContactForm = () => {
   )
 }
 
-export default ContactForm;
+export default JoinPodcast;

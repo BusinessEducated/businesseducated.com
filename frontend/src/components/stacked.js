@@ -142,7 +142,7 @@ export const AvatarGroupStack = () => {
                 <div className="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
                   <div className="truncate">
                     <div className="flex text-sm">
-                      <p className="truncate font-medium text-indigo-600">{position.title}</p>
+                      <p className="truncate font-medium text-red-600">{position.title}</p>
                       <p className="ml-1 flex-shrink-0 font-normal text-gray-500">in {position.department}</p>
                     </div>
                     <div className="mt-2 flex">
@@ -398,7 +398,7 @@ export const StickyStack = () => {
           <ul role="list" className="relative z-0 divide-y divide-gray-200">
             {directory[letter].map((person) => (
               <li key={person.id} className="bg-white">
-                <div className="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-gray-50">
+                <div className="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-red-500 hover:bg-gray-50">
                   <div className="flex-shrink-0">
                     <img className="h-10 w-10 rounded-full" src={person.imageUrl} alt="" />
                   </div>
@@ -442,7 +442,7 @@ export const ContentStack = () => {
       {messages.map((message) => (
         <li
           key={message.id}
-          className="relative bg-white py-5 px-4 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50"
+          className="relative bg-white py-5 px-4 focus-within:ring-2 focus-within:ring-inset focus-within:ring-red-600 hover:bg-gray-50"
         >
           <div className="flex justify-between space-x-3">
             <div className="min-w-0 flex-1">

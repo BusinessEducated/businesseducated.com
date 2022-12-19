@@ -2,7 +2,12 @@
 import React from 'react';
 
 //#region two choice feature
-export const FeatureTwoChoice = () => {
+export const FeatureTwoChoice = ({ headline = {
+  title: 'The Fine Details', description: `
+              Our patented padded snack sleeve construction protects your favorite treats from getting smooshed during
+              all-day adventures, long shifts at work, and tough travel schedules.` }, features = [
+    { title: '', description: '', imageSrc: '', imageAlt: '' }
+  ] }) => {
   return (
     <div className="bg-gray-50">
       <div className="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
@@ -10,13 +15,26 @@ export const FeatureTwoChoice = () => {
         <section aria-labelledby="details-heading">
           <div className="flex flex-col items-center text-center">
             <h2 id="details-heading" className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              The Fine Details
+              {headline.title}
             </h2>
-            <p className="mt-3 max-w-3xl text-lg text-gray-600">
-              Our patented padded snack sleeve construction protects your favorite treats from getting smooshed during
-              all-day adventures, long shifts at work, and tough travel schedules.
-            </p>
+            <p className="mt-3 max-w-3xl text-lg text-gray-600">{headline.description}</p>
           </div>
+
+          {/* {features.map(({description,imageAlt,imageSrc,title}) => (
+            <div className="mt-16 grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:gap-x-8">
+              <div>
+                <div className="aspect-w-3 aspect-h-2 w-full overflow-hidden rounded-lg">
+                  <img
+                    src={imageSrc}
+                    alt={imageAlt}
+                    className="h-full w-full object-cover object-center"
+                  />
+                </div>
+                <p className="mt-8 text-base text-gray-500">
+                  {description}
+                </p>
+              </div>
+          ))} */}
 
           <div className="mt-16 grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:gap-x-8">
             <div>
@@ -278,7 +296,7 @@ export const FeatureRow = ({ features = [
         </div>
 
         <div className="mt-11 grid grid-cols-1 items-start gap-y-16 gap-x-6 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8">
-          {features.map(({imageAlt,imageSrc,name,description}) => (
+          {features.map(({ imageAlt, imageSrc, name, description }) => (
             <div key={name} className="flex flex-col-reverse">
               <div className="mt-6">
                 <h3 className="text-sm font-medium text-gray-900">{name}</h3>

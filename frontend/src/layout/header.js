@@ -267,7 +267,7 @@ export const Header = () => {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                  {services.map((item) => (
+                  {pages.map((item) => (
                     <Link
                       key={item.name}
                       to={item.href}
@@ -306,15 +306,15 @@ export const Header = () => {
               </div>
               <div>
                 <Link
-                  to="/register"
+                  to="/booking"
                   className="flex w-full items-center justify-center rounded-md border border-transparent bg-BEred px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-BEred-700"
                 >
-                  Sign up
+                  Book now
                 </Link>
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
                   Existing customer?{' '}
-                  <Link to="/booking" className="text-BEred-600 hover:text-BEred-500">
-                    Book
+                  <Link to="/login" className="text-BEred-600 hover:text-BEred-500">
+                    Log in
                   </Link>
                 </p>
               </div>

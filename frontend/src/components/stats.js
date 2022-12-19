@@ -21,15 +21,15 @@ export const Stats = () => {
               <dl className="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
                 <div className="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
                   <dt className="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">Pepperoni</dt>
-                  <dd className="order-1 text-5xl font-bold tracking-tight text-indigo-600">100%</dd>
+                  <dd className="order-1 text-5xl font-bold tracking-tight text-red-600">100%</dd>
                 </div>
                 <div className="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
                   <dt className="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">Delivery</dt>
-                  <dd className="order-1 text-5xl font-bold tracking-tight text-indigo-600">24/7</dd>
+                  <dd className="order-1 text-5xl font-bold tracking-tight text-red-600">24/7</dd>
                 </div>
                 <div className="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
                   <dt className="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">Calories</dt>
-                  <dd className="order-1 text-5xl font-bold tracking-tight text-indigo-600">100k</dd>
+                  <dd className="order-1 text-5xl font-bold tracking-tight text-red-600">100k</dd>
                 </div>
               </dl>
             </div>

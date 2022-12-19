@@ -5,7 +5,7 @@ export const Button = ({children,props}) => {
       <button
         {...props}
         type="button"
-        className="inline-flex items-center rounded-full border border-transparent bg-BEred px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        className="inline-flex items-center rounded-full border border-transparent bg-BEred px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
       >
        {children}
       </button>

@@ -37,8 +37,9 @@ export const ContentSingleSpan = () => {
 
 //#endregion
 
-//#region 3 row grid 
-const categories = [
+//#region 3 row grid
+
+export const ContentThreeRow = ({ categories = [
   {
     name: 'Handcrafted Collection',
     href: '#',
@@ -60,32 +61,44 @@ const categories = [
     imageAlt: 'Person placing task list card into walnut card holder next to felt carrying case on leather desk pad.',
     description: 'Be more productive than enterprise project managers with a single piece of paper.',
   },
-]
-
-export const ContentThreeRow = () => {
+  {
+    name: 'Focus Collection',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
+    imageAlt: 'Person placing task list card into walnut card holder next to felt carrying case on leather desk pad.',
+    description: 'Be more productive than enterprise project managers with a single piece of paper.',
+  },
+  {
+    name: 'Focus Collection',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
+    imageAlt: 'Person placing task list card into walnut card holder next to felt carrying case on leather desk pad.',
+    description: 'Be more productive than enterprise project managers with a single piece of paper.',
+  },
+], headline = {
+  title: 'Shop by Collection', description: `
+          Each season, we collaborate with world-class designers to create a collection inspired by the natural world.`} }) => {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900">Shop by Collection</h2>
-        <p className="mt-4 text-base text-gray-500">
-          Each season, we collaborate with world-class designers to create a collection inspired by the natural world.
-        </p>
+        <h2 className="text-2xl font-bold tracking-tight text-gray-900">{headline.title}</h2>
+        <p className="mt-4 text-base text-gray-500">{headline.description}</p>
 
         <div className="mt-10 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0">
-          {categories.map((category) => (
-            <a key={category.name} href={category.href} className="group block">
+          {categories.map(({name,href,description,imageAlt,imageSrc}) => (
+            <a key={name} href={href} className="group block">
               <div
                 aria-hidden="true"
                 className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
               >
                 <img
-                  src={category.imageSrc}
-                  alt={category.imageAlt}
+                  src={imageSrc}
+                  alt={imageAlt}
                   className="h-full w-full object-cover object-center"
                 />
               </div>
-              <h3 className="mt-4 text-base font-semibold text-gray-900">{category.name}</h3>
-              <p className="mt-2 text-sm text-gray-500">{category.description}</p>
+              <h3 className="mt-4 text-base font-semibold text-gray-900">{name}</h3>
+              <p className="mt-2 text-sm text-gray-500">{description}</p>
             </a>
           ))}
         </div>
@@ -126,7 +139,7 @@ export const ContentRow = () => {
       <div className="py-16 sm:py-24 xl:mx-auto xl:max-w-7xl xl:px-8">
         <div className="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-0">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">Shop by Category</h2>
-          <a href="#" className="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
+          <a href="#" className="hidden text-sm font-semibold text-red-600 hover:text-red-500 sm:block">
             Browse all categories2
             <span aria-hidden="true"> &rarr;</span>
           </a>
@@ -158,7 +171,7 @@ export const ContentRow = () => {
         </div>
 
         <div className="mt-6 px-4 sm:hidden">
-          <a href="#" className="block text-sm font-semibold text-indigo-600 hover:text-indigo-500">
+          <a href="#" className="block text-sm font-semibold text-red-600 hover:text-red-500">
             Browse all categories
             <span aria-hidden="true"> &rarr;</span>
           </a>
@@ -231,7 +244,7 @@ export const ContentTwoStack = () => {
       <div className="mx-auto max-w-7xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-baseline sm:justify-between">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">Shop by Category</h2>
-          <a href="#" className="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
+          <a href="#" className="hidden text-sm font-semibold text-red-600 hover:text-red-500 sm:block">
             Browse all categories
             <span aria-hidden="true"> &rarr;</span>
           </a>
@@ -310,7 +323,7 @@ export const ContentTwoStack = () => {
         </div>
 
         <div className="mt-6 sm:hidden">
-          <a href="#" className="block text-sm font-semibold text-indigo-600 hover:text-indigo-500">
+          <a href="#" className="block text-sm font-semibold text-red-600 hover:text-red-500">
             Browse all categories
             <span aria-hidden="true"> &rarr;</span>
           </a>
@@ -321,4 +334,3 @@ export const ContentTwoStack = () => {
 }
 
 //#endregion 
- 

@@ -171,7 +171,7 @@ const activity = [
     person: { name: 'Hilary Mahy', href: '#' },
     tags: [
       { name: 'Bug', href: '#', color: 'bg-rose-500' },
-      { name: 'Accessibility', href: '#', color: 'bg-indigo-500' },
+      { name: 'Accessibility', href: '#', color: 'bg-red-500' },
     ],
     date: '6h ago',
   },

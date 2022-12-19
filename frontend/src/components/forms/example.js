@@ -24,7 +24,7 @@ export const FormExample = () => {
               href={item.href}
               className={classNames(
                 item.current
-                  ? 'bg-gray-50 text-indigo-700 hover:text-indigo-700 hover:bg-white'
+                  ? 'bg-gray-50 text-red-700 hover:text-red-700 hover:bg-white'
                   : 'text-gray-900 hover:text-gray-900 hover:bg-gray-50',
                 'group rounded-md px-3 py-2 flex items-center text-sm font-medium'
               )}
@@ -33,7 +33,7 @@ export const FormExample = () => {
               <item.icon
                 className={classNames(
                   item.current
-                    ? 'text-indigo-500 group-hover:text-indigo-500'
+                    ? 'text-red-500 group-hover:text-red-500'
                     : 'text-gray-400 group-hover:text-gray-500',
                   'flex-shrink-0 -ml-1 mr-3 h-6 w-6'
                 )}
@@ -70,7 +70,7 @@ export const FormExample = () => {
                       name="username"
                       id="username"
                       autoComplete="username"
-                      className="block w-full min-w-0 flex-grow rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full min-w-0 flex-grow rounded-none rounded-r-md border-gray-300 focus:border-red-500 focus:ring-red-500 sm:text-sm"
                     />
                   </div>
                 </div>
@@ -84,7 +84,7 @@ export const FormExample = () => {
                       id="about"
                       name="about"
                       rows={3}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       placeholder="you@example.com"
                       defaultValue={''}
                     />
@@ -104,7 +104,7 @@ export const FormExample = () => {
                     </span>
                     <button
                       type="button"
-                      className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                     >
                       Change
                     </button>
@@ -132,7 +132,7 @@ export const FormExample = () => {
                       <div className="flex text-sm text-gray-600">
                         <label
                           htmlFor="file-upload"
-                          className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                          className="relative cursor-pointer rounded-md bg-white font-medium text-red-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-red-500 focus-within:ring-offset-2 hover:text-red-500"
                         >
                           <span>Upload a file</span>
                           <input id="file-upload" name="file-upload" type="file" className="sr-only" />
@@ -148,7 +148,7 @@ export const FormExample = () => {
             <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
               <button
                 type="submit"
-                className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="inline-flex justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
               >
                 Save
               </button>
@@ -174,7 +174,7 @@ export const FormExample = () => {
                     name="first-name"
                     id="first-name"
                     autoComplete="given-name"
-                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm"
                   />
                 </div>
 
@@ -187,7 +187,7 @@ export const FormExample = () => {
                     name="last-name"
                     id="last-name"
                     autoComplete="family-name"
-                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm"
                   />
                 </div>
 
@@ -200,7 +200,7 @@ export const FormExample = () => {
                     name="email-address"
                     id="email-address"
                     autoComplete="email"
-                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm"
                   />
                 </div>
 
@@ -212,7 +212,7 @@ export const FormExample = () => {
                     id="country"
                     name="country"
                     autoComplete="country-name"
-                    className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm"
                   >
                     <option>United States</option>
                     <option>Canada</option>
@@ -229,7 +229,7 @@ export const FormExample = () => {
                     name="street-address"
                     id="street-address"
                     autoComplete="street-address"
-                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm"
                   />
                 </div>
 
@@ -242,7 +242,7 @@ export const FormExample = () => {
                     name="city"
                     id="city"
                     autoComplete="address-level2"
-                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm"
                   />
                 </div>
 
@@ -255,7 +255,7 @@ export const FormExample = () => {
                     name="region"
                     id="region"
                     autoComplete="address-level1"
-                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm"
                   />
                 </div>
 
@@ -268,7 +268,7 @@ export const FormExample = () => {
                     name="postal-code"
                     id="postal-code"
                     autoComplete="postal-code"
-                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -276,7 +276,7 @@ export const FormExample = () => {
             <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
               <button
                 type="submit"
-                className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="inline-flex justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
               >
                 Save
               </button>
@@ -303,7 +303,7 @@ export const FormExample = () => {
                         id="comments"
                         name="comments"
                         type="checkbox"
-                        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                        className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
                       />
                     </div>
                     <div className="ml-3 text-sm">
@@ -320,7 +320,7 @@ export const FormExample = () => {
                           id="candidates"
                           name="candidates"
                           type="checkbox"
-                          className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
                         />
                       </div>
                       <div className="ml-3 text-sm">
@@ -338,7 +338,7 @@ export const FormExample = () => {
                           id="offers"
                           name="offers"
                           type="checkbox"
-                          className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
                         />
                       </div>
                       <div className="ml-3 text-sm">
@@ -360,7 +360,7 @@ export const FormExample = () => {
                       id="push-everything"
                       name="push-notifications"
                       type="radio"
-                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="h-4 w-4 border-gray-300 text-red-600 focus:ring-red-500"
                     />
                     <label htmlFor="push-everything" className="ml-3">
                       <span className="block text-sm font-medium text-gray-700">Everything</span>
@@ -371,7 +371,7 @@ export const FormExample = () => {
                       id="push-email"
                       name="push-notifications"
                       type="radio"
-                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="h-4 w-4 border-gray-300 text-red-600 focus:ring-red-500"
                     />
                     <label htmlFor="push-email" className="ml-3">
                       <span className="block text-sm font-medium text-gray-700">Same as email</span>
@@ -382,7 +382,7 @@ export const FormExample = () => {
                       id="push-nothing"
                       name="push-notifications"
                       type="radio"
-                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="h-4 w-4 border-gray-300 text-red-600 focus:ring-red-500"
                     />
                     <label htmlFor="push-nothing" className="ml-3">
                       <span className="block text-sm font-medium text-gray-700">No push notifications</span>
@@ -394,7 +394,7 @@ export const FormExample = () => {
             <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
               <button
                 type="submit"
-                className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"
+                className="inline-flex justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"
               >
                 Save
               </button>

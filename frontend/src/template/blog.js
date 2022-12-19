@@ -73,7 +73,7 @@ export const BlogTemplate = () => {
       <div className="relative px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-prose text-lg">
           <h1>
-            <span className="block text-center text-lg font-semibold text-indigo-600">Introducing</span>
+            <span className="block text-center text-lg font-semibold text-red-600">Introducing</span>
             <span className="mt-2 block text-center text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">
               JavaScript for Beginners
             </span>
@@ -84,7 +84,7 @@ export const BlogTemplate = () => {
             egestas fringilla sapien.
           </p>
         </div>
-        <div className="prose prose-lg prose-indigo mx-auto mt-6 text-gray-500">
+        <div className="prose prose-lg prose-red mx-auto mt-6 text-gray-500">
           <p>
             Faucibus commodo massa rhoncus, volutpat. <strong>Dignissim</strong> sed <strong>eget risus enim</strong>.
             Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra

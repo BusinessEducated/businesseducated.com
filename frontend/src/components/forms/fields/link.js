@@ -14,7 +14,7 @@ export const LinkInput = () => {
           type="text"
           name="company-website"
           id="company-website"
-          className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 px-3 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-red-500 sm:text-sm"
           placeholder="www.example.com"
         />
       </div>

@@ -106,7 +106,7 @@ export const SlideOverCreate = () => {
                               type="text"
                               name="project-name"
                               id="project-name"
-                              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                             />
                           </div>
                         </div>
@@ -126,7 +126,7 @@ export const SlideOverCreate = () => {
                               id="project-description"
                               name="project-description"
                               rows={3}
-                              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                               defaultValue={''}
                             />
                           </div>
@@ -155,7 +155,7 @@ export const SlideOverCreate = () => {
 
                               <button
                                 type="button"
-                                className="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border-2 border-dashed border-gray-200 bg-white text-gray-400 hover:border-gray-300 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                className="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border-2 border-dashed border-gray-200 bg-white text-gray-400 hover:border-gray-300 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                               >
                                 <span className="sr-only">Add team member</span>
                                 <PlusIcon className="h-5 w-5" aria-hidden="true" />
@@ -179,7 +179,7 @@ export const SlideOverCreate = () => {
                                     name="privacy"
                                     aria-describedby="public-access-description"
                                     type="radio"
-                                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    className="h-4 w-4 border-gray-300 text-red-600 focus:ring-red-500"
                                     defaultChecked
                                   />
                                 </div>
@@ -199,7 +199,7 @@ export const SlideOverCreate = () => {
                                     name="privacy"
                                     aria-describedby="restricted-access-description"
                                     type="radio"
-                                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    className="h-4 w-4 border-gray-300 text-red-600 focus:ring-red-500"
                                   />
                                 </div>
                                 <div className="pl-7 text-sm">
@@ -218,7 +218,7 @@ export const SlideOverCreate = () => {
                                     name="privacy"
                                     aria-describedby="private-access-description"
                                     type="radio"
-                                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    className="h-4 w-4 border-gray-300 text-red-600 focus:ring-red-500"
                                   />
                                 </div>
                                 <div className="pl-7 text-sm">
@@ -236,10 +236,10 @@ export const SlideOverCreate = () => {
                               <div className="flex-1">
                                 <a
                                   href="#"
-                                  className="group flex items-center space-x-2.5 text-sm font-medium text-indigo-600 hover:text-indigo-900"
+                                  className="group flex items-center space-x-2.5 text-sm font-medium text-red-600 hover:text-red-900"
                                 >
                                   <LinkIcon
-                                    className="h-5 w-5 text-indigo-500 group-hover:text-indigo-900"
+                                    className="h-5 w-5 text-red-500 group-hover:text-red-900"
                                     aria-hidden="true"
                                   />
                                   <span>Copy link</span>
@@ -268,14 +268,14 @@ export const SlideOverCreate = () => {
                       <div className="flex justify-end space-x-3">
                         <button
                           type="button"
-                          className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                          className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                           onClick={() => setOpen(false)}
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
-                          className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                          className="inline-flex justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                         >
                           Create
                         </button>
@@ -344,7 +344,7 @@ export const SlideOverView = () => {
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
-                            className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500"
+                            className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-red-500"
                             onClick={() => setOpen(false)}
                           >
                             <span className="sr-only">Close panel</span>
@@ -362,7 +362,7 @@ export const SlideOverView = () => {
                               href={tab.href}
                               className={classNames(
                                 tab.current
-                                  ? 'border-indigo-500 text-indigo-600'
+                                  ? 'border-red-500 text-red-600'
                                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
                                 'whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm'
                               )}
@@ -397,7 +397,7 @@ export const SlideOverView = () => {
                               </div>
                             </a>
                             <Menu as="div" className="relative ml-2 inline-block flex-shrink-0 text-left">
-                              <Menu.Button className="group relative inline-flex h-8 w-8 items-center justify-center rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                              <Menu.Button className="group relative inline-flex h-8 w-8 items-center justify-center rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
                                 <span className="sr-only">Open options menu</span>
                                 <span className="flex h-full w-full items-center justify-center rounded-full">
                                   <EllipsisVerticalIcon

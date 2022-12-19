@@ -182,7 +182,7 @@ export const Checkout = () => {
                           key={category.name}
                           className={({ selected }) =>
                             classNames(
-                              selected ? 'text-indigo-600 border-indigo-600' : 'text-gray-900 border-transparent',
+                              selected ? 'text-red-600 border-red-600' : 'text-gray-900 border-transparent',
                               'flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium'
                             )
                           }
@@ -318,7 +318,7 @@ export const Checkout = () => {
                     <span className="sr-only">Your Company</span>
                     <img
                       className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                      src="https://tailwindui.com/img/logos/mark.svg?color=red&shade=600"
                       alt=""
                     />
                   </a>
@@ -336,7 +336,7 @@ export const Checkout = () => {
                                 <Popover.Button
                                   className={classNames(
                                     open
-                                      ? 'border-indigo-600 text-indigo-600'
+                                      ? 'border-red-600 text-red-600'
                                       : 'border-transparent text-gray-700 hover:text-gray-800',
                                     'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
                                   )}
@@ -436,7 +436,7 @@ export const Checkout = () => {
                 <a href="#" className="lg:hidden">
                   <span className="sr-only">Your Company</span>
                   <img
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    src="https://tailwindui.com/img/logos/mark.svg?color=red&shade=600"
                     alt=""
                     className="h-8 w-auto"
                   />
@@ -495,7 +495,7 @@ export const Checkout = () => {
                       id="email-address"
                       name="email-address"
                       autoComplete="email"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                     />
                   </div>
                 </div>
@@ -515,7 +515,7 @@ export const Checkout = () => {
                         id="first-name"
                         name="first-name"
                         autoComplete="given-name"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -530,7 +530,7 @@ export const Checkout = () => {
                         id="last-name"
                         name="last-name"
                         autoComplete="family-name"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -544,7 +544,7 @@ export const Checkout = () => {
                         type="text"
                         name="company"
                         id="company"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -559,7 +559,7 @@ export const Checkout = () => {
                         name="address"
                         id="address"
                         autoComplete="street-address"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -573,7 +573,7 @@ export const Checkout = () => {
                         type="text"
                         name="apartment"
                         id="apartment"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -588,7 +588,7 @@ export const Checkout = () => {
                         name="city"
                         id="city"
                         autoComplete="address-level2"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -602,7 +602,7 @@ export const Checkout = () => {
                         id="country"
                         name="country"
                         autoComplete="country-name"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       >
                         <option>United States</option>
                         <option>Canada</option>
@@ -621,7 +621,7 @@ export const Checkout = () => {
                         name="region"
                         id="region"
                         autoComplete="address-level1"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -636,7 +636,7 @@ export const Checkout = () => {
                         name="postal-code"
                         id="postal-code"
                         autoComplete="postal-code"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -651,7 +651,7 @@ export const Checkout = () => {
                         name="phone"
                         id="phone"
                         autoComplete="tel"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -670,7 +670,7 @@ export const Checkout = () => {
                         className={({ checked, active }) =>
                           classNames(
                             checked ? 'border-transparent' : 'border-gray-300',
-                            active ? 'ring-2 ring-indigo-500' : '',
+                            active ? 'ring-2 ring-red-500' : '',
                             'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                           )
                         }
@@ -694,12 +694,12 @@ export const Checkout = () => {
                               </span>
                             </span>
                             {checked ? (
-                              <CheckCircleIcon className="h-5 w-5 text-indigo-600" aria-hidden="true" />
+                              <CheckCircleIcon className="h-5 w-5 text-red-600" aria-hidden="true" />
                             ) : null}
                             <span
                               className={classNames(
                                 active ? 'border' : 'border-2',
-                                checked ? 'border-indigo-500' : 'border-transparent',
+                                checked ? 'border-red-500' : 'border-transparent',
                                 'pointer-events-none absolute -inset-px rounded-lg'
                               )}
                               aria-hidden="true"
@@ -727,14 +727,14 @@ export const Checkout = () => {
                             name="payment-type"
                             type="radio"
                             defaultChecked
-                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                            className="h-4 w-4 border-gray-300 text-red-600 focus:ring-red-500"
                           />
                         ) : (
                           <input
                             id={paymentMethod.id}
                             name="payment-type"
                             type="radio"
-                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                            className="h-4 w-4 border-gray-300 text-red-600 focus:ring-red-500"
                           />
                         )}
 
@@ -757,7 +757,7 @@ export const Checkout = () => {
                         id="card-number"
                         name="card-number"
                         autoComplete="cc-number"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -772,7 +772,7 @@ export const Checkout = () => {
                         id="name-on-card"
                         name="name-on-card"
                         autoComplete="cc-name"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -787,7 +787,7 @@ export const Checkout = () => {
                         name="expiration-date"
                         id="expiration-date"
                         autoComplete="cc-exp"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -802,7 +802,7 @@ export const Checkout = () => {
                         name="cvc"
                         id="cvc"
                         autoComplete="csc"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -856,7 +856,7 @@ export const Checkout = () => {
                             <select
                               id="quantity"
                               name="quantity"
-                              className="rounded-md border border-gray-300 text-left text-base font-medium text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+                              className="rounded-md border border-gray-300 text-left text-base font-medium text-gray-700 shadow-sm focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 sm:text-sm"
                             >
                               <option value={1}>1</option>
                               <option value={2}>2</option>
@@ -895,7 +895,7 @@ export const Checkout = () => {
                 <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                   <button
                     type="submit"
-                    className="w-full rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                    className="w-full rounded-md border border-transparent bg-red-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                   >
                     Confirm order
                   </button>
@@ -916,7 +916,7 @@ export const Checkout = () => {
               {/* Image section */}
               <div className="col-span-1 md:col-span-2 lg:col-start-1 lg:row-start-1">
                 <img
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                  src="https://tailwindui.com/img/logos/mark.svg?color=red&shade=600"
                   alt=""
                   className="h-8 w-auto"
                 />
@@ -977,12 +977,12 @@ export const Checkout = () => {
                     type="text"
                     autoComplete="email"
                     required
-                    className="w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                    className="w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500"
                   />
                   <div className="ml-4 flex-shrink-0">
                     <button
                       type="submit"
-                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                     >
                       Sign up
                     </button>

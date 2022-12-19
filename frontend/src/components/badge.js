@@ -3,11 +3,11 @@ import React from 'react';
 export const Badge = () => {
   return (
     <>
-      <span className="inline-flex items-center rounded-full bg-indigo-100 py-0.5 pl-2 pr-0.5 text-xs font-medium text-indigo-700">
+      <span className="inline-flex items-center rounded-full bg-red-100 py-0.5 pl-2 pr-0.5 text-xs font-medium text-red-700">
         Small
         <button
           type="button"
-          className="ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white focus:outline-none"
+          className="ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-red-400 hover:bg-red-200 hover:text-red-500 focus:bg-red-500 focus:text-white focus:outline-none"
         >
           <span className="sr-only">Remove small option</span>
           <svg className="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
@@ -15,11 +15,11 @@ export const Badge = () => {
           </svg>
         </button>
       </span>
-      <span className="inline-flex items-center rounded-full bg-indigo-100 py-0.5 pl-2.5 pr-1 text-sm font-medium text-indigo-700">
+      <span className="inline-flex items-center rounded-full bg-red-100 py-0.5 pl-2.5 pr-1 text-sm font-medium text-red-700">
         Large
         <button
           type="button"
-          className="ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white focus:outline-none"
+          className="ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-red-400 hover:bg-red-200 hover:text-red-500 focus:bg-red-500 focus:text-white focus:outline-none"
         >
           <span className="sr-only">Remove large option</span>
           <svg className="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">

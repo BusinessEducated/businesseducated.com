@@ -10,6 +10,8 @@ import { AcademicCapIcon, BanknotesIcon, CheckBadgeIcon, ClockIcon, PlayIcon, Re
 import RINGS_OF_POWER from '../../static/assets/rings-of-power.png'
 import { ContactForm } from "../components/forms/contact"
 import { TightGrid } from '../components/grid'
+import SubscribeNewsletter from '../components/subscribe-newsletter'
+import { CalenderMonth } from '../components/calenders'
 
 function IndexPage() {
   return (
@@ -65,74 +67,17 @@ function IndexPage() {
               'Our laptop sleeve is compact and precisely fits 13" devices. The zipper allows you to access the interior with ease, and the front pouch provides a convenient place for your charger cable.',
             imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-feature-07-detail-01.jpg',
             imageAlt: 'White canvas laptop sleeve with gray felt interior, silver zipper, and tan leather zipper pull.',
-          },
-          {
-            name: 'Refined details',
-            description:
-              'We design every detail with the best materials and finishes. This laptop sleeve features3 durable canvas with double-stitched construction, a felt interior, and a high quality zipper that hold up to daily use.',
-            imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-feature-07-detail-02.jpg',
-            imageAlt: 'Detail of zipper pull with tan leather and silver rivet.',
-          },
+          }, 
         ]} headline={{
           title: "",
           description: "",
         }} />
-      </section>
+      </section> 
 
-      <section className="border-gray-100 border-t-2 border-b-2">
-        <TightGrid actions={[
-          {
-            title: 'Request time off',
-            href: '#',
-            icon: ClockIcon,
-            iconForeground: 'text-teal-700',
-            iconBackground: 'bg-teal-50',
-          },
-          {
-            title: 'Benefits',
-            href: '#',
-            icon: CheckBadgeIcon,
-            iconForeground: 'text-purple-700',
-            iconBackground: 'bg-purple-50',
-          },
-          {
-            title: 'Schedule a one-on-one',
-            href: '#',
-            icon: UsersIcon,
-            iconForeground: 'text-sky-700',
-            iconBackground: 'bg-sky-50',
-          },
-          {
-            title: 'Payroll',
-            href: '#',
-            icon: BanknotesIcon,
-            iconForeground: 'text-yellow-700',
-            iconBackground: 'bg-yellow-50',
-          },
-          {
-            title: 'Submit an expense',
-            href: '#',
-            icon: ReceiptPercentIcon,
-            iconForeground: 'text-rose-700',
-            iconBackground: 'bg-rose-50',
-          },
-          {
-            title: 'Training',
-            href: '#',
-            icon: AcademicCapIcon,
-            iconForeground: 'text-indigo-700',
-            iconBackground: 'bg-indigo-50',
-          },
-        ]} />
-      </section>
-
-      <section>
-        <FeatureRow features={[]} headline={{title: "Blog", description: ""}}/>
-        <FeatureRow features={[]} headline={{title: "Blog", description: ""}}/>
-      </section>
+      <CalenderMonth/>
 
       <section className="">
-        <ContactForm />
+        <SubscribeNewsletter />
       </section>
     </Layout>
   )

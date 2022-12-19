@@ -33,7 +33,7 @@ export const CreateSimple = () => {
       <div className="mt-6">
         <button
           type="button"
-          className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          className="inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
         >
           <PlusIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
           New Project
@@ -49,7 +49,7 @@ export const CreateDnD = () => {
   return (
     <button
       type="button"
-      className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+      className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
     >
       <svg
         className="mx-auto h-12 w-12 text-gray-400"
@@ -103,7 +103,7 @@ const items = [
     title: 'Create a Spreadsheet',
     description: 'Lots of numbers and things — good for nerds.',
     icon: TableCellsIcon,
-    background: 'bg-indigo-500',
+    background: 'bg-red-500',
   },
   {
     title: 'Create a Timeline',
@@ -127,7 +127,7 @@ export const CreateTemplate = () => {
       <ul role="list" className="mt-6 grid grid-cols-1 gap-6 border-t border-b border-gray-200 py-6 sm:grid-cols-2">
         {items.map((item, itemIdx) => (
           <li key={itemIdx} className="flow-root">
-            <div className="relative -m-2 flex items-center space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-indigo-500 hover:bg-gray-50">
+            <div className="relative -m-2 flex items-center space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-red-500 hover:bg-gray-50">
               <div
                 className={classNames1(
                   item.background,
@@ -151,7 +151,7 @@ export const CreateTemplate = () => {
         ))}
       </ul>
       <div className="mt-4 flex">
-        <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+        <a href="#" className="text-sm font-medium text-red-600 hover:text-red-500">
           Or start from an empty project
           <span aria-hidden="true"> &rarr;</span>
         </a>
@@ -225,7 +225,7 @@ export const CreateTemplate2 = () => {
         ))}
       </ul>
       <div className="mt-6 flex">
-        <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+        <a href="#" className="text-sm font-medium text-red-600 hover:text-red-500">
           Or start from an empty project
           <span aria-hidden="true"> &rarr;</span>
         </a>
@@ -292,12 +292,12 @@ export const CreateReccomendation = () => {
             type="email"
             name="email"
             id="email"
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
             placeholder="Enter an email"
           />
           <button
             type="submit"
-            className="ml-4 flex-shrink-0 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="ml-4 flex-shrink-0 rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
           >
             Send invite
           </button>
@@ -320,7 +320,7 @@ export const CreateReccomendation = () => {
               <div className="flex-shrink-0">
                 <button
                   type="button"
-                  className="inline-flex items-center rounded-full border border-transparent bg-gray-100 py-2 px-3 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="inline-flex items-center rounded-full border border-transparent bg-gray-100 py-2 px-3 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                 >
                   <PlusIcon className="-ml-1 mr-0.5 h-5 w-5 text-gray-400" aria-hidden="true" />
                   <span className="text-sm font-medium text-gray-900">
@@ -413,7 +413,7 @@ export const CreatePeople = () => {
               type="text"
               name="emails"
               id="emails"
-              className="block w-full rounded-md border-gray-300 pr-32 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              className="block w-full rounded-md border-gray-300 pr-32 focus:border-red-500 focus:ring-red-500 sm:text-sm"
               placeholder="Enter an email"
             />
             <div className="absolute inset-y-0 right-0 flex items-center">
@@ -424,7 +424,7 @@ export const CreatePeople = () => {
               <select
                 id="role"
                 name="role"
-                className="h-full rounded-md border-transparent bg-transparent py-0 pl-4 pr-7 text-gray-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                className="h-full rounded-md border-transparent bg-transparent py-0 pl-4 pr-7 text-gray-500 focus:border-red-500 focus:ring-red-500 sm:text-sm"
               >
                 <option>Can edit</option>
                 <option>Can view</option>
@@ -434,7 +434,7 @@ export const CreatePeople = () => {
           <div className="mt-3 sm:mt-0 sm:ml-4 sm:flex-shrink-0">
             <button
               type="submit"
-              className="block w-full rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-center text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="block w-full rounded-md border border-transparent bg-red-600 px-4 py-2 text-center text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
             >
               Send invite
             </button>
@@ -448,7 +448,7 @@ export const CreatePeople = () => {
             <li key={personIdx}>
               <button
                 type="button"
-                className="group flex w-full items-center justify-between space-x-3 rounded-full border border-gray-300 p-2 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="group flex w-full items-center justify-between space-x-3 rounded-full border border-gray-300 p-2 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
               >
                 <span className="flex min-w-0 flex-1 items-center space-x-3">
                   <span className="block flex-shrink-0">

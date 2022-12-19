@@ -150,8 +150,8 @@ export const TightGrid = ({ actions = [
     title: 'Training',
     href: '#',
     icon: academicIcon,
-    iconForeground: 'text-indigo-700',
-    iconBackground: 'bg-indigo-50',
+    iconForeground: 'text-red-700',
+    iconBackground: 'bg-red-50',
   },
 ]
 }) => {

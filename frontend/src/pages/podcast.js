@@ -2,28 +2,17 @@ import React from 'react'
 
 import Layout from '../layout/layout'
 import SEO from '../layout/seo'
-import { Feature, FeatureRow } from '../components/feature'
+import { Feature, FeatureBreakdown, FeatureRow, FeatureTwoChoice } from '../components/feature'
 import { StackedTimeline } from '../components/timeline'
-import { Button } from '../components/button'  
+import { Button } from '../components/button'
 import MONEY_PILE from '../../static/assets/money-pile.png'
-import { PlayIcon } from '@heroicons/react/24/outline'
+import { AcademicCapIcon, BanknotesIcon, CheckBadgeIcon, ClockIcon, PlayIcon, ReceiptPercentIcon, UsersIcon } from '@heroicons/react/24/outline'
 import RINGS_OF_POWER from '../../static/assets/rings-of-power.png'
-import {ContactForm} from "../components/forms/contact"
-
+import { ContactForm } from "../components/forms/contact"
+import { GridList, ImageGrid, SmallCardGrid, TightGrid } from '../components/grid'
+import { JoinPodcast } from '../components/forms/join-podcast'
+import {ContentThreeRow} from "../components/content"
 function IndexPage() {
-
-  // const { site } = useStaticQuery(graphql`
-  //   query DefaultSEOQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //         description
-  //         author
-  //       }
-  //     }
-  //   }
-  // `);
-
   return (
     <Layout>
       <SEO
@@ -45,15 +34,15 @@ function IndexPage() {
 
             <div className="flex gap-3">
               <Button>
-                Book Now  
-              </Button> 
-
-              <Button> 
-                <PlayIcon className='h-7 w-7'/>
+                Book Now
               </Button>
-              
+
+              <Button>
+                <PlayIcon className='h-7 w-7' />
+              </Button>
+
               <p className='my-auto text-white'>
-                 Play Intro Video  
+                Play Intro Video
               </p>
             </div>
           </div>
@@ -68,18 +57,19 @@ function IndexPage() {
         </div>
       </section>
 
-
-      <section className="">
-        <Feature />
+      <section>
+        <ContentThreeRow />
       </section>
 
       <section className="">
-        <StackedTimeline />
-      </section>
+        <FeatureTwoChoice/>
+      </section> 
 
       <section className="">
-        <ContactForm />
+        <JoinPodcast />
       </section>
+
+
     </Layout>
   )
 }

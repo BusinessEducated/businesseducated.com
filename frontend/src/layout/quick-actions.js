@@ -99,7 +99,7 @@ export const QuickActions = () => {
                               className={({ active }) =>
                                 classNames(
                                   'flex cursor-default select-none items-center px-4 py-2',
-                                  active && 'bg-indigo-600 text-white'
+                                  active && 'bg-red-600 text-white'
                                 )
                               }
                             >
@@ -128,7 +128,7 @@ export const QuickActions = () => {
                               className={({ active }) =>
                                 classNames(
                                   'flex cursor-default select-none items-center px-4 py-2',
-                                  active && 'bg-indigo-600 text-white'
+                                  active && 'bg-red-600 text-white'
                                 )
                               }
                             >
@@ -166,7 +166,7 @@ export const QuickActions = () => {
                   <kbd
                     className={classNames(
                       'mx-1 flex h-5 w-5 items-center justify-center rounded border bg-white font-semibold sm:mx-2',
-                      rawQuery.startsWith('#') ? 'border-indigo-600 text-indigo-600' : 'border-gray-400 text-gray-900'
+                      rawQuery.startsWith('#') ? 'border-red-600 text-red-600' : 'border-gray-400 text-gray-900'
                     )}
                   >
                     #
@@ -176,7 +176,7 @@ export const QuickActions = () => {
                   <kbd
                     className={classNames(
                       'mx-1 flex h-5 w-5 items-center justify-center rounded border bg-white font-semibold sm:mx-2',
-                      rawQuery.startsWith('>') ? 'border-indigo-600 text-indigo-600' : 'border-gray-400 text-gray-900'
+                      rawQuery.startsWith('>') ? 'border-red-600 text-red-600' : 'border-gray-400 text-gray-900'
                     )}
                   >
                     &gt;
@@ -185,7 +185,7 @@ export const QuickActions = () => {
                   <kbd
                     className={classNames(
                       'mx-1 flex h-5 w-5 items-center justify-center rounded border bg-white font-semibold sm:mx-2',
-                      rawQuery === '?' ? 'border-indigo-600 text-indigo-600' : 'border-gray-400 text-gray-900'
+                      rawQuery === '?' ? 'border-red-600 text-red-600' : 'border-gray-400 text-gray-900'
                     )}
                   >
                     ?

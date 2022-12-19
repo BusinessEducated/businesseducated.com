@@ -29,7 +29,7 @@ export const RadioGroupCard = () => {
             className={({ checked, active }) =>
               classNames(
                 checked ? 'border-transparent' : 'border-gray-300',
-                active ? 'border-indigo-500 ring-2 ring-indigo-500' : '',
+                active ? 'border-red-500 ring-2 ring-red-500' : '',
                 'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
               )
             }
@@ -50,13 +50,13 @@ export const RadioGroupCard = () => {
                   </span>
                 </span>
                 <CheckCircleIcon
-                  className={classNames(!checked ? 'invisible' : '', 'h-5 w-5 text-indigo-600')}
+                  className={classNames(!checked ? 'invisible' : '', 'h-5 w-5 text-red-600')}
                   aria-hidden="true"
                 />
                 <span
                   className={classNames(
                     active ? 'border' : 'border-2',
-                    checked ? 'border-indigo-500' : 'border-transparent',
+                    checked ? 'border-red-500' : 'border-transparent',
                     'pointer-events-none absolute -inset-px rounded-lg'
                   )}
                   aria-hidden="true"
@@ -93,7 +93,7 @@ export const RadioGroupCardSmall = () => {
     <div>
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-medium text-gray-900">RAM</h2>
-        <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+        <a href="#" className="text-sm font-medium text-red-600 hover:text-red-500">
           See performance specs
         </a>
       </div>
@@ -108,9 +108,9 @@ export const RadioGroupCardSmall = () => {
               className={({ active, checked }) =>
                 classNames2(
                   option.inStock ? 'cursor-pointer focus:outline-none' : 'opacity-25 cursor-not-allowed',
-                  active ? 'ring-2 ring-offset-2 ring-indigo-500' : '',
+                  active ? 'ring-2 ring-offset-2 ring-red-500' : '',
                   checked
-                    ? 'bg-indigo-600 border-transparent text-white hover:bg-indigo-700'
+                    ? 'bg-red-600 border-transparent text-white hover:bg-red-700'
                     : 'bg-white border-gray-200 text-gray-900 hover:bg-gray-50',
                   'border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1'
                 )
@@ -150,7 +150,7 @@ export const RadioGroupA = () => {
                 name="notification-method"
                 type="radio"
                 defaultChecked={notificationMethod.id === 'email'}
-                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                className="h-4 w-4 border-gray-300 text-red-600 focus:ring-red-500"
               />
               <label htmlFor={notificationMethod.id} className="ml-3 block text-sm font-medium text-gray-700">
                 {notificationMethod.title}
