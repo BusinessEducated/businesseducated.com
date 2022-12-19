@@ -12,12 +12,12 @@ console.log('test ',`${__dirname}/../.env.${process.env.NODE_ENV}`, process.env.
 // ========================================================================== //
 // Strapi configuration
 // ========================================================================== //
-const strapiConfig = {
-  apiURL: process.env.STRAPI_API_URL,
-  accessToken: process.env.STRAPI_TOKEN,
-  collectionTypes: ['blog-post', 'pricing', 'project-post'],
-  singleTypes: [],
-};
+// const strapiConfig = {
+//   apiURL: process.env.STRAPI_API_URL,
+//   accessToken: process.env.STRAPI_TOKEN,
+//   collectionTypes: ['blog-post', 'pricing', 'project-post'],
+//   singleTypes: [],
+// };
 
 module.exports = {
   siteMetadata: {
@@ -74,10 +74,10 @@ module.exports = {
     // ========================================================================== //
     // strapi CMS
     // ========================================================================== //
-    {
-      resolve: 'gatsby-source-strapi',
-      options: strapiConfig,
-    },
+    // {
+    //   resolve: 'gatsby-source-strapi',
+    //   options: strapiConfig,
+    // },
     // ========================================================================== //
     //     Optimization
     // ========================================================================== //
