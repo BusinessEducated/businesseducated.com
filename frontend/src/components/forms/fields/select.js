@@ -19,24 +19,25 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export const Select = () => {
-  const [selected, setSelected] = useState(people[3])
-
+export const Select = ({name,value,placeholder,type,icon,options, ...props}) => {
+  const [selected, setSelected] = useState(options[0])
+  const Icon = icon;
   return (
     <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block text-sm font-medium text-gray-700">Assigned to</Listbox.Label>
+          <Listbox.Label className="block text-sm font-medium text-gray-700">{name}</Listbox.Label>
           <div className="relative mt-1">
-            <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 sm:text-sm">
+            <Listbox.Button className="py-3 pl-3 pr-10 relative w-full cursor-default rounded-md border border-gray-300 bg-white text-left shadow-sm focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 sm:text-sm">
               <span className="flex items-center">
-                <span
+                {/* <span
                   aria-label={selected.online ? 'Online' : 'Offline'}
                   className={classNames(
                     selected.online ? 'bg-green-400' : 'bg-gray-200',
                     'inline-block h-2 w-2 flex-shrink-0 rounded-full'
                   )}
-                />
+                /> */}
+                <Icon className="w-5 h-5 text-gray-400"/>
                 <span className="ml-3 block truncate">{selected.name}</span>
               </span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -52,23 +53,23 @@ export const Select = () => {
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                {people.map((person) => (
+                {options.map(({name,description,online=false,id="test"}) => (
                   <Listbox.Option
-                    key={person.id}
+                    key={id}
                     className={({ active }) =>
                       classNames(
                         active ? 'text-white bg-red-600' : 'text-gray-900',
                         'relative cursor-default select-none py-2 pl-3 pr-9'
                       )
                     }
-                    value={person}
+                    value={{name, value:name}}
                   >
                     {({ selected, active }) => (
                       <>
                         <div className="flex items-center">
                           <span
                             className={classNames(
-                              person.online ? 'bg-green-400' : 'bg-gray-200',
+                              online ? 'bg-green-400' : 'bg-gray-200',
                               'inline-block h-2 w-2 flex-shrink-0 rounded-full'
                             )}
                             aria-hidden="true"
@@ -76,8 +77,8 @@ export const Select = () => {
                           <span
                             className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
                           >
-                            {person.name}
-                            <span className="sr-only"> is {person.online ? 'online' : 'offline'}</span>
+                            {name}
+                            <span className="sr-only"> is {online ? 'online' : 'offline'}</span>
                           </span>
                         </div>
 

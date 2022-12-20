@@ -56,7 +56,7 @@ export const SmallCardGrid = () => {
 
 //#region horizontal link cards
 
-export const HorizontalLinkCards = ({ people=[
+export const HorizontalLinkCards = ({ people = [
   {
     name: 'Leslie Alexander',
     email: 'leslie.alexander@example.com',
@@ -82,7 +82,7 @@ export const HorizontalLinkCards = ({ people=[
 ] }) => {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-      {people.map(({email,imageUrl,name,role}) => (
+      {people.map(({ email, imageUrl, name, role }) => (
         <div
           key={email}
           className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-red-500 focus-within:ring-offset-2 hover:border-gray-400"
@@ -157,51 +157,54 @@ export const TightGrid = ({ actions = [
 }) => {
   return (
     <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">
-      {actions.map(({ title, iconBackground, href, icon, iconForeground }, actionIdx) => (
-        <div
-          key={title}
-          className={classNames2(
-            actionIdx === 0 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none' : '',
-            actionIdx === 1 ? 'sm:rounded-tr-lg' : '',
-            actionIdx === actions.length - 2 ? 'sm:rounded-bl-lg' : '',
-            actionIdx === actions.length - 1 ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none' : '',
-            'relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-red-500'
-          )}
-        >
-          <div>
+      {actions.map(({ title, iconBackground, href, icon, iconForeground }, actionIdx) => {
+        const Icon = icon;
+        return (
+          <div
+            key={title}
+            className={classNames2(
+              actionIdx === 0 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none' : '',
+              actionIdx === 1 ? 'sm:rounded-tr-lg' : '',
+              actionIdx === actions.length - 2 ? 'sm:rounded-bl-lg' : '',
+              actionIdx === actions.length - 1 ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none' : '',
+              'relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-red-500'
+            )}
+          >
+            <div>
+              <span
+                className={classNames2(
+                  iconBackground,
+                  iconForeground,
+                  'rounded-lg inline-flex p-3 ring-4 ring-white'
+                )}
+              >
+                <Icon className="h-6 w-6" aria-hidden="true" />
+              </span>
+            </div>
+            <div className="mt-8">
+              <h3 className="text-lg font-medium">
+                <a href={href} className="focus:outline-none">
+                  {/* Extend touch target to entire panel */}
+                  <span className="absolute inset-0" aria-hidden="true" />
+                  {title}
+                </a>
+              </h3>
+              <p className="mt-2 text-sm text-gray-500">
+                Doloribus dolores nostrum quia qui natus officia quod et dolorem. Sit repellendus qui ut at blanditiis et
+                quo et molestiae.
+              </p>
+            </div>
             <span
-              className={classNames2(
-                iconBackground,
-                iconForeground,
-                'rounded-lg inline-flex p-3 ring-4 ring-white'
-              )}
+              className="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400"
+              aria-hidden="true"
             >
-              <div dangerouslySetInnerHtml={{ __html: icon }} className="h-6 w-6" aria-hidden="true" />
+              <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
+              </svg>
             </span>
           </div>
-          <div className="mt-8">
-            <h3 className="text-lg font-medium">
-              <a href={href} className="focus:outline-none">
-                {/* Extend touch target to entire panel */}
-                <span className="absolute inset-0" aria-hidden="true" />
-                {title}
-              </a>
-            </h3>
-            <p className="mt-2 text-sm text-gray-500">
-              Doloribus dolores nostrum quia qui natus officia quod et dolorem. Sit repellendus qui ut at blanditiis et
-              quo et molestiae.
-            </p>
-          </div>
-          <span
-            className="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400"
-            aria-hidden="true"
-          >
-            <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
-            </svg>
-          </span>
-        </div>
-      ))}
+        )
+      })}
     </div>
   )
 }
@@ -319,7 +322,7 @@ const people3 = [
   // More people3...
 ]
 
-export const GridList = ({people=[
+export const GridList = ({ people = [
   {
     name: 'Jane Cooper',
     title: 'Regional Paradigm Technician',
@@ -347,10 +350,10 @@ export const GridList = ({people=[
     imageUrl:
       'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
   },
-]}) => {
+] }) => {
   return (
     <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {people.map(({email,imageUrl,name,role,telephone,title}) => (
+      {people.map(({ email, imageUrl, name, role, telephone, title }) => (
         <li key={email} className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
           <div className="flex w-full items-center justify-between space-x-6 p-6">
             <div className="flex-1 truncate">
