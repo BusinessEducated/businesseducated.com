@@ -1,9 +1,10 @@
 import React from 'react';
 
-export const PhoneInput = () => {
+export const PhoneInput =({ name, value, type, icon, placeholder, required, ...props }) => {
+  const Icon = icon;
   return (
     <div>
-      <label htmlFor="phone-number" className="block text-sm font-medium text-gray-700">
+      <label htmlFor={name} className="block text-sm font-medium text-gray-700">
         Phone Number
       </label>
       <div className="relative mt-1 rounded-md shadow-sm">
@@ -23,11 +24,11 @@ export const PhoneInput = () => {
           </select>
         </div>
         <input
-          type="text"
-          name="phone-number"
-          id="phone-number"
-          className="block w-full rounded-md border-gray-300 pl-16 focus:border-red-500 focus:ring-red-500 sm:text-sm"
-          placeholder="+1 (555) 987-6543"
+          type={type}
+          name={name}
+          id={name}
+          className="p-3 block w-full rounded-md border-gray-300 pl-16 focus:border-red-500 focus:ring-red-500 sm:text-sm"
+          placeholder={placeholder}
         />
       </div>
     </div>

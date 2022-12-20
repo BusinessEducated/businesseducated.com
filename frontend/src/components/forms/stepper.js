@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { CheckIcon } from '@heroicons/react/20/solid'
+import { BriefcaseIcon, BuildingLibraryIcon, BuildingOffice2Icon, BuildingOfficeIcon, EnvelopeIcon, HandRaisedIcon, PhoneIcon, UserGroupIcon, UserIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
+import Button from '../button';
+import { DynamicField } from './fields/dynamic-field';
 
 //#region vertical circle stepper
 
@@ -332,47 +336,166 @@ export const LineStepper = () => {
 
 //#endregion
 
-//#region arrow stepper 
-const steps5 = [
-  { id: '01', name: 'Job details', href: '#', status: 'complete' },
-  { id: '02', name: 'Application form', href: '#', status: 'current' },
-  { id: '03', name: 'Preview', href: '#', status: 'upcoming' },
-]
+//#region arrow stepper  
+export const ArrowStepper = ({ schema = [
+  {
+    step: '1',
+    name: 'Details',
+    href: '/#',
+    status: 'current',
+    fields: [
+      { name: 'firstName', value: '', type: 'text', component: '', icon: UserIcon, placeholder: '', required: true },
+      { name: 'lastName', value: '', type: 'text', component: '', icon: UserIcon, placeholder: '', required: true },
+      { name: 'email', value: '', type: 'email', component: '', icon: EnvelopeIcon, placeholder: '', required: true },
+      { name: 'phone', value: '', type: 'tel', component: '', icon: PhoneIcon, placeholder: '', required: false },
+    ]
+  },
+  {
+    step: '2',
+    name: 'Company',
+    href: '',
+    status: 'upcoming',
+    fields: [
+      { name: 'companyName', value: '', type: 'texxt', component: '', icon: BuildingLibraryIcon, placeholder: '', required: true },
+      {
+        name: 'companySize', value: '', type: 'select', component: '', icon: UserGroupIcon, placeholder: '', required: true, options: [
+          { name: '0-10' },
+          { name: '10-300' },
+          { name: '300-1000' },
+          { name: '1000-10000' },
+        ]
+      },
+      {
+        name: 'companyType', value: '', type: 'select', component: '', icon: BuildingOffice2Icon, placeholder: '', required: true, options: [
+          { name: 'LLC', description: 'This is a type of business that combines elements of a partnership and a corporation. LLC owners, known as members, have limited liability for the debts and obligations of the business and can choose to be taxed as a partnership or a corporation.' },
+          { name: 'Cooperative', description: 'This is a type of business owned and operated by a group of individuals who work together to achieve a common goal, such as providing goods or services to its members.' },
+          { name: 'Nonprofit', description: 'This is a type of business that is organized for charitable, educational, or other public-benefit purposes and is exempt from paying taxes on income derived from its operations.' },
+          { name: 'Government Agency', description: 'This is a type of business that is owned and operated by a government entity and is responsible for carrying out specific public functions or providing services to the community.' },
+          { name: 'Partnership', description: 'This is a type of business owned and operated by two or more individuals, who share the profits and losses of the business. Partnerships can be further classified into different types, such as general partnerships, limited partnerships, and limited liability partnerships.' },
+          { name: 'Sole proprietorship', description: 'This is a type of business owned and operated by a single individual. The owner is responsible for all aspects of the business and is personally liable for its debts and obligations.' },
+        ]
+      },
+      { name: 'abn', value: '', type: 'number', component: '', icon: BuildingOfficeIcon, placeholder: '', required: true },
+      { name: 'role', value: '', type: 'text', component: '', icon: HandRaisedIcon, placeholder: '', required: true },
+      {
+        name: 'companyServices', value: '', type: 'select', component: '', icon: BriefcaseIcon, placeholder: '', required: true, options: [
+          { name: 'Information Services' },
+          { name: 'Manufacturing Services' },
+          { name: 'Hospitality Services' },
+          { name: 'Transportation Services' },
+          { name: 'Education Services' },
+          { name: 'Marketting Services' },
+          { name: 'Graphic Design Services' },
+          { name: 'Software Services' },
+          { name: 'Professional Services' },
+          { name: 'Labor Services' },
+          { name: 'Customer Service' },
+          { name: 'Commerce Services' },
+          { name: 'Retail Services' },
+          { name: 'Product Services' },
+          { name: 'Consultation Services' },
+          { name: 'Legal Services' },
+          { name: 'Financial Services' },
+          { name: 'Logistics Services' },
+          { name: 'Real Estate Services' },
+          { name: 'Landscaping Services' },
+          { name: 'Event Planning Services' },
+          { name: 'Environmental Services' },
+          { name: 'Security Services' },
+          { name: 'Printing Services' },
+          { name: 'Recruitment Services' },
+          { name: 'Translation Services' },
+          { name: 'Data Services' },
+          { name: 'Public Relations Services' },
+          { name: 'Virtual Services' },
+          { name: 'Vetinary Services' },
+          { name: 'Mental Health Services' },
+          { name: 'Medical Services' },
+          { name: 'Coaching Services' },
+        ]
+      },
+    ]
+  },
+] }) => {
 
-export const ArrowStepper = () => {
+
+  //step logic
+  const [currentStep, setCurrentStep] = useState(0)
+  const [steps, setSteps] = useState(schema)
+  const [formValues, setFormValues] = useState([])
+  const maxStep = schema.length;
+  const minStep = 0;
+  
+  //handle validation/next/previous step & communicate with parent about the change
+  const changeStep = (newStepIdx, e, validate, values = null) => {
+    e.preventDefault();
+    //do validation for the step here, you can do nothing unless the input is valid
+    if (validate && values) {
+      validate()
+      //store the values for this step for checkout / form completion / dynamic input fields
+      // updateFormValues(values)
+    };
+
+    //do the step change
+    const res = newStepIdx;
+    if (newStepIdx > maxStep) {
+      return;//do nothing
+    }
+    else if (newStepIdx < minStep) {
+      return;//do nothing
+    }
+    //start handling the step
+    else {
+      setSteps(steps.map((step,idx)=>{
+        if(idx==newStepIdx){
+          step.status = "current"
+        }
+        else if(idx < newStepIdx){
+          step.status = "complete"
+        }
+        else {
+          step.status = "upcoming"
+        }
+        return step;
+      }));
+
+      setCurrentStep(newStepIdx); 
+    }
+  }
+
   return (
     <nav aria-label="Progress">
       <ol role="list" className="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
-        {steps5.map((step, stepIdx) => (
-          <li key={step.name} className="relative md:flex md:flex-1">
-            {step.status === 'complete' ? (
-              <a href={step.href} className="group flex w-full items-center">
+        {steps.map(({ name, status, step }, stepIdx) => (
+          <li key={name} className="relative md:flex md:flex-1">
+            {status === 'complete' ? (
+              <a onClick={(e) => changeStep(stepIdx, e, () => { })} className="group flex w-full items-center">
                 <span className="flex items-center px-6 py-4 text-sm font-medium">
                   <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-emerald-600 group-hover:bg-emerald-800">
                     <CheckIcon className="h-6 w-6 text-white" aria-hidden="true" />
                   </span>
-                  <span className="ml-4 text-sm font-medium text-gray-900">{step.name}</span>
+                  <span className="ml-4 text-sm font-medium text-gray-900">{name}</span>
                 </span>
               </a>
-            ) : step.status === 'current' ? (
-              <a href={step.href} className="flex items-center px-6 py-4 text-sm font-medium" aria-current="step">
+            ) : status === 'current' ? (
+              <a onClick={(e) => changeStep(stepIdx, e, () => { })} className="flex items-center px-6 py-4 text-sm font-medium" aria-current="step">
                 <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-emerald-600">
-                  <span className="text-emerald-600">{step.id}</span>
+                  <span className="text-emerald-600">{stepIdx}</span>
                 </span>
-                <span className="ml-4 text-sm font-medium text-emerald-600">{step.name}</span>
+                <span className="ml-4 text-sm font-medium text-emerald-600">{name}</span>
               </a>
             ) : (
-              <a href={step.href} className="group flex items-center">
+              <a onClick={(e) => changeStep(stepIdx, e, () => { })} className="group flex items-center">
                 <span className="flex items-center px-6 py-4 text-sm font-medium">
                   <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
-                    <span className="text-gray-500 group-hover:text-gray-900">{step.id}</span>
+                    <span className="text-gray-500 group-hover:text-gray-900">{stepIdx}</span>
                   </span>
-                  <span className="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">{step.name}</span>
+                  <span className="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">{name}</span>
                 </span>
               </a>
             )}
 
-            {stepIdx !== steps4.length - 1 ? (
+            {stepIdx !== steps.length - 1 ? (
               <>
                 {/* Arrow separator for lg screens and up */}
                 <div className="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
@@ -395,6 +518,29 @@ export const ArrowStepper = () => {
           </li>
         ))}
       </ol>
+
+      <form className="w-full relative h-full bg-gray-50">
+        {steps.map(({ name, fields }, stepIdx) => {
+          return stepIdx === currentStep && (
+            <div className="w-full space-y-6 max-w-5xl mx-auto py-12 md:px-24" key={name + stepIdx + Math.random()}>
+              <div className='grid grid-cols-6 gap-6 xs:px-4 sm:px-6'>
+                <span className="col-span-6">
+                  <h1 className='font-bold text-xl'>{name}</h1>
+                </span>
+                {/* <h3 className='font-normal text-md'>{name}</h3> */}
+                {fields.map((fieldSchema) => <DynamicField fieldSchema={fieldSchema} />)}
+              </div>
+
+              <div className="flex gap-6 bg-gray-20000 p-6">
+                <Button onClick={(e)=>{}} disabled={stepIdx !== minStep}>Next</Button>
+                <Button onClick={(e)=>{}} disabled={stepIdx !== maxStep}>Previous</Button>
+                <Button onClick={(e)=>{}} disabled={stepIdx === maxStep}>Checkout</Button>
+              </div>
+            </div>
+          )
+        })}
+      </form>
+
     </nav>
   )
 }
