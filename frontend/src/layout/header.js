@@ -20,6 +20,8 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
+// import { Popover } from '@headlessui/react'
+
 const services = [
   {
     name: 'Business Consultation',
@@ -63,7 +65,7 @@ const resources = [
     name: 'Courses',
     description:
       'Get all of your questions answered in our forums or contact support.',
-    href: '/booking',
+    href: '/courses',
     icon: AcademicCapIcon,
   },
   {
@@ -98,6 +100,8 @@ function classNames(...classes) {
 const pages = [
   { name: 'About', href: '/about' },
   { name: 'Podcast', href: '/podcast' },
+  { name: 'Videos', href: '/videos' },
+  { name: 'Courses', href: '/courses' },
   { name: 'Booking', href: '/booking' },
   { name: 'Pricing', href: '/pricing' },
 ]
@@ -120,10 +124,11 @@ export const Header = () => {
         <div className="flex items-center justify-between border-b-2 border-gray-100 py-2 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link to="/">
-              <span className="sr-only">Your Company</span>
+              <span className="sr-only">Business Educated</span>
               <img className="h-20 w-auto" src={logoSvg} />
             </Link>
           </div>
+          {/* MOBILE MENU BUTTOn */}
           <div className="-my-2 -mr-2 md:hidden">
             <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-BEred-500">
               <span className="sr-only">Open menu</span>
@@ -132,7 +137,7 @@ export const Header = () => {
           </div>
           <Popover.Group as="nav" className="hidden space-x-10 md:flex">
             {pages.map(({ href, name }) => (
-              <Link to={href} className="text-base font-medium text-gray-500 hover:text-gray-900">
+              <Link to={href} className="text-base font-medium text-gray-500 hover:text-gray-900" key={`${name} page-link-header`}>
                 {name}
               </Link>
             ))}

@@ -6,6 +6,7 @@ import Footer from "./footer";
 
 function Layout({ children }) {
   return (
+    <>
     <div className="flex flex-col min-h-screen font-sans text-gray-900">
       <Header />
       
@@ -17,6 +18,10 @@ function Layout({ children }) {
 
       <Footer />
     </div>
+    {/* google ads */}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1539774641450591"
+     crossorigin="anonymous"></script>
+    </>
   );
 }
 

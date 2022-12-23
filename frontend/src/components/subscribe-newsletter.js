@@ -1,3 +1,4 @@
+import { Link } from 'gatsby';
 import React from 'react';
 /*
   This example requires some changes to your config:
@@ -48,9 +49,9 @@ export const SubscribeNewsletter = () => {
             </form>
             <p className="mt-3 text-sm text-red-100">
               We care about the protection of your data. Read our{' '}
-              <a href="#" className="font-medium text-white underline">
+              <Link to="/privacy-policy" className="font-medium text-white underline">
                 Privacy Policy.
-              </a>
+              </Link>
             </p>
           </div>
         </div>

@@ -1,17 +1,9 @@
 /* eslint-disable no-param-reassign */
-import { createTheme } from '@mui/material';
 import create from 'zustand';
-import React from 'react'; 
 import produce from 'immer';
-// ========================================================================== //
-// Handle theming
-// ========================================================================== //
 import { navigate } from 'gatsby-link';
 
-import {
-  DARK_THEME, LIGHT_THEME, OVERRIDES, CUSTOM_THEME_PROPS,
-} from './theme';
-  
+
 // ========================================================================== //
 // App Global Shared State
 // ========================================================================== //
@@ -22,34 +14,18 @@ const loadStore = () => JSON.parse(localStorage.getItem('store'));
 
 // add on top of this for a more robust store
 const useStore = create((set, get) => ({
-  appContext: {
-    type: 'light',
-    location: {},
-    methods: {
-      // ⚠️ setCurrent **is injected here via threeDCarousel** this allows you to set the carousel globally
-      setAppContext: (newAppContext) => {
-        set(produce((state) => {
-          state.appContext = {
-            ...state.appContext,
-            newAppContext,
-          };
-        }));
-      },
-      toggleTheme: () => {
-        set(produce((state) => {
-          state.appContext.type = state.appContext.type === 'light' ? 'dark' : 'light';
-        }));
-      },
-    },
-  },
 
   // temp holder for forms that have not been assigned their own store space
-  testForm: {
-    text: '',
-    number: '',
-    file: '',
-    date: '',
-    message: '',
+  bookingForm: {
+    form: {
+      text: '',
+      number: '',
+      file: '',
+      date: '',
+      message: '',
+      consultant: {name: 'Aiden Faulconer', rate: 150},
+      duration: 1,
+    },
     methods: {
       changeFormData: (newContext) => {
         set(produce((state) => {
@@ -98,9 +74,35 @@ const useStore = create((set, get) => ({
     },
   },
 
+  podcastForm: {
+    name: 'aiden',
+    email: 'aidenf09@yahoo.com',
+    message: 'Hello world',
+    phone: false,
+    service: false,
+    methods: {
+      changeFormData: (newContext) => {
+        set(produce((state) => {
+          state.bookingForm = {
+            ...state.bookingForm,
+            ...newContext,
+          };
+        }));
+      },
+      clear: () => {
+        set(produce((state) => {
+          state.bookingForm = {
+            ...Object(
+              Object.keys(state.bookingForm).map((key) => ({ [key]: '' })),
+            ),
+          };
+        }));
+      },
+    },
+  },
 }));
 
 export {
-  createTheme, lt, dt, useStore, saveStore,
+  useStore, saveStore, loadStore
 };
 // 60668172

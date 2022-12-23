@@ -84,17 +84,17 @@ export const ContentThreeRow = ({ categories = [
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">{headline.title}</h2>
         <p className="mt-4 text-base text-gray-500">{headline.description}</p>
 
-        <div className="mt-10 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0">
+        <div className="mt-10 space-y-12 md:grid md:grid-cols-3 md:gap-x-8 lg:space-y-4">
           {categories.map(({name,href,description,imageAlt,imageSrc}) => (
             <a key={name} href={href} className="group block">
               <div
                 aria-hidden="true"
-                className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
+                className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg group-hover:opacity-100 opacity-75 lg:aspect-w-5 lg:aspect-h-6"
               >
                 <img
                   src={imageSrc}
                   alt={imageAlt}
-                  className="h-full w-full object-cover object-center"
+                  className="h-full w-full object-cover object-center hover:-translate-y-5 translate-y-0 ease-in-out transition-all "
                 />
               </div>
               <h3 className="mt-4 text-base font-semibold text-gray-900">{name}</h3>

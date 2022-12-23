@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from '../../layout/layout'
 import SEO from '../../layout/seo'
 import { ArrowStepper } from '../../components/forms/stepper'
+import * as Yup from 'yup'
 
 import { CalendarDaysIcon, ChatBubbleOvalLeftIcon, CheckIcon, MapIcon } from '@heroicons/react/20/solid'
 import { Bars3CenterLeftIcon, BriefcaseIcon, BuildingLibraryIcon, BuildingOffice2Icon, BuildingOfficeIcon, BuildingStorefrontIcon, ClockIcon, DocumentTextIcon, EnvelopeIcon, HandRaisedIcon, PhoneIcon, UserGroupIcon, UserIcon } from '@heroicons/react/24/outline';
@@ -15,16 +16,34 @@ function IndexPage() {
       />
 
       <section className="mt-24">
-        <ArrowStepper schema={[
+        <ArrowStepper formSchema={{
+          formName: "bookingForm",
+        }} schema={[
           {
             step: '1',
             name: 'Details',
             status: 'current',
             fields: [
-              { name: 'firstName', value: '', col: 3, type: 'text', icon: UserIcon, placeholder: '', required: true },
-              { name: 'lastName', value: '', col: 3, type: 'text', icon: UserIcon, placeholder: '', required: true },
-              { name: 'email', value: '', col: 3, type: 'email', icon: EnvelopeIcon, placeholder: '', required: true },
-              { name: 'phone', value: '', col: 3, type: 'tel', icon: PhoneIcon, placeholder: '', required: false },
+              {
+                name: 'firstName', cols: 3,
+                validation: Yup.string().required('please enter your first name'),
+                type: 'text', icon: UserIcon, placeholder: '', required: true
+              },
+              {
+                name: 'lastName', cols: 3,
+                validation: Yup.string().required('please enter your last name'),
+                type: 'text', icon: UserIcon, placeholder: '', required: true
+              },
+              {
+                name: 'email', cols: 6,
+                validation: Yup.string().email('invalid email address').required('email is required to contact you'),
+                type: 'email', icon: EnvelopeIcon, placeholder: '', required: true
+              },
+              {
+                name: 'phone', cols: 6,
+                validation: Yup.string().matches(/a/, 'invalid phone number').required('phone is required to contact you'),
+                type: 'tel', icon: PhoneIcon, placeholder: '', required: false
+              },
             ]
           },
           {
@@ -32,9 +51,15 @@ function IndexPage() {
             name: 'Company',
             status: 'upcoming',
             fields: [
-              { name: 'companyName', value: '', col: 3, type: 'text', icon: BuildingLibraryIcon, placeholder: '', required: true },
               {
-                name: 'companySize', value: '', col: 3, type: 'select', icon: UserGroupIcon, placeholder: '', required: true, options: [
+                name: 'companyName', cols: 3,
+                validation: Yup.string().required('company name is required to investigate your issue further'), 
+                type: 'text', icon: BuildingLibraryIcon, placeholder: '', required: true
+              },
+              {
+                name: 'companySize', cols: 3,
+                validation: Yup.string(), type: 'select', icon: UserGroupIcon, placeholder: '', required: true,
+                options: [
                   { name: '0-10' },
                   { name: '10-300' },
                   { name: '300-1000' },
@@ -42,7 +67,10 @@ function IndexPage() {
                 ]
               },
               {
-                name: 'companyType', value: '', col: 3, type: 'select', icon: BuildingOffice2Icon, placeholder: '', required: true, options: [
+                name: 'companyType', cols: 6,
+                validation: { type: 'string', oneOf: 'this', required: true, message: 'company type is required to investigate regulations involved' },
+                type: 'select', icon: BuildingOffice2Icon, placeholder: '', required: true,
+                options: [
                   { name: 'LLC', description: 'This is a type of business that combines elements of a partnership and a corporation. LLC owners, known as members, have limited liability for the debts and obligations of the business and can choose to be taxed as a partnership or a corporation.' },
                   { name: 'Cooperative', description: 'This is a type of business owned and operated by a group of individuals who work together to achieve a common goal, such as providing goods or services to its members.' },
                   { name: 'Nonprofit', description: 'This is a type of business that is organized for charitable, educational, or other public-benefit purposes and is exempt from paying taxes on income derived from its operations.' },
@@ -51,10 +79,21 @@ function IndexPage() {
                   { name: 'Sole proprietorship', description: 'This is a type of business owned and operated by a single individual. The owner is responsible for all aspects of the business and is personally liable for its debts and obligations.' },
                 ]
               },
-              { name: 'abn', value: '', col: 3, type: 'number', icon: BuildingOfficeIcon, placeholder: '', required: true },
-              { name: 'role', value: '', col: 3, type: 'text', icon: HandRaisedIcon, placeholder: '', required: true },
               {
-                name: 'companyServices', value: '', col: 3, type: 'select', icon: BriefcaseIcon, placeholder: '', required: true, options: [
+                name: 'abn', cols: 6,
+                validation: Yup.number().required('abn needed to identify your business'),
+                type: 'number', icon: BuildingOfficeIcon, placeholder: '', required: true
+              },
+              {
+                name: 'role', cols: 3,
+                validation: Yup.string().required('role required for context around your issue'),
+                type: 'text', icon: HandRaisedIcon, placeholder: '', required: true
+              },
+              {
+                name: 'companyServices', cols: 3,
+                validation: { type: 'string', oneOf: 'this', message: 'services required for context around your issue' },
+                type: 'select', icon: BriefcaseIcon, placeholder: '', required: true,
+                options: [
                   { name: 'Information Services' },
                   { name: 'Manufacturing Services' },
                   { name: 'Hospitality Services' },
@@ -97,9 +136,16 @@ function IndexPage() {
             name: 'What you need assistance with',
             status: 'upcoming',
             fields: [
-              { name: 'description', value: '', cols: 6, type: 'textarea', icon: Bars3CenterLeftIcon, placeholder: '', required: true },
               {
-                name: 'serviceType', value: '', cols: 6, type: 'select', icon: BuildingStorefrontIcon, placeholder: '', required: true, options: [
+                name: 'problemDescription', cols: 6,
+                validation: Yup.string().min(200, 'use a minimum of 200 words to describe your problem').required('we need to understand the issue your seeking assistance with'),
+                type: 'textarea', icon: Bars3CenterLeftIcon, placeholder: '', required: true
+              },
+              {
+                name: 'serviceType', cols: 6,
+                validation: Yup.string().required('please enter your first name'),
+                type: 'select', icon: BuildingStorefrontIcon, placeholder: '', required: true,
+                options: [
                   { name: 'Marketing & branding', description: 'This type of consultation service helps businesses develop and implement effective marketing and branding strategies to reach their target audience and differentiate themselves from competitors.' },
                   { name: 'Business Planning & strategy', description: ' This service involves helping businesses develop and execute a plan for achieving their long-term goals and objectives.' },
                   { name: 'Financial planning & analysis', description: 'This service involves helping businesses develop and manage their financial plans, including budgeting, forecasting, and analyzing financial performance.' },
@@ -112,7 +158,11 @@ function IndexPage() {
                   { name: 'Leadership & management development', description: 'This service involves helping businesses develop the leadership and management skills of their team members to support business growth and success.' },
                 ]
               },
-              { name: 'attachments', value: '', cols: 6, type: 'upload', icon: DocumentTextIcon, placeholder: '', required: false, max: 4, allow: ['pdf', 'docx', 'url', 'png', 'jpg', 'jpeg', 'txt'] },
+              {
+                name: 'attachments', cols: 6,
+                validation: Yup.mixed().required('File is required').test('fileSize', 'File size is too big', (value) => value && value.size <= 2000000),
+                type: 'upload', icon: DocumentTextIcon, placeholder: '', required: false, max: 4, allow: ['pdf', 'docx', 'url', 'png', 'jpg', 'jpeg', 'txt']
+              },
             ]
           },
           {
@@ -120,9 +170,16 @@ function IndexPage() {
             name: 'Consultation details',
             status: 'upcoming',
             fields: [
-              { name: 'duration (hours)', value: '', cols: 6, type: 'number', icon: ClockIcon, placeholder: 1, required: true, max: 3 },
               {
-                name: 'consultant', value: '', cols: 6, type: 'multiselect', icon: UserIcon, placeholder: 'Aiden Faulconer', required: true, options: [
+                name: 'duration', cols: 6,
+                validation: Yup.number().required('you must give a duration for the consultation session'),
+                type: 'number', icon: ClockIcon, placeholder: 1, required: true, max: 3
+              },
+              {
+                name: 'consultant', cols: 6,
+                validation: {type: 'string', oneOf: 'this', required: true, message: 'please select a consultant for your session'},
+                type: 'multiselect', icon: UserIcon, placeholder: 'Aiden Faulconer', required: true,
+                options: [
                   {
                     name: 'Aiden Faulconer',
                     role: 'Senior business consultant',
@@ -137,18 +194,20 @@ function IndexPage() {
                     rate: 150,
                     availability: [new Date(), new Date()]
                   },
-                  {
-                    name: 'Henry Streets',
-                    role: 'business consultant',
-                    specialties: ['design', 'business', 'marketing'],
-                    rate: 50,
-                    availability: [new Date(), new Date()]
-                  },
                 ]
               },
-              { name: 'datetime', value: '', cols: 6, type: 'date', icon: CalendarDaysIcon, placeholder: '', required: true },
-              // { name: 'address', value: '', cols: 6, type: 'address', icon: MapIcon, placeholder: '', required: false },
-              { name: 'messageToConsultant', value: '', cols: 6, type: 'textarea', icon: ChatBubbleOvalLeftIcon, placeholder: '', required: false },
+              {
+                name: 'datetime', cols: 6,
+                validation: '',
+                type: 'date', icon: CalendarDaysIcon, placeholder: '', required: true
+              },
+              // { name: 'address',  cols: 6, validation: '', type: 'address', icon: MapIcon, placeholder: '', required: false },
+              {
+                name: 'messageToConsultant', cols: 6,
+                validation: '',
+
+                type: 'textarea', icon: ChatBubbleOvalLeftIcon, placeholder: '', required: false
+              },
             ]
           },
         ]} />
