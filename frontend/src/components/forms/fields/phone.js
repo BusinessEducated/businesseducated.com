@@ -1,7 +1,16 @@
-import React from 'react';
+import React from 'react'
 
-export const PhoneInput =({ name, value, type, icon, placeholder, required, ...props }) => {
-  const Icon = icon;
+export const PhoneInput = ({
+  name,
+  value,
+  type,
+  icon,
+  placeholder,
+  required,
+  onChange,
+  ...props
+}) => {
+  const Icon = icon
   return (
     <div>
       <label htmlFor={name} className="block text-sm font-medium text-gray-700">
@@ -24,6 +33,7 @@ export const PhoneInput =({ name, value, type, icon, placeholder, required, ...p
           </select>
         </div>
         <input
+          onChange={onChange}
           type={type}
           name={name}
           id={name}
@@ -35,5 +45,4 @@ export const PhoneInput =({ name, value, type, icon, placeholder, required, ...p
   )
 }
 
-
-export default PhoneInput;
+export default PhoneInput

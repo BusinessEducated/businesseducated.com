@@ -1,8 +1,9 @@
-const baseUrl = `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}${process.env.API_ENDPOINT}zoom`;
+import API from './api';
 
 const getDurationInMinutes = (start, end) => Math.abs((new Date(end)) - (new Date(start))) / 60000;
 
-export const createMeeting = async (start,end,topic) => { 
+export const meeting = {
+  async create({ start, end, topic }) {
     const payload = {
       meetingStart: start,
       meetingDuration: getDurationInMinutes(start, end),
@@ -14,5 +15,6 @@ export const createMeeting = async (start,end,topic) => {
       data: { meetingInformation },
     } = await API.post(process.env.MEETING_ENDPOINT, payload);
 
-    return { success, message, meetingInformation }; 
+    return { success, message, meetingInformation };
+  },
 };

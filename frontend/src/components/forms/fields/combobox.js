@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 /*
   This example requires some changes to your config:
@@ -27,7 +27,16 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export const CCombobox = () => {
+export const CCombobox = ({
+  name,
+  value,
+  type,
+  icon,
+  placeholder,
+  required,
+  onChange,
+  ...props
+}) => {
   const [query, setQuery] = useState('')
   const [selectedPerson, setSelectedPerson] = useState(null)
 
@@ -39,8 +48,17 @@ export const CCombobox = () => {
         })
 
   return (
-    <Combobox as="div" value={selectedPerson} onChange={setSelectedPerson}>
-      <Combobox.Label className="block text-sm font-medium text-gray-700">Assigned to</Combobox.Label>
+    <Combobox
+      as="div"
+      value={selectedPerson}
+      onChange={(e) => {
+        onChange(e.value)
+        setSelectedPerson(e)
+      }}
+    >
+      <Combobox.Label className="block text-sm font-medium text-gray-700">
+        Assigned to
+      </Combobox.Label>
       <div className="relative mt-1">
         <Combobox.Input
           className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 sm:text-sm"
@@ -48,7 +66,10 @@ export const CCombobox = () => {
           displayValue={(person) => person?.name}
         />
         <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
-          <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+          <ChevronUpDownIcon
+            className="h-5 w-5 text-gray-400"
+            aria-hidden="true"
+          />
         </Combobox.Button>
 
         {filteredPeople.length > 0 && (
@@ -60,19 +81,26 @@ export const CCombobox = () => {
                 className={({ active }) =>
                   classNames(
                     'relative cursor-default select-none py-2 pl-3 pr-9',
-                    active ? 'bg-red-600 text-white' : 'text-gray-900'
+                    active ? 'bg-red-600 text-white' : 'text-gray-900',
                   )
                 }
               >
                 {({ active, selected }) => (
                   <>
-                    <span className={classNames('block truncate', selected && 'font-semibold')}>{person.name}</span>
+                    <span
+                      className={classNames(
+                        'block truncate',
+                        selected && 'font-semibold',
+                      )}
+                    >
+                      {person.name}
+                    </span>
 
                     {selected && (
                       <span
                         className={classNames(
                           'absolute inset-y-0 right-0 flex items-center pr-4',
-                          active ? 'text-white' : 'text-red-600'
+                          active ? 'text-white' : 'text-red-600',
                         )}
                       >
                         <CheckIcon className="h-5 w-5" aria-hidden="true" />
@@ -88,6 +116,5 @@ export const CCombobox = () => {
     </Combobox>
   )
 }
-
 
 export default Combobox

@@ -1,99 +1,129 @@
-import axios from 'axios';
+import axios from 'axios'
 
-//
-export const getVideosFromChannelByCategory = async (channelId, playlistId) => {
-  // Set up the base URL for the YouTube API
-  const baseUrl = 'https://www.googleapis.com/youtube/v3/platlistItems';
+const baseUrl = `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}${process.env.API_ENDPOINT}youtube`
+
+export const getVideosFromChannelByCategory = async (
+  channelId,
+  playlistId,
+  maxResults,
+) => {
+  // Set up the headers for the API request
+  const headers = {
+    'Access-Control-Allow-Origin': `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}, *`,
+    'Access-Control-Allow-Methods': null, //important, only the server has the privaledge of using these headers
+    'Access-Control-Allow-Origin': null, //important, only the server has the privaledge of using these headers
+    'Content-Type': 'application/json',
+  }
 
   // Set up the API key and other parameters for the API request
   const params = {
-    part: 'snippet',
-    type: 'video',
-    maxResults: 50,
-    key: process.env.YOUTUBE_API_KEY,
+    maxResults: maxResults,
     channelId: channelId,
-    playlistId: playlistId
-  };
+    playlistId: playlistId,
+  }
 
   // Make the API request using Axios
   try {
-    const response = await axios.get(`${baseUrl}/search`, { params });
-    const videos = response.data.items;
-    return videos;
+    const response = await axios.get(
+      `${baseUrl}/getVideosFromChannelByCategory`,
+      { params, headers },
+    )
+    const videos = response.data.items
+    return videos
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
 }
 
+export const getVideosFromChannel = async (channelId, maxResults) => {
+  // Set up the axios request
+  const params = {
+    channelId: channelId,
+    maxResults: maxResults,
+    order: 'date',
+  }
 
-async function subscribeToChannel(channelId, accessToken) {
-  // Set up the base URL for the YouTube API
-  const baseUrl = 'https://www.googleapis.com/youtube/v3';
+  // Set up the headers for the API request
+  const headers = {
+    'Access-Control-Allow-Origin': `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}, *`,
+    'Access-Control-Allow-Methods': null, //important, only the server has the privaledge of using these headers
+    'Access-Control-Allow-Origin': null, //important, only the server has the privaledge of using these headers
+    'Content-Type': 'application/json',
+  }
 
+  // Make the request and get the response data
+  try {
+    const response = await axios.get(`${baseUrl}/getVideosFromChannel`, {
+      params,
+      headers,
+    })
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const subscribeToChannel = async (
+  channelId,
+  accessToken,
+  maxResults,
+) => {
   // Set up the parameters for the API request
   const params = {
     part: 'snippet',
-    key: process.env.YOUR_API_KEY,
-    maxResults: 20,
-  };
+    maxResults: maxResults,
+  }
 
   // Set up the request body
   const data = {
     snippet: {
       resourceId: {
-        channelId: channelId
-      }
-    }
-  };
+        channelId: channelId,
+      },
+    },
+  }
 
   // Set up the headers for the API request
   const headers = {
+    'Access-Control-Allow-Origin': `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}, *`,
+    'Access-Control-Allow-Methods': null, //important, only the server has the privaledge of using these headers
+    'Access-Control-Allow-Origin': null, //important, only the server has the privaledge of using these headers
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${accessToken}`
-  };
+    Authorization: `Bearer ${accessToken}`,
+  }
 
   // Make the API request using Axios
   try {
-    const response = await axios.post(
-      `${baseUrl}/subscriptions`,
-      data,
-      { params, headers }
-    );
-    console.log('Subscribed to channel:', response.data);
+    const response = await axios.post(`${baseUrl}/subscribeToChannel`, data, {
+      params,
+      headers,
+    })
+    console.log('Subscribed to channel:', response.data)
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
 }
 
-async function likeVideo(videoId, accessToken) {
-  // Set up the base URL for the YouTube API
-  const baseUrl = 'https://www.googleapis.com/youtube/v3';
-
-  // Set up the parameters for the API request
-  const params = {
-    key: YOUR_API_KEY
-  };
-
+export const likeVideo = async (videoId, accessToken) => {
   // Set up the request body
   const data = {
-    id: videoId
-  };
+    id: videoId,
+  }
 
   // Set up the headers for the API request
   const headers = {
+    'Access-Control-Allow-Origin': `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}, *`,
+    'Access-Control-Allow-Methods': null, //important, only the server has the privaledge of using these headers
+    'Access-Control-Allow-Origin': null, //important, only the server has the privaledge of using these headers
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${accessToken}`
-  };
+    Authorization: `Bearer ${accessToken}`,
+  }
 
   // Make the API request using Axios
   try {
-    const response = await axios.post(
-      `${baseUrl}/videos/rate`,
-      data,
-      { params, headers }
-    );
-    console.log('Liked video:', response.data);
+    const response = await axios.post(`${baseUrl}/likeVideo`, data, { headers })
+    console.log('Liked video:', response.data)
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
 }

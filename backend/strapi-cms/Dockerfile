@@ -7,7 +7,7 @@ WORKDIR /cms
 COPY package.json .
 COPY yarn.lock .
 
-RUN npm i --ignore-engines
+RUN yarn install --ignore-engines
 
 COPY . .
 

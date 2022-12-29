@@ -19,10 +19,17 @@ const transporter = nodemailer.createTransport({
     pass: process.env.MAIL_P || '',
   },
 });
-// ========================================================================== //
-// makeContact
-// ========================================================================== //
-router.post('/api/makeContact', async (req, res) => {
+
+/**
+ * This function comment is parsed by doctrine
+ * @route GET /api
+ * @group foo - Operations about user
+ * @param {string} email.query.required - username or email - eg: user@domain
+ * @param {string} password.query.required - user's password.
+ * @returns {object} 200 - An array of user info
+ * @returns {Error}  default - Unexpected error
+ */
+router.post('/contact', async (req, res) => {
   console.log(req);
   const { message, recipient } = req.body;
 
@@ -43,10 +50,10 @@ router.post('/api/makeContact', async (req, res) => {
     }],
     message,
   },
-  (err, info) => {
-    if (err) console.log(err);
-    console.log(info);
-  });
+    (err, info) => {
+      if (err) console.log(err);
+      console.log(info);
+    });
 
   const notify = await transporter.sendMail({
     from: process.env.MAIL_SENDER,
@@ -60,10 +67,10 @@ router.post('/api/makeContact', async (req, res) => {
     }],
     message,
   },
-  (err, info) => {
-    if (err) console.log(err);
-    console.log(info);
-  });
+    (err, info) => {
+      if (err) console.log(err);
+      console.log(info);
+    });
 
   console.log(`PDF report sent: ${recipient} and ${process.env.MAIL_SENDER}`);
 
@@ -77,9 +84,6 @@ router.post('/api/makeContact', async (req, res) => {
   });
 });
 
-// ========================================================================== //
-// makeBooking
-// ========================================================================== //
 const streamConfig = {
   // ./file-name.ext
   // {highWaterMark: 16}
@@ -101,7 +105,16 @@ const readImageFiles = (files) => {
   }));
 };
 
-router.post('/api/makeContact', async (req, res) => {
+/**
+ * This function comment is parsed by doctrine
+ * @route GET /api
+ * @group foo - Operations about user
+ * @param {string} email.query.required - username or email - eg: user@domain
+ * @param {string} password.query.required - user's password.
+ * @returns {object} 200 - An array of user info
+ * @returns {Error}  default - Unexpected error
+ */
+router.post('/contact2', async (req, res) => {
   console.log(req);
   let { message, referencePhotos, recipient } = req.body;
   const report = Buffer.from(new jsPDF().text(JSON.stringify(message, null, 2), 10, 10).output('arraybuffer'));
@@ -122,10 +135,10 @@ router.post('/api/makeContact', async (req, res) => {
     attachments,
     message,
   },
-  (err, info) => {
-    if (err) console.log(err);
-    console.log(info);
-  });
+    (err, info) => {
+      if (err) console.log(err);
+      console.log(info);
+    });
 
   const notify = await transporter.sendMail({
     from: process.env.MAIL_SENDER,
@@ -135,10 +148,10 @@ router.post('/api/makeContact', async (req, res) => {
     attachments,
     message,
   },
-  (err, info) => {
-    if (err) console.log(err);
-    console.log(info);
-  });
+    (err, info) => {
+      if (err) console.log(err);
+      console.log(info);
+    });
 
   console.log(`PDF report sent: ${recipient} and ${process.env.MAIL_SENDER}`);
 

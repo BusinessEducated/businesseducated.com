@@ -14,8 +14,11 @@ module.exports.handler = serverless(app, { debug: process.env.NODE_ENV === 'deve
 // ========================================================================== //
 // Main server *redirects to https*
 // ========================================================================== //
-app.all('*', (req, res) => res.redirect(process.env.SERVER_PORT, 'https://localhost'));
-app.listen(process.env.SERVER_PORT, () => console.log(`HTTP server listening: http://localhost:${process.env.SERVER_PORT}!`));
+// app.all('*', (req, res) => res.redirect(`http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}`, 200));
+app.listen(process.env.SERVER_PORT, () => console.log(`
+    HTTP server listening: http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}!\n
+    SWAGGER: http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}/api-docs!\n
+`));
 
 // ========================================================================== //
 // HTTPS
@@ -26,31 +29,7 @@ app.listen(process.env.SERVER_PORT, () => console.log(`HTTP server listening: ht
 //   key: fs.readFileSync(path.join(process.cwd(), 'netlify/functions/src/', 'server.key')),
 //   cert: fs.readFileSync(path.join(process.cwd(), 'netlify/functions/src/', 'server.cert')),
 // }, app);
+// app.all('*', (req, res) => res.redirect(`https://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}`, 200));
 // httpsServer.listen(443, () => console.log('HTTPS server listening: https://localhost:443'));
-
-//#region routes
-//#endregion
-
-//#region mongodb init
-// const app = express();
-// app.use(express.json());
-// app.use(morgan("dev"));
-// require("dotenv").config();
-
-// const db = require("./config/keys").mongoURI;
-// mongoose.connect(db, {
-//   useCreateIndex: true,
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
-// const connection = mongoose.connection;
-// connection.once("open",() =>{
-//     console.log("mongodb connection success!");
-// })
-
-//#endregion
-
-//#region graphql
-
-//#endregion
+ 
+ 

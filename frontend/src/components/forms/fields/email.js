@@ -1,12 +1,23 @@
-import React from 'react';
+import React from 'react'
 
 import { EnvelopeIcon } from '@heroicons/react/20/solid'
 
-export const EmailInput = ({ name, value, placeholder, type, icon, ...props }) => {
+export const EmailInput = ({
+  name,
+  value,
+  placeholder,
+  type,
+  icon,
+  onChange,
+  ...props
+}) => {
   const Icon = icon
   return (
     <div>
-      <label htmlFor={name} className="text-sm font-medium text-gray-700 flex gap-1 mb-2">
+      <label
+        htmlFor={name}
+        className="text-sm font-medium text-gray-700 flex gap-1 mb-2"
+      >
         {name}
       </label>
       <div className="relative mt-1 rounded-md shadow-sm">
@@ -14,6 +25,7 @@ export const EmailInput = ({ name, value, placeholder, type, icon, ...props }) =
           <Icon className="h-5 w-5 text-gray-400" aria-hidden="true" />
         </div>
         <input
+          onChange={onChange}
           type={type}
           name={name}
           id={name + Math.random()}
@@ -25,5 +37,4 @@ export const EmailInput = ({ name, value, placeholder, type, icon, ...props }) =
   )
 }
 
-
-export default EmailInput;
+export default EmailInput

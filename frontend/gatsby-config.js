@@ -5,9 +5,9 @@ const fullConfig = resolveConfig(tailwindConfig)
 // ========================================================================== //
 // Environment variables
 // ========================================================================== //
-require('dotenv').config({ path: `${__dirname}/../.env.${process.env.NODE_ENV}`});
+require('dotenv').config({ path: `${__dirname}/../.env.${process.env.NODE_ENV}` });
 
-console.log('test ',`${__dirname}/../.env.${process.env.NODE_ENV}`, process.env.STRAPI_API_URL)
+// console.log('test ', `${__dirname}/../.env.${process.env.NODE_ENV}`, process.env.YOUTUBE_API_KEY)
 
 // ========================================================================== //
 // Strapi configuration
@@ -44,7 +44,16 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/images/logo.png`,
       },
-    }, 
+    },
+    // ========================================================================== //
+    //     env variables
+    // ========================================================================== //
+    {
+      resolve: 'gatsby-plugin-env-variables',
+      options: {
+        allowList: [`DOMAIN_NAME`,`SERVER_PORT`,`API_ENDPOINT`],
+      }
+    },
     // ========================================================================== //
     //     Offline capabilities
     // ========================================================================== //

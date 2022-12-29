@@ -354,7 +354,7 @@ export const FeatureRow = ({
 
         <div className="mt-11 grid grid-cols-1 items-start gap-y-16 gap-x-6 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8">
           {features.map(({ imageAlt, imageSrc, name, description }) => (
-            <div key={name} className="flex flex-col-reverse">
+            <div key={name + imageSrc} className="flex flex-col-reverse">
               <div className="mt-6">
                 <h3 className="text-sm font-medium text-gray-900">{name}</h3>
                 <p className="mt-2 text-sm text-gray-500">{description}</p>

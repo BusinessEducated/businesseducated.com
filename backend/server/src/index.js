@@ -8,6 +8,10 @@ const bodyParser = require('body-parser');
 const buildControllers = require('./util/build-controllers');
 const secureServer = require('./util/secure-server'); 
 const monitorServer = require('./util/monitor-server');
+const generateSwaggerApi = require('./util/build-services');
+
+if(process.env.NODE_ENV === 'development') require('debug')('app:server');
+
 // const buildGraphqlSchemas = require('./util/build-graphql-schemas');
 // const buildMongodbSchemas = require('./util/build-mongodb-schemas');
 // const buildPostgresSchemas = require('./util/build-postgres-schemas');
@@ -22,9 +26,9 @@ secureServer(app,{
     ratelimit: true,
     helmet: true,
     xss: true,
-    csrf: true,
+    csrf: false,
     csp: false,
-    tokens: true,
+    tokens: false,
     allValidation: false,
     validation: false,
     cache: true,
@@ -51,6 +55,9 @@ monitorServer(app,{
   logging: false,
   monitoring: false,
 });
+
+//add swagger 
+generateSwaggerApi(app);
 
 // export server app and routes for the main server script to run
 module.exports = { app, router };

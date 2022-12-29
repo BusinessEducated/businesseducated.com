@@ -1,28 +1,31 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 
 import { Switch } from '@headlessui/react'
-import { Formik } from 'formik'
+import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import DynamicField from './fields/dynamic-field'
 import { Link } from 'gatsby'
+import { useStore } from '../../store/store'
+import Button from '../button'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export const JoinPodcast = ({
-  headline={
-    title: "Join the podcast 🎙️",
+export const DynamicForm = ({
+  headline = {
+    title: 'Join the podcast 🎙️',
     description: '',
   },
+  formName = 'defaultForm',
   fields = [
     {
       name: 'firstName',
       cols: 3,
       validation: Yup.string().required('please enter your first name'),
       type: 'text',
-      icon: ()=><></>,
+      icon: () => <></>,
       placeholder: '',
       required: true,
     },
@@ -31,7 +34,7 @@ export const JoinPodcast = ({
       cols: 3,
       validation: Yup.string().required('please enter your last name'),
       type: 'text',
-      icon: ()=><></>,
+      icon: () => <></>,
       placeholder: '',
       required: true,
     },
@@ -42,7 +45,7 @@ export const JoinPodcast = ({
         .email('invalid email address')
         .required('email is required to contact you'),
       type: 'email',
-      icon: ()=><></>,
+      icon: () => <></>,
       placeholder: '',
       required: true,
     },
@@ -53,7 +56,7 @@ export const JoinPodcast = ({
         .matches(/a/, 'invalid phone number')
         .required('phone is required to contact you'),
       type: 'tel',
-      icon: ()=><></>,
+      icon: () => <></>,
       placeholder: '',
       required: false,
     },
@@ -62,45 +65,40 @@ export const JoinPodcast = ({
       cols: 6,
       validation: Yup.string()
         .matches(/a/, 'invalid message')
-        .required('please write a message to us to help us cater the podcast to your needs'),
+        .required(
+          'please write a message to us to help us cater the podcast to your needs',
+        ),
       type: 'textarea',
-      icon: ()=><></>,
+      icon: () => <></>,
       placeholder: 'write you message here',
       required: false,
     },
   ],
 }) => {
-  
   const [agreed, setAgreed] = useState(false)
 
   //generate form data for formik
-  const createFormData = useCallback(
-    (fields) => {
-      let initialValues = {}
-      let validationSchema = {}
+  const createFormData = (_fields) => {
+    let initialValues = {}
+    let validationSchema = {}
 
-      fields.forEach((field) => {
-        initialValues[field?.name] = ''
-        validationSchema[field?.name] = field.validation
-      })
+    _fields.forEach((field) => {
+      initialValues[field.name] = ''
+      validationSchema[field.name] = field.validation
+    })
+    return [initialValues, Yup.object().shape(validationSchema)]
+  }
 
-      return [initialValues, Yup.object().shape(validationSchema)]
-    },
-    [fields],
-  )
+  const [initialValues, validationSchema] = createFormData(fields)
 
-  const {initialValues, validationSchema} = createFormData(fields);
-
-  const handleSubmit = (e,validate) => {
-    if(agreed){
-
+  const handleSubmit = (e, validate) => {
+    if (agreed) {
     }
   }
 
   return (
     <div className="overflow-hidden bg-white py-16 px-4 sm:px-6 lg:px-8 lg:py-24">
       <div className="relative mx-auto max-w-xl">
-
         {/* pattern */}
         <svg
           className="absolute left-full translate-x-1/2 transform"
@@ -135,7 +133,7 @@ export const JoinPodcast = ({
             fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)"
           />
         </svg>
-        
+
         {/* pattern */}
         <svg
           className="absolute right-full bottom-0 -translate-x-1/2 transform"
@@ -191,20 +189,25 @@ export const JoinPodcast = ({
               errors,
               handleReset,
               isValid,
+              values,
+              handleChange,
               isValidating,
               status,
               validateForm,
             }) => {
               return (
-                <>
-                  <div className="grid grid-cols-6 gap-6"> 
-
+                <Form>
+                  <div className="grid grid-cols-6 gap-6">
                     {/* generate fields from field schema defined */}
                     {fields.map((fieldSchema) => (
-                      <DynamicField fieldSchema={fieldSchema} errors={errors} />
+                      <DynamicField
+                        fieldSchema={fieldSchema}
+                        value={values[fieldSchema.name]}
+                        errors={errors[fieldSchema.name]}
+                        onChange={handleChange}
+                      />
                     ))}
                   </div>
-
                   <div className="sm:col-span-2 my-6">
                     <div className="flex items-start">
                       <div className="flex-shrink-0">
@@ -234,8 +237,8 @@ export const JoinPodcast = ({
                             className="font-medium text-gray-700 underline"
                           >
                             Privacy Policy
-                          </Link>
-                          {' '}and{' '}
+                          </Link>{' '}
+                          and{' '}
                           <Link
                             to="/cookie-policy"
                             className="font-medium text-gray-700 underline"
@@ -248,16 +251,16 @@ export const JoinPodcast = ({
                     </div>
                   </div>
                   <div className="sm:col-span-2">
-                    <button
+                    <Button
                       onClick={handleSubmit}
-                      disabled={agreed}
+                      disabled={!agreed || !isValid}
                       type="submit"
                       className="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                     >
                       Let's talk
-                    </button>
+                    </Button>
                   </div>
-                </>
+                </Form>
               )
             }}
           </Formik>
@@ -267,4 +270,4 @@ export const JoinPodcast = ({
   )
 }
 
-export default JoinPodcast
+export default DynamicForm

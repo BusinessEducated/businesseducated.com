@@ -1,12 +1,25 @@
-import React from 'react';
+import React from 'react'
 import { Tab } from '@headlessui/react'
-import { AtSymbolIcon, CodeBracketIcon, LinkIcon } from '@heroicons/react/20/solid'
+import {
+  AtSymbolIcon,
+  CodeBracketIcon,
+  LinkIcon,
+} from '@heroicons/react/20/solid'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export const TextArea = () => {
+export const TextArea = ({
+  name,
+  value,
+  type,
+  icon,
+  placeholder,
+  required,
+  onChange,
+  ...props
+}) => {
   return (
     <form action="#" className="w-full relative">
       <Tab.Group>
@@ -19,7 +32,7 @@ export const TextArea = () => {
                     selected
                       ? 'text-gray-900 bg-gray-100 hover:bg-gray-200'
                       : 'text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-100',
-                    'rounded-md border border-transparent px-3 py-1.5 text-sm font-medium'
+                    'rounded-md border border-transparent px-3 py-1.5 text-sm font-medium',
                   )
                 }
               >
@@ -31,7 +44,7 @@ export const TextArea = () => {
                     selected
                       ? 'text-gray-900 bg-gray-100 hover:bg-gray-200'
                       : 'text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-100',
-                    'ml-2 rounded-md border border-transparent px-3 py-1.5 text-sm font-medium'
+                    'ml-2 rounded-md border border-transparent px-3 py-1.5 text-sm font-medium',
                   )
                 }
               >
@@ -78,6 +91,7 @@ export const TextArea = () => {
                 </label>
                 <div>
                   <textarea
+                    onChange={onChange}
                     rows={5}
                     name="comment"
                     id="comment"
@@ -97,9 +111,9 @@ export const TextArea = () => {
             </Tab.Panels>
           </>
         )}
-      </Tab.Group> 
+      </Tab.Group>
     </form>
   )
 }
 
-export default TextArea;
+export default TextArea

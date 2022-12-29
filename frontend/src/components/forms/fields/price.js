@@ -1,9 +1,21 @@
-import React from 'react';
- 
-export const PriceInput = () => {
+import React from 'react'
+
+export const PriceInput = ({
+  name,
+  value,
+  type,
+  icon,
+  placeholder,
+  required,
+  onChange,
+  ...props
+}) => {
   return (
     <div>
-      <label htmlFor="price" className="block text-sm font-medium text-gray-700">
+      <label
+        htmlFor="price"
+        className="block text-sm font-medium text-gray-700"
+      >
         Price
       </label>
       <div className="relative mt-1 rounded-md shadow-sm">
@@ -11,6 +23,8 @@ export const PriceInput = () => {
           <span className="text-gray-500 sm:text-sm">$</span>
         </div>
         <input
+          onChange={onChange}
+          value={value}
           type="text"
           name="price"
           id="price"
@@ -35,6 +49,5 @@ export const PriceInput = () => {
     </div>
   )
 }
-
 
 export default PriceInput

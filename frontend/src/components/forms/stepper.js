@@ -1,4 +1,4 @@
-import React, { createRef, useCallback } from 'react'
+import React, { createRef, useCallback, useMemo } from 'react'
 import { CheckIcon } from '@heroicons/react/20/solid'
 import {
   BriefcaseIcon,
@@ -11,12 +11,13 @@ import {
   UserGroupIcon,
   UserIcon,
 } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Button from '../button'
 import { DynamicField } from './fields/dynamic-field'
 import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import { navigate } from 'gatsby'
+import { useStore } from '../../store/store'
 
 //#region vertical circle stepper
 
@@ -656,16 +657,22 @@ export const ArrowStepper = ({
     },
   ],
 }) => {
+  // const formData = useStore((state) => state.forms[formName])
+
+  // useEffect(() => {
+  //   if (process.env.NODE_ENV === 'development') console.info(formData)
+  // }, [formData])
+
   //step logic
   const [currentStep, setCurrentStep] = useState(0)
   const [steps, setSteps] = useState(schema)
   const [formValues, setFormValues] = useState([])
-  const maxStep = schema.length-1
+  const maxStep = schema.length - 1
   const minStep = 0
 
   //generate form data for formik
   const createFormData = useCallback(
-    (fields) => {
+    ({ fields }) => {
       let initialValues = {}
       let validationSchema = {}
 
@@ -682,7 +689,7 @@ export const ArrowStepper = ({
   //handle validation/next/previous step & communicate with parent about the change
   const changeStep = (newStepIdx, e, validate, values = null) => {
     e.preventDefault()
-    console.info(newStepIdx,e,validate)
+    console.info(newStepIdx, e, validate)
     //do validation for the step here, you can do nothing unless the input is valid
     if (validate && values) {
       // validate()
@@ -721,7 +728,7 @@ export const ArrowStepper = ({
     navigate('/booking/checkout')
   }
 
-  const [formInitialValues, formValidationSchema] = createFormData(schema)
+  // const [formInitialValues, formValidationSchema] = createFormData(schema)
 
   return (
     <nav aria-label="Progress">
@@ -814,8 +821,9 @@ export const ArrowStepper = ({
         {steps.map(({ name, fields }, stepIdx) => {
           // generate the initial values and validation schema FOR THIS STEP based on the data passed
           const [stepInitialValues, stepValidationSchema] = createFormData(
-            schema,
+            schema[stepIdx],
           )
+
           return (
             // form Step
             <Formik
@@ -828,6 +836,9 @@ export const ArrowStepper = ({
                 handleReset,
                 isValid,
                 isValidating,
+                values,
+                initialStatus,
+                handleChange,
                 status,
                 validateForm,
               }) => {
@@ -838,7 +849,8 @@ export const ArrowStepper = ({
                       className="w-full relative h-full bg-gray-50"
                       key={`${name} step-form`}
                     >
-                      {status}
+                      {/* {JSON.stringify(values)} */}
+                      {/* {JSON.stringify(stepInitialValues)} */}
                       <div
                         className="w-full space-y-6 max-w-5xl mx-auto py-12 md:px-24"
                         key={`${name} form-fields`}
@@ -847,12 +859,13 @@ export const ArrowStepper = ({
                           <span className="col-span-6">
                             <h1 className="font-bold text-xl">{name}</h1>
                           </span>
-                          
                           {/* generate fields from field schema defined */}
                           {fields.map((fieldSchema) => (
                             <DynamicField
+                              onChange={handleChange}
+                              value={values[fieldSchema.name]}
                               fieldSchema={fieldSchema}
-                              errors={errors}
+                              errors={errors[fieldSchema.name]}
                             />
                           ))}
                         </div>
@@ -864,21 +877,28 @@ export const ArrowStepper = ({
                         >
                           {stepIdx !== minStep && (
                             <Button
-                              onClick={(e) => changeStep(currentStep-1,e,validateForm)}
+                              disabled={!isValid}
+                              onClick={(e) =>
+                                changeStep(currentStep - 1, e, validateForm)
+                              }
                             >
                               Previous
                             </Button>
                           )}
                           {stepIdx !== maxStep && (
                             <Button
-                              onClick={(e)=>changeStep(currentStep+1,e,validateForm)}
+                              disabled={!isValid}
+                              onClick={(e) =>
+                                changeStep(currentStep + 1, e, validateForm)
+                              }
                             >
                               Next
                             </Button>
                           )}
                           {stepIdx === maxStep && (
                             <Button
-                              onClick={(e) => handleSubmit(e,validateForm)}
+                              disabled={!isValid}
+                              onClick={(e) => handleSubmit(e, validateForm)}
                             >
                               Checkout
                             </Button>

@@ -98,12 +98,12 @@ function classNames(...classes) {
 }
 
 const pages = [
-  { name: 'About', href: '/about' },
-  { name: 'Podcast', href: '/podcast' },
-  { name: 'Videos', href: '/videos' },
-  { name: 'Courses', href: '/courses' },
-  { name: 'Booking', href: '/booking' },
-  { name: 'Pricing', href: '/pricing' },
+  { name: 'About', href: '/about', icon: BookOpenIcon },
+  { name: 'Podcast', href: '/podcast', icon: BookOpenIcon },
+  { name: 'Videos', href: '/videos', icon: BookOpenIcon },
+  { name: 'Courses', href: '/courses', icon: BookOpenIcon },
+  { name: 'Booking', href: '/booking', icon: BookOpenIcon },
+  { name: 'Pricing', href: '/pricing', icon: BookOpenIcon },
 ]
 
 export const Header = () => {
@@ -128,6 +128,7 @@ export const Header = () => {
               <img className="h-20 w-auto" src={logoSvg} />
             </Link>
           </div>
+
           {/* MOBILE MENU BUTTOn */}
           <div className="-my-2 -mr-2 md:hidden">
             <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-BEred-500">
@@ -135,6 +136,7 @@ export const Header = () => {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </Popover.Button>
           </div>
+
           <Popover.Group as="nav" className="hidden space-x-10 md:flex">
             {pages.map(({ href, name }) => (
               <Link to={href} className="text-base font-medium text-gray-500 hover:text-gray-900" key={`${name} page-link-header`}>
@@ -173,13 +175,15 @@ export const Header = () => {
                     <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 transform px-2 sm:px-0">
                       <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                          {resources.map((item) => (
+                          {resources.map((item) => {
+                            const Icon = item.icon
+                            return(
                             <Link
                               key={item.name}
                               to={item.href}
                               className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
                             >
-                              <item.icon
+                              <Icon
                                 className="h-6 w-6 flex-shrink-0 text-BEred-600"
                                 aria-hidden="true"
                               />
@@ -192,7 +196,7 @@ export const Header = () => {
                                 </p>
                               </div>
                             </Link>
-                          ))}
+                          )})}
                         </div>
                         <div className="bg-gray-50 px-5 py-5 sm:px-8 sm:py-8">
                           <div>
@@ -272,21 +276,23 @@ export const Header = () => {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                  {pages.map((item) => (
+                  {pages.map((item) => {
+                    const Icon = item.icon;
+                    return(
                     <Link
                       key={item.name}
                       to={item.href}
                       className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
                     >
-                      <item.icon
+                      {/* <Icon
                         className="h-6 w-6 flex-shrink-0 text-BEred-600"
                         aria-hidden="true"
-                      />
+                      /> */}
                       <span className="ml-3 text-base font-medium text-gray-900">
                         {item.name}
                       </span>
                     </Link>
-                  ))}
+                  )})}
                 </nav>
               </div>
             </div>

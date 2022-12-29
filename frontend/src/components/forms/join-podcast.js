@@ -2,14 +2,17 @@
 import React, { useCallback, useState } from 'react'
 import DynamicForm from './dynamic-form'
 
-export const JoinPodcast = () => { 
+export const JoinPodcast = () => {
   return (
     <div className="overflow-hidden bg-white py-16 px-4 sm:px-6 lg:px-8 lg:py-24">
-        {/* form */}
-        <DynamicForm headline={{
+      {/* form */}
+      <DynamicForm
+        formName={'podcastForm'}
+        headline={{
           title: `Join the podcast`,
-          description:`We will get back to you within 7days, and look forward to speaking 🎙️`,
-        }}/>
+          description: `We will get back to you within 7days, and look forward to speaking 🎙️`,
+        }}
+      />
     </div>
   )
 }

@@ -33,6 +33,8 @@ import { JoinPodcast } from '../components/forms/join-podcast'
 import { ContentThreeRow } from '../components/content'
 import { getVideosFromChannelByCategory } from '../services/youtube'
 import SubscribeNewsletter from '../components/subscribe-newsletter'
+import PageBanner from '../layout/page-banner'
+
 function PodcastPage() {
   const [videos, setVideos] = useState([
     {
@@ -61,36 +63,24 @@ function PodcastPage() {
         title="Home"
       />
 
-      <section className="text-center grid-cols-12 grid relative h-[35rem] bg-black w-full mt-[11vh]">
-        <div className="text-left col-span-6 overflow-hidden h-full relative m-auto flex">
-          <div className="flex flex-col gap-6 m-auto justify-start align-items-start">
-            <h1 className="inline-block text-white mb-1 text-4xl font-bold max-w-xs">
-              Collective business advice
-            </h1>
-
-            <p className="leading-loose text-white max-w-md">
-              we discuss a range of topics including leadership, marketing,
-              finance, and more. Each episode featuring guests who share their
-              experiences and lessons learned in the business world, offering
-              valuable insights and advice for listeners. We are powered by the
-              collective knowledge and expertise of those who came before us.
-              Tune in to learn from the best and gain the knowledge and skills
-              you need to succeed.
-            </p>
-
-            <div className="flex gap-3">
-              <Button>Book Now</Button>
-
-              <p className="my-auto text-white">Play Intro Video</p>
-            </div>
-          </div>
-        </div>
-
-        <img
-          className="max-w-[550px] h-[550px] hover:mt-6 transition-all ease-in-out rounded-md shadow-2xl mt-12 object-cover col-span-6"
-          src={WORK_TOGETHER}
-        />
-      </section>
+      <PageBanner
+        headline={{
+          pageTitle: 'Podcast',
+          title: 'Collective business advice',
+          description: `
+            we discuss a range of topics including leadership, marketing,
+            finance, and more. Each episode featuring guests who share their
+            experiences and lessons learned in the business world, offering
+            valuable insights and advice for listeners. We are powered by the
+            collective knowledge and expertise of those who came before us.
+            Tune in to learn from the best and gain the knowledge and skills
+            you need to succeed.
+          `,
+          ctas: [{ title: 'Book now', href: '/booking' }],
+          imageSrc: WORK_TOGETHER,
+          imageAlt: 'abstract reading man',
+        }}
+      /> 
 
       <section>
         <ContentThreeRow

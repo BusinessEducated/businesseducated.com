@@ -1,10 +1,22 @@
-import React from 'react';
+import React from 'react'
 
-export const DateInput = ({ name, value, type, icon, placeholder, required, ...props }) => {
-  const Icon = icon;
+export const DateInput = ({
+  name,
+  value,
+  type,
+  icon,
+  placeholder,
+  required,
+  onChange,
+  ...props
+}) => {
+  const Icon = icon
   return (
     <div>
-      <label htmlFor="phone-number" className="block text-sm font-medium text-gray-700">
+      <label
+        htmlFor="phone-number"
+        className="block text-sm font-medium text-gray-700"
+      >
         Phone Number
       </label>
       <div className="relative mt-1 rounded-md shadow-sm">
@@ -24,6 +36,7 @@ export const DateInput = ({ name, value, type, icon, placeholder, required, ...p
           </select>
         </div>
         <input
+          onChange={onChange}
           type="text"
           name="phone-number"
           id="phone-number"
@@ -35,5 +48,4 @@ export const DateInput = ({ name, value, type, icon, placeholder, required, ...p
   )
 }
 
-
-export default DateInput;
+export default DateInput
