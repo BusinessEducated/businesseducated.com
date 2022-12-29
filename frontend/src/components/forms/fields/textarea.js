@@ -21,38 +21,38 @@ export const TextArea = ({
   ...props
 }) => {
   return (
-    <form action="#" className="w-full relative">
+    <div action="#" className="w-full relative">
       <Tab.Group>
-        {({ selectedIndex }) => (
-          <>
-            <Tab.List className="flex items-center">
-              <Tab
-                className={({ selected }) =>
-                  classNames(
-                    selected
-                      ? 'text-gray-900 bg-gray-100 hover:bg-gray-200'
-                      : 'text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-100',
-                    'rounded-md border border-transparent px-3 py-1.5 text-sm font-medium',
-                  )
-                }
-              >
-                Write
-              </Tab>
-              <Tab
-                className={({ selected }) =>
-                  classNames(
-                    selected
-                      ? 'text-gray-900 bg-gray-100 hover:bg-gray-200'
-                      : 'text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-100',
-                    'ml-2 rounded-md border border-transparent px-3 py-1.5 text-sm font-medium',
-                  )
-                }
-              >
-                Preview
-              </Tab>
+        {/* {({ selectedIndex }) => ( */}
+        <>
+          <Tab.List className="flex items-center">
+            <Tab
+              className={({ selected }) =>
+                classNames(
+                  selected
+                    ? 'text-gray-900 bg-gray-100 hover:bg-gray-200'
+                    : 'text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-100',
+                  'rounded-md border border-transparent px-3 py-1.5 text-sm font-medium',
+                )
+              }
+            >
+              Write
+            </Tab>
+            <Tab
+              className={({ selected }) =>
+                classNames(
+                  selected
+                    ? 'text-gray-900 bg-gray-100 hover:bg-gray-200'
+                    : 'text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-100',
+                  'ml-2 rounded-md border border-transparent px-3 py-1.5 text-sm font-medium',
+                )
+              }
+            >
+              Preview
+            </Tab>
 
-              {/* These buttons are here simply as examples and don't actually do anything. */}
-              {selectedIndex === 0 ? (
+            {/* These buttons are here simply as examples and don't actually do anything. */}
+            {/* {selectedIndex === 0 ? (
                 <div className="ml-auto flex items-center space-x-5">
                   <div className="flex items-center">
                     <button
@@ -82,37 +82,40 @@ export const TextArea = ({
                     </button>
                   </div>
                 </div>
-              ) : null}
-            </Tab.List>
-            <Tab.Panels className="mt-2">
-              <Tab.Panel className="-m-0.5 rounded-lg p-0.5">
-                <label htmlFor="comment" className="sr-only">
-                  Comment
-                </label>
-                <div>
-                  <textarea
-                    onChange={onChange}
-                    rows={5}
-                    name="comment"
-                    id="comment"
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
-                    placeholder="Add your comment..."
-                    defaultValue={''}
-                  />
+              ) : null} */}
+          </Tab.List>
+          <Tab.Panels className="mt-2">
+            <Tab.Panel className="-m-0.5 rounded-lg p-0.5">
+              <label htmlFor="comment" className="sr-only">
+                Comment
+              </label>
+              <div>
+                <textarea
+                  inlist={true}
+                  wrap={true}
+                  onChange={onChange}
+                  value={value}
+                  rows={5}
+                  name={name}
+                  id={name}
+                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm min-h-[200px] h-fit max-h-[400px]"
+                  placeholder="Add your comment..."
+                  // defaultValue={''}
+                />
+              </div>
+            </Tab.Panel>
+            <Tab.Panel className="-m-0.5 rounded-lg p-0.5">
+              <div className="border-b">
+                <div className="mx-px mt-px px-3 pt-2 pb-12 text-sm leading-5 text-gray-800">
+                  {value}
                 </div>
-              </Tab.Panel>
-              <Tab.Panel className="-m-0.5 rounded-lg p-0.5">
-                <div className="border-b">
-                  <div className="mx-px mt-px px-3 pt-2 pb-12 text-sm leading-5 text-gray-800">
-                    Preview content will render here.
-                  </div>
-                </div>
-              </Tab.Panel>
-            </Tab.Panels>
-          </>
-        )}
+              </div>
+            </Tab.Panel>
+          </Tab.Panels>
+        </>
+        {/* )} */}
       </Tab.Group>
-    </form>
+    </div>
   )
 }
 

@@ -15,7 +15,6 @@ function PageBanner({
     <section className="text-center grid-cols-12 grid relative md:h-[35rem] h-full bg-black w-full mt-[11vh]">
       <div className="text-left md:col-span-6 col-span-12 overflow-hidden h-full relative m-auto flex z-20 md:p-0 p-8">
         <div className="flex flex-col gap-6 m-auto justify-start align-items-start md:m-auto mt-20 mb-8">
-
           <h2 className="inline-block text-white mb-1 text-1xl font-bold max-w-xs opacity-60">
             {headline.pageTitle}
           </h2>
@@ -29,11 +28,12 @@ function PageBanner({
           </p>
 
           <div className="flex gap-3">
-            {headline.ctas.map((cta) => (
-              <Link to={cta.to}>
-                <Button>{cta.title}</Button>
-              </Link>
-            ))}
+            {headline.ctas &&
+              headline.ctas.map((cta) => (
+                <Link to={cta.to}>
+                  <Button>{cta.title}</Button>
+                </Link>
+              ))}
           </div>
         </div>
       </div>

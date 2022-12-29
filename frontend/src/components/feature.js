@@ -241,11 +241,13 @@ export const Feature = ({
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl py-24 px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-bold tracking-tight text-gray-900 sm:text-5xl text-4xl">
+        <div className="mx-auto max-w-3xl text-center mb-6">
+          <h2 className="font-bold tracking-tight text-gray-900 sm:text-5xl text-4xl mb-6">
             {headline.title}
           </h2>
-          <p className="text-left mt-4 text-gray-500">{headline.description}</p>
+          <p className="text-center mt-4 text-gray-500">
+            {headline.description}
+          </p>
         </div>
 
         <div className="mt-16 space-y-16">
@@ -263,7 +265,7 @@ export const Feature = ({
                     'mt-6 lg:mt-0 lg:row-start-1 lg:col-span-5 xl:col-span-4',
                   )}
                 >
-                  <h3 className="text-2xl font-medium text-gray-900 mb-2">
+                  <h3 className="text-2xl text-gray-900 mb-6 font-bold">
                     {name}
                   </h3>
                   <p className="mt-2 text-gray-500 text-md">{description}</p>

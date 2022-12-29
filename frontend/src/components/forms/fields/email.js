@@ -22,7 +22,9 @@ export const EmailInput = ({
       </label>
       <div className="relative mt-1 rounded-md shadow-sm">
         <div className="absolute inset-y-0 left-0 flex items-center p-3">
-          <Icon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+          {Icon && (
+            <Icon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+          )}
         </div>
         <input
           onChange={onChange}

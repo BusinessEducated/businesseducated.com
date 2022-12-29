@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 
-import Layout from "../layout/layout";
-import SEO from "../layout/seo"; 
-import PRIVACY from "../../static/assets/privacy.png"; 
-
+import Layout from '../layout/layout'
+import SEO from '../layout/seo'
+import PRIVACY from '../../static/assets/privacy.png'
+import PageBanner from '../layout/page-banner'
 function PrivacyPolicyPage() {
-    const privacyPolicy = `        
+  const privacyPolicy = `        
         Cookie Policy for Business Educated
 
         Last updated: [Insert date]
@@ -76,31 +76,21 @@ function PrivacyPolicyPage() {
         title="About"
       />
 
-      
+      <PageBanner
+        headline={{
+          pageTitle: 'Privacy Policy',
+          title: 'Privacy',
+          description: `Our privacy policy`,
+          imageSrc: PRIVACY,
+          imageAlt: 'abstract reading man',
+        }}
+      />
 
-      <section className="text-center grid-cols-12 grid relative h-[35rem] bg-black w-full mt-[11vh]">
-        <div className="text-left col-span-6 overflow-hidden h-full relative m-auto flex">
-          <div className="flex flex-col gap-6 m-auto justify-start align-items-start">
-            <h1 className="inline-block text-white mb-1 text-4xl font-bold max-w-xs">
-              Cookie Policy
-            </h1>
-
-            <p className="leading-loose text-white max-w-md">
-              Our cookie policy
-            </p> 
-          </div>
-        </div>
-
-        <img className="max-w-[550px] min-h-[550px] hover:mt-6 transition-all ease-in-out rounded-md shadow-2xl mt-12 object-cover col-span-6" src={PRIVACY} />
-      </section>
-
-     <section className="whitespace-pre-line text-left relative w-full mt-[11vh] h-full">
-        <p className="md:px-12 px-6 w-full h-full">
-            {privacyPolicy}
-        </p>
+      <section className="whitespace-pre-line text-left relative w-full mt-[11vh] h-full">
+        <p className="md:px-12 px-6 w-full h-full">{privacyPolicy}</p>
       </section>
     </Layout>
-  );
+  )
 }
 
-export default PrivacyPolicyPage;
+export default PrivacyPolicyPage

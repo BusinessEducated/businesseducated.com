@@ -24,6 +24,7 @@ const useStore = create((set, get) => ({
       consultant: { name: 'Aiden Faulconer', rate: 150 },
       duration: 1,
     },
+    temp: [],
     methods: {
       changeFormData: (newContext) => {
         set(
@@ -54,9 +55,18 @@ const useStore = create((set, get) => ({
       setForm: (formName, newContext) => {
         set(
           produce((state) => {
-            state.forms[formName] = {
-              ...state.forms[formName],
+            state.forms[formName].form = {
+              ...state.forms[formName].form,
               ...newContext,
+            }
+          }),
+        )
+      },
+      setFormTemp: (formName, index, newContext) => {
+        set(
+          produce((state) => {
+            state.forms[formName].temp = {
+              ...state.forms[formName].temp.splice(index, 0, newContext),
             }
           }),
         )

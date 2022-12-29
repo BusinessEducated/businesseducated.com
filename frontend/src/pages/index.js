@@ -103,7 +103,7 @@ function IndexPage() {
         title="Home"
       />
 
-      <section className=" grid-cols-12 grid relative bg-black w-full mt-[11vh]">
+      <section className=" grid-cols-12 grid relative bg-white w-full mt-[11vh]">
         <div
           className={`${
             videoPlaying && 'opacity-60 transition-opacity'
@@ -114,27 +114,27 @@ function IndexPage() {
               Printing you money faster than the FDA!
             </h3> */}
 
-            <h1 className="inline-block text-white my-8 md:text-6xl text-4xl font-bold md:max-w-lg md:px-0 md:text-left">
+            <h1 className="inline-block text-black mt-8 mb-0 md:text-6xl text-5xl font-bold md:max-w-lg md:px-0 md:text-left text-center">
               Wealth is <div className="italic inline-block">Learnt</div>. Be In
               Business
             </h1>
 
-            <p className="leading-loose text-white max-w-md md:text-left md:text-lg text-md pr-8">
+            <p className="leading-loose text-black max-w-md md:text-lg text-md md:pr-8 pr-0 md:text-left text-center">
               Join Business Educated and learn how to build wealth through
               business consultation, podcasting, and YouTube content
             </p>
 
             <div className="flex gap-3 md:m-0 items-center">
               <Link to="/booking" replace>
-                <Button>Book Now</Button>
+                <Button large={true}>Book Now</Button>
               </Link>
 
-              <Button onClick={playVideo}>
+              <Button large={true} onClick={playVideo}>
                 <PlayIcon className="h-7 w-7" />
               </Button>
 
               <p
-                className="my-auto text-white md:text-lg text-xs cursor-pointer"
+                className="my-auto text-black md:text-lg text-xs cursor-pointer"
                 onClick={playVideo}
               >
                 Play Intro Video
@@ -145,7 +145,7 @@ function IndexPage() {
 
         {/* Mobile graphic */}
         <div
-          className="pr-12 h-full w-full absolute right-0 top-0 md:hidden md:rotate-0 opacity-60 md:scale-100 md:translate-y-[0px] md:translate-x-0 -translate-y-[200px] translate-x-[-20px] -rotate-90 scale-125 z-10"
+          className="md:pr-0 pr-12 h-full w-full absolute right-0 top-0 md:hidden md:rotate-0 opacity-60 md:scale-100 md:translate-y-[0px] md:translate-x-0 -translate-y-[230px] translate-x-[-40px] -rotate-90 scale-125 z-10"
           onClick={playVideo}
         >
           <img className="w-full h-full object-cover" src={MONEY_PILE} />
@@ -153,7 +153,7 @@ function IndexPage() {
 
         {/* desktop graphic / video player */}
         {(!videoPlaying && (
-          <div className="col-span-6 relative h-full w-full hidden md:block z-20 pr-12">
+          <div className="col-span-6 relative bg-white h-full w-full hidden md:block z-20 md:pr-0 pr-12">
             {/* <Confetti
               colors={[
                 '#4caf50',
@@ -164,7 +164,7 @@ function IndexPage() {
               className="absolute top-0 left-0 w-full h-full min-h-[600px] z-20"
             /> */}
             <img
-              className="w-full h-3/5 top-32 z-[11] hover:top-28 hover:cursor-pointer ease-in-out transition-all object-contain mx-auto absolute pr-12"
+              className="w-full h-3/5 top-32 z-[11] hover:top-28 hover:cursor-pointer ease-in-out transition-all object-contain mx-auto absolute "
               src={HOVER_MAN}
             />
             <img

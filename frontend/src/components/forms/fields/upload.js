@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import Button from '../../button'
+import { LargeBadge, SmallBadge } from '../../badge'
 
 export const UploadInput = ({
   name,
@@ -13,20 +15,17 @@ export const UploadInput = ({
   ...props
 }) => {
   // hooks
-  const ref = React.useRef()
-  const [_input, setInput] = useState([0])
-  //   const [input, setInput] = useFormStore(formName, fieldName, [], validateType || 'file');
-  // properties
+  const ref = React.useRef(null)
+  const [files, setFiles] = useState([])
   const getFileName = /[^/]*$/
 
   // methods
   const handleInput = React.useCallback(
-    (e) => {
+    (files) => {
+      console.log(files)
       // go through all the files and check the type of file, and file size is under 3mb and there is no more than 3 files
-      const files = e?.target
-        ? [...e.target.files]
-        : Object.keys(e).map((f) => e[f])
-      if (files) {
+      if (files.length > 0) {
+        //prettier-ignore
         const fileTypes = [
           'image/png',
           'image/jpeg',
@@ -41,11 +40,14 @@ export const UploadInput = ({
         const fileSize = 5242880
         const maxFiles = 3
         const fileCount = files.length
-        if (fileCount > maxFiles || input.length > maxFiles) {
+
+        if (fileCount > maxFiles || files.length > maxFiles) {
           alert('You can only upload a maximum of 3 files')
           return
         }
+
         for (let i = 0; i < files.length; i += 1) {
+          debugger
           if (fileTypes.indexOf(files[i].type) === -1) {
             alert(
               `File type not supported for ${
@@ -61,30 +63,33 @@ export const UploadInput = ({
             return
           }
         }
-        setInput(files)
-        onChange(files)
+
+        setFiles(files)
+        // onChange(files)
       }
     },
-    [ref],
+    [, ref],
   )
 
-  //   const generateFileTags = React.useCallback(() => {
-  //     if (input.length > 0) {
-  //       return input.map((file) => (
-  //         <ItemTag key={file.name} style={{ zIndex: 10 }}>
-  //           {/* <AFIcon type="close" onClick={() => setInput(input.filter((item) => item !== file))} /> */}
-  //           {`  ${file.name}`}
-  //         </ItemTag>
-  //       ));
-  //     }
-  //   }, [input]);
+  const generateFileTags = React.useCallback(() => {
+    if (files.length > 0) {
+      return files.map((file) => (
+        <LargeBadge key={file.name}>
+          {/* <AFIcon type="close" onClick={() => setFiles(files.filter((item) => item !== file))} /> */}
+          {`${file.name}`}
+        </LargeBadge>
+      ))
+    }
+  }, [, files])
 
   return (
-    <label htmlFor="upload-photos">
+    <>
+      <label htmlFor={name}>{name}</label>
       <button
         // allow users to drag and drop files on this button
         {...props}
-        className="flex flex-nowrap flex-row h-28 mb-8"
+        // className="w-full flex-nowrap flex-row h-28 mb-8"
+        className="relative bg-white block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
         draggable="true"
         onDragStart={(e) => e.dataTransfer.setData('text/plain', 'anything')}
         onDragOver={(e) => e.preventDefault()}
@@ -94,23 +99,26 @@ export const UploadInput = ({
           handleInput(files)
         }}
         // call file dialog in input
-        onClick={(e) => {
+        onClick={() => {
           ref.current.click()
         }}
       >
+        <span className="mt-2 block text-sm font-medium text-gray-900">
+          Upload files here
+        </span>
         <input
-          onChange={handleInput}
+          onChange={(e) => handleInput(e.target.files || null)}
           ref={ref}
           type="file"
-          id="upload-photo"
-          name="upload-photo"
+          id={name}
+          name={name}
           hidden
           multiple
         />
-        {/* {generateFileTags()} */}
-        {_input.length === 0 && label}
+        {generateFileTags()}
+        {/* {files.length === 0 && label} */}
       </button>
-    </label>
+    </>
   )
 }
 

@@ -657,11 +657,10 @@ export const ArrowStepper = ({
     },
   ],
 }) => {
-  // const formData = useStore((state) => state.forms[formName])
-
-  // useEffect(() => {
-  //   if (process.env.NODE_ENV === 'development') console.info(formData)
-  // }, [formData])
+  const setForm = useStore((state) => state.forms.methods.setForm)
+  const setFormTemp = useStore((state) => state.forms.methods.setFormTemp)
+  // const thisForm = useStore((state) => state.forms[formName].form)
+  // const tempForm = useStore((state) => state.forms[formName].temp)
 
   //step logic
   const [currentStep, setCurrentStep] = useState(0)
@@ -687,18 +686,14 @@ export const ArrowStepper = ({
   )
 
   //handle validation/next/previous step & communicate with parent about the change
-  const changeStep = (newStepIdx, e, validate, values = null) => {
+  const changeStep = (newStepIdx, e, isValid = false, values = {}) => {
     e.preventDefault()
-    console.info(newStepIdx, e, validate)
-    //do validation for the step here, you can do nothing unless the input is valid
-    if (validate && values) {
-      // validate()
-      //store the values for this step for checkout / form completion / dynamic input fields
-      // updateFormValues(values)
-    }
+
+    //store result of values
+    setForm(formName, { form: values })
+    // setFormTemp(formName, currentStep, values)
 
     //do the step change
-    const res = newStepIdx
     if (newStepIdx > maxStep) {
       return //do nothing
     } else if (newStepIdx < minStep) {
@@ -710,6 +705,7 @@ export const ArrowStepper = ({
         steps.map((step, idx) => {
           if (idx == newStepIdx) {
             step.status = 'current'
+            step.isValid = isValid
           } else if (idx < newStepIdx) {
             step.status = 'complete'
           } else {
@@ -723,9 +719,11 @@ export const ArrowStepper = ({
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, values, validateForm) => {
     e.preventDefault()
-    navigate('/booking/checkout')
+    if (steps.every((step) => step.isValid === true)) {
+      navigate('/booking/checkout')
+    }
   }
 
   // const [formInitialValues, formValidationSchema] = createFormData(schema)
@@ -815,11 +813,9 @@ export const ArrowStepper = ({
 
       {/* dynamic stepper form with validation */}
       <>
-        {/* validate each step -> validate entire form -> two Formik Wrappers to handle this */}
-        {/* <Formik initialValues={formInitialValues} validationSchema={formValidationSchema}> */}
-        {/* <Form> */}
-        {steps.map(({ name, fields }, stepIdx) => {
+        {steps.map(({ name, fields, image }, stepIdx) => {
           // generate the initial values and validation schema FOR THIS STEP based on the data passed
+          //TODO: add a temp storage for previous step values
           const [stepInitialValues, stepValidationSchema] = createFormData(
             schema[stepIdx],
           )
@@ -846,18 +842,19 @@ export const ArrowStepper = ({
                   stepIdx === currentStep && (
                     // CURRENT STEP FORM
                     <Form
-                      className="w-full relative h-full bg-gray-50"
+                      className="w-full relative h-full grid grid-cols-12"
                       key={`${name} step-form`}
                     >
-                      {/* {JSON.stringify(values)} */}
-                      {/* {JSON.stringify(stepInitialValues)} */}
+                      {/* FORM CONTENT */}
                       <div
-                        className="w-full space-y-6 max-w-5xl mx-auto py-12 md:px-24"
+                        className="w-full space-y-6 max-w-5xl mx-auto py-12 md:px-12 md:col-span-6 col-span-12"
                         key={`${name} form-fields`}
                       >
-                        <div className="grid grid-cols-6 gap-6 xs:px-4 sm:px-6">
+                        <div className="grid grid-cols-6 gap-6 sm:px-6 px-6">
                           <span className="col-span-6">
-                            <h1 className="font-bold text-xl">{name}</h1>
+                            <h1 className="font-bold md:text-3xl text-2xl">
+                              {name}
+                            </h1>
                           </span>
                           {/* generate fields from field schema defined */}
                           {fields.map((fieldSchema) => (
@@ -879,7 +876,7 @@ export const ArrowStepper = ({
                             <Button
                               disabled={!isValid}
                               onClick={(e) =>
-                                changeStep(currentStep - 1, e, validateForm)
+                                changeStep(currentStep - 1, e, isValid, values)
                               }
                             >
                               Previous
@@ -889,7 +886,7 @@ export const ArrowStepper = ({
                             <Button
                               disabled={!isValid}
                               onClick={(e) =>
-                                changeStep(currentStep + 1, e, validateForm)
+                                changeStep(currentStep + 1, e, isValid, values)
                               }
                             >
                               Next
@@ -898,13 +895,23 @@ export const ArrowStepper = ({
                           {stepIdx === maxStep && (
                             <Button
                               disabled={!isValid}
-                              onClick={(e) => handleSubmit(e, validateForm)}
+                              onClick={(e) =>
+                                handleSubmit(e, values, validateForm)
+                              }
                             >
                               Checkout
                             </Button>
                           )}
                         </div>
                       </div>
+
+                      {/* FORM IMAGE */}
+                      {image && (
+                        <img
+                          className="md:block hidden w-full h-full object-cover col-span-6"
+                          src={image}
+                        />
+                      )}
                     </Form>
                   )
                 )
