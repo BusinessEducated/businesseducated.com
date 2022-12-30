@@ -1,4 +1,4 @@
-const path = require("path")
+const path = require('path')
 
 // exports.createPages = async ({ graphql, actions, reporter }) => {
 //   const { createPage } = actions
@@ -40,5 +40,31 @@ const path = require("path")
 //         },
 //       })
 //     })
+//   }
+// }
+
+// query MyQuery {
+//   allStrapiBlogPost {
+//     edges {
+//       node {
+//         id
+//         post {
+//           content {
+//             data {
+//               id
+//             }
+//           }
+//           date(formatString: "DD/MM/YYYY")
+//           tags
+//           category
+//         }
+//       }
+//       next {
+//         id
+//       }
+//       previous {
+//         id
+//       }
+//     }
 //   }
 // }

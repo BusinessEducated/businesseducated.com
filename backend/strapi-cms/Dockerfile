@@ -7,12 +7,12 @@ WORKDIR /cms
 COPY package.json .
 COPY yarn.lock .
 
-RUN yarn install --ignore-engines
+RUN yarn install --ignore-engines --force
 
 COPY . .
 
 RUN yarn build
 
-EXPOSE 8000
+EXPOSE 1337
 
-CMD ["yarn","serve", "--", "-H","0.0.0.0"]
+CMD ["yarn","start"]

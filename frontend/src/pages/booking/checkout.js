@@ -17,6 +17,7 @@ import SEO from '../../layout/seo'
 import { useStore } from '../../store/store'
 import { logo, logoText } from '../../../static/svgs'
 import { Switch } from '@headlessui/react'
+import { Link } from 'gatsby'
 
 const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
 const navigation = {

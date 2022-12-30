@@ -11,6 +11,8 @@ const saveStore = (storeSnapshot) => {
 }
 const loadStore = () => JSON.parse(localStorage.getItem('store'))
 
+const clearStore = () => localStorage.removeItem('store')
+
 // add on top of this for a more robust store
 const useStore = create((set, get) => ({
   // temp holder for forms that have not been assigned their own store space
@@ -137,5 +139,5 @@ const useStore = create((set, get) => ({
   },
 }))
 
-export { useStore, saveStore, loadStore }
+export { useStore, saveStore, loadStore, clearStore }
 // 60668172
