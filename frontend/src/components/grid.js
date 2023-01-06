@@ -207,23 +207,20 @@ export const TightGrid = ({
   ],
 }) => {
   return (
-    <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">
+    <div className="divide-y divide-gray-200 overflow-hidden rounded-lg  shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">
       {actions.map(
         ({ title, iconBackground, href, icon, iconForeground }, actionIdx) => {
           const Icon = icon
           return (
+            // prettier-ignore
             <div
               key={title}
               className={classNames2(
-                actionIdx === 0
-                  ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none'
-                  : '',
+                actionIdx === 0 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none' : '',
                 actionIdx === 1 ? 'sm:rounded-tr-lg' : '',
                 actionIdx === actions.length - 2 ? 'sm:rounded-bl-lg' : '',
-                actionIdx === actions.length - 1
-                  ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none'
-                  : '',
-                'relative group bg-gray-50 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-red-500',
+                actionIdx === actions.length - 1 ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none' : '',
+                'relative group bg-white ring-gray-200 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-red-500',
               )}
             >
               <div>

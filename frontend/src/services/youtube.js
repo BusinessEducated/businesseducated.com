@@ -9,7 +9,7 @@ export const getVideosFromChannelByCategory = async (
 ) => {
   // Set up the headers for the API request
   const headers = {
-    'Access-Control-Allow-Origin': `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}, *`,
+    // 'Access-Control-Allow-Origin': `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}, *`,
     'Access-Control-Allow-Methods': null, //important, only the server has the privaledge of using these headers
     'Access-Control-Allow-Origin': null, //important, only the server has the privaledge of using these headers
     'Content-Type': 'application/json',
@@ -45,6 +45,9 @@ export const getVideosFromChannel = async (channelId, maxResults) => {
 
   // Set up the headers for the API request
   const headers = {
+    'sec-fetch-mode': null,
+    'sec-fetch-site': null,
+    // referrerPolicy: null,
     'Access-Control-Allow-Origin': `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}, *`,
     'Access-Control-Allow-Methods': null, //important, only the server has the privaledge of using these headers
     'Access-Control-Allow-Origin': null, //important, only the server has the privaledge of using these headers

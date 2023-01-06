@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import DayPicker, { DateUtils } from 'react-day-picker'
+// import 'react-day-picker/lib/style.css'
+import axios from 'axios'
 
 export const DateInput = ({
   name,
@@ -10,42 +13,47 @@ export const DateInput = ({
   onChange,
   ...props
 }) => {
-  const Icon = icon
+  const [selectedDays, setSelectedDays] = useState([])
+  const [unavailableDays, setUnavailableDays] = useState([])
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://${process.env.DOMAIN_NAME}${process.env.API_ENDPOINT}calender/getUnavailableDates`,
+      )
+      .then((response) => {
+        debugger
+        setUnavailableDays(response.data)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }, [])
+
+  const handleDayClick = (day, { selected }) => {
+    if (selected) {
+      // Unselect the day if already selected
+      setSelectedDays(
+        selectedDays.filter(
+          (selectedDay) => !DateUtils.isSameDay(selectedDay, day),
+        ),
+      )
+    } else {
+      // Select the day
+      setSelectedDays([...selectedDays, day])
+    }
+  }
+
+  const isDayUnavailable = (day) =>
+    unavailableDays.some((unavailableDay) =>
+      DateUtils.isSameDay(unavailableDay, day),
+    )
+
   return (
-    <div>
-      <label
-        htmlFor="phone-number"
-        className="block text-sm font-medium text-gray-700"
-      >
-        Phone Number
-      </label>
-      <div className="relative mt-1 rounded-md shadow-sm">
-        <div className="absolute inset-y-0 left-0 flex items-center">
-          <label htmlFor="country" className="sr-only">
-            Country
-          </label>
-          <select
-            id="country"
-            name="country"
-            autoComplete="country"
-            className="h-full rounded-md border-transparent bg-transparent py-0 pl-3 pr-7 text-gray-500 focus:border-red-500 focus:ring-red-500 sm:text-sm"
-          >
-            <option>US</option>
-            <option>CA</option>
-            <option>EU</option>
-          </select>
-        </div>
-        <input
-          onChange={onChange}
-          type="text"
-          name="phone-number"
-          id="phone-number"
-          className="p-3 block w-full rounded-md border-gray-300 pl-16 focus:border-red-500 focus:ring-red-500 sm:text-sm"
-          placeholder="+1 (555) 987-6543"
-        />
-      </div>
-    </div>
+    <DayPicker
+      selectedDays={selectedDays}
+      onDayClick={handleDayClick}
+      disabledDays={isDayUnavailable}
+    />
   )
 }
-
-export default DateInput

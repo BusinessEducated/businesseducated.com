@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 
 import Layout from '../layout/layout'
 import SEO from '../layout/seo'
-import { FeatureTwoChoice } from '../components/feature'
+import { FeatureRow, FeatureTwoChoice } from '../components/feature'
 import { Button } from '../components/button'
 import VIDEOS from '../../static/assets/videos.png'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
@@ -24,6 +24,32 @@ function IndexPage() {
   //     }
   //   `);
 
+  const [videos, setVideos] = useState([
+    {
+      title: '',
+      description: '',
+      categories: [],
+      imageSrc: '',
+      imageAlt: '',
+      videoSrc: '',
+      href: '',
+      embed: <></>,
+    },
+  ])
+
+  useEffect(async () => {
+    // process.env.YOUTUBE_CHANNEL_ID
+    const d = await getVideosFromChannel(
+      // 'UCNlfGuzOAKM1sycPuM_QTHg',
+      'UC82_za_dL6fHUGa30wnW3uQ',
+      10,
+      // 'cLa-YH5H0YA&list=PLi8MopF2A5_V9DRUz8TstIKXCraJ5WzJ_',
+    )
+    const data = extractVideos(d.body)
+    console.info('test ', data)
+    setVideos(data)
+  }, [])
+
   const [search, setSearch] = useState('')
   const [searchResults, setSearchResults] = useState([])
 
@@ -38,7 +64,7 @@ function IndexPage() {
         title="Home"
       />
 
-        <PageBanner
+      <PageBanner
         headline={{
           pageTitle: 'Blog',
           title: 'Watch and grow',
@@ -51,11 +77,10 @@ function IndexPage() {
           imageSrc: VIDEOS,
           imageAlt: 'a man spreading his voice across the internet abstract',
         }}
-      /> 
- 
+      />
 
       {/* Sidebar Search */}
-      <div className="mt-5 px-3">
+      {/* <div className="mt-5 px-3">
         <label htmlFor="search" className="sr-only">
           Search
         </label>
@@ -78,19 +103,55 @@ function IndexPage() {
             placeholder="Search"
           />
         </div>
-      </div>
+      </div> */}
 
       <section id="#videos">
-        <ContentThreeRow
-          categories={[]}
-          headline={{ title: '', description: '' }}
+        <FeatureRow
+          features={videos}
+          headline={{
+            title: 'Shorts',
+            description: 'Short form goodies',
+          }}
+        />
+        <FeatureRow
+          features={videos}
+          headline={{
+            title: 'Tutorials',
+            description: 'Teaching what you want for your business',
+          }}
+        />
+        <FeatureRow
+          features={videos}
+          headline={{
+            title: 'News',
+            description: 'Important business news',
+          }}
         />
       </section>
 
       <section className="">
         <FeatureTwoChoice
-          features={[]}
-          headline={{ title: '', description: '' }}
+          features={[
+            {
+              title: 'Feedback',
+              description:
+                'We do this for you, we do our best to provide what you want, and we will do even better with you involved, fill out the form below and know we will get your feedback and it will make a difference',
+              imageSrc: '',
+              imageAlt: '',
+            },
+            {
+              title: 'Becoming Self Reliant',
+              description:
+                'We dont want you to rely on others, we want you to become fully capable so you can be the example others want to follow with in business, we teach you only what you actually need to become self sufficient in business from accounting, software, marketting, and sales, todays technology enables you to do great things that once where too much work for one person to handle alone',
+              imageSrc: '',
+              imageAlt: '',
+            },
+          ]}
+          headline={{
+            title: 'All About building your success',
+            description:
+              'We genuinely want to see everyone succeed the way we know works, if we can help cover topics you dont see covered, or teach you skills you want to learn, we have you covered, send us a message, like our videos, lets help build the business community together',
+          }}
         />
       </section>
 

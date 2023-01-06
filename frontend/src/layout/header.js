@@ -3,7 +3,7 @@ import { graphql, useStaticQuery, Link } from 'gatsby'
 import React, { useState, Fragment } from 'react'
 
 import { Popover, Transition } from '@headlessui/react'
-import logoSvg from "../../static/svgs/Frame 1000002265.svg"
+import logoSvg from '../../static/svgs/Frame 1000002265.svg'
 import {
   AcademicCapIcon,
   ArrowPathIcon,
@@ -25,8 +25,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 const services = [
   {
     name: 'Business Consultation',
-    description:
-      'Learn what it takes to be the CEO.',
+    description: 'Learn what it takes to be the CEO.',
     href: '/services/business',
     icon: UserGroupIcon,
   },
@@ -38,13 +37,13 @@ const services = [
   },
   {
     name: 'Branding',
-    description: "Communicate your value visually.",
+    description: 'Communicate your value visually.',
     href: '/services/branding',
     icon: ChatBubbleBottomCenterTextIcon,
   },
   {
     name: 'Design',
-    description: "Build visual appeal for your business.",
+    description: 'Build visual appeal for your business.',
     href: '/services/design',
     icon: PencilIcon,
   },
@@ -103,7 +102,7 @@ const pages = [
   { name: 'Videos', href: '/videos', icon: BookOpenIcon },
   { name: 'Courses', href: '/courses', icon: BookOpenIcon },
   { name: 'Booking', href: '/booking', icon: BookOpenIcon },
-  { name: 'Pricing', href: '/pricing', icon: BookOpenIcon },
+  // { name: 'Pricing', href: '/pricing', icon: BookOpenIcon },
 ]
 
 export const Header = () => {
@@ -139,7 +138,11 @@ export const Header = () => {
 
           <Popover.Group as="nav" className="hidden space-x-10 md:flex">
             {pages.map(({ href, name }) => (
-              <Link to={href} className="text-base font-medium text-gray-500 hover:text-gray-900" key={`${name} page-link-header`}>
+              <Link
+                to={href}
+                className="text-base font-medium text-gray-500 hover:text-gray-900"
+                key={`${name} page-link-header`}
+              >
                 {name}
               </Link>
             ))}
@@ -177,26 +180,27 @@ export const Header = () => {
                         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                           {resources.map((item) => {
                             const Icon = item.icon
-                            return(
-                            <Link
-                              key={item.name}
-                              to={item.href}
-                              className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
-                            >
-                              <Icon
-                                className="h-6 w-6 flex-shrink-0 text-BEred-600"
-                                aria-hidden="true"
-                              />
-                              <div className="ml-4">
-                                <p className="text-base font-medium text-gray-900">
-                                  {item.name}
-                                </p>
-                                <p className="mt-1 text-sm text-gray-500">
-                                  {item.description}
-                                </p>
-                              </div>
-                            </Link>
-                          )})}
+                            return (
+                              <Link
+                                key={item.name}
+                                to={item.href}
+                                className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
+                              >
+                                <Icon
+                                  className="h-6 w-6 flex-shrink-0 text-BEred-600"
+                                  aria-hidden="true"
+                                />
+                                <div className="ml-4">
+                                  <p className="text-base font-medium text-gray-900">
+                                    {item.name}
+                                  </p>
+                                  <p className="mt-1 text-sm text-gray-500">
+                                    {item.description}
+                                  </p>
+                                </div>
+                              </Link>
+                            )
+                          })}
                         </div>
                         <div className="bg-gray-50 px-5 py-5 sm:px-8 sm:py-8">
                           <div>
@@ -238,7 +242,10 @@ export const Header = () => {
           </Popover.Group>
 
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-            <Link to="/booking" className="whitespace-nowrap text-base font-medium bg-BEred rounded-full text-white px-5 shadow-lg py-2 rotate-[-15deg] hover:rotate-[0deg] transition-all">
+            <Link
+              to="/booking"
+              className="whitespace-nowrap text-base font-medium bg-BEred rounded-full text-white px-5 shadow-lg py-2 rotate-[-15deg] hover:rotate-[0deg] transition-all"
+            >
               Book Now
             </Link>
           </div>
@@ -277,22 +284,23 @@ export const Header = () => {
               <div className="mt-6">
                 <nav className="grid gap-y-8">
                   {pages.map((item) => {
-                    const Icon = item.icon;
-                    return(
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
-                    >
-                      {/* <Icon
+                    const Icon = item.icon
+                    return (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                      >
+                        {/* <Icon
                         className="h-6 w-6 flex-shrink-0 text-BEred-600"
                         aria-hidden="true"
                       /> */}
-                      <span className="ml-3 text-base font-medium text-gray-900">
-                        {item.name}
-                      </span>
-                    </Link>
-                  )})}
+                        <span className="ml-3 text-base font-medium text-gray-900">
+                          {item.name}
+                        </span>
+                      </Link>
+                    )
+                  })}
                 </nav>
               </div>
             </div>
@@ -324,7 +332,10 @@ export const Header = () => {
                 </Link>
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
                   Existing customer?{' '}
-                  <Link to="/login" className="text-BEred-600 hover:text-BEred-500">
+                  <Link
+                    to="/login"
+                    className="text-BEred-600 hover:text-BEred-500"
+                  >
                     Log in
                   </Link>
                 </p>

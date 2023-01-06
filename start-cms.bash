@@ -1,1 +1,1 @@
-cd strapi-cms && npm run build && npm run start
+cd backend/strapi-cms && yarn build && yarn start

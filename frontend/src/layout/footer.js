@@ -123,7 +123,7 @@ export const Footer = () => {
                   ))}
                 </ul>
               </div>
-              <div className="mt-12 md:mt-0">
+              {/* <div className="mt-12 md:mt-0">
                 <h3 className="text-base font-medium text-gray-900">Support</h3>
                 <ul role="list" className="mt-4 space-y-4">
                   {navigation.support.map((item) => (
@@ -137,7 +137,7 @@ export const Footer = () => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </div> */}
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
@@ -172,7 +172,7 @@ export const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="mt-12 xl:mt-0">
+          {/* <div className="mt-12 xl:mt-0">
             <h3 className="text-base font-medium text-gray-900">
               Language &amp; Currency
             </h3>
@@ -231,9 +231,9 @@ export const Footer = () => {
                 </div>
               </fieldset>
             </form>
-          </div>
+          </div> */}
         </div>
-        <div className="border-t border-gray-200 pt-8 lg:flex lg:items-center lg:justify-between xl:mt-0">
+        {/* <div className="border-t border-gray-200 pt-8 lg:flex lg:items-center lg:justify-between xl:mt-0">
           <div>
             <h3 className="text-base font-medium text-gray-900">
               Subscribe to our newsletter
@@ -266,7 +266,7 @@ export const Footer = () => {
               </button>
             </div>
           </form>
-        </div>
+        </div> */}
         <div className="mt-8 border-t border-gray-200 pt-8 md:flex md:items-center md:justify-between">
           <div className="flex space-x-6 md:order-2">
             {navigation.social.map((item) => (

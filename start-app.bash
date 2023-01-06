@@ -1,1 +1,1 @@
-./start-cms.bash && ./start-frontend.bash
+./start-cms.bash && ./start-server.bash && ./start-frontend.bash 

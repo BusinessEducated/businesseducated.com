@@ -15,7 +15,7 @@ export const Button = ({ children, disabled, className, large, ...props }) => {
         disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'
       } 
       ${large ? 'px-8 py-2' : 'px-4 py-2'}
-      inline-flex whitespace-nowrap items-center rounded-full border border-transparent bg-BEred text-base font-medium text-white shadow-sm hover:bg-white hover:drop-shadow hover:shadow-BEred hover:text-black ease-in-out transition-all focus:outline-none focus:ring-2 focus:ring-red-500  focus:ring-offset-2 z-20`}
+      inline-flex whitespace-nowrap items-center rounded-full border border-transparent bg-BEred text-base font-medium text-white shadow-sm hover:bg-white hover:-translate-y-1  hover:drop-shadow-xl hover:drop-shadow hover:shadow hover:border hover:border-BEred hover:text-black ease-in-out transition-all focus:outline-none focus:ring-2 focus:ring-red-500  focus:ring-offset-2 z-20`}
     >
       {children}
     </button>

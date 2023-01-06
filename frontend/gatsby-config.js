@@ -30,9 +30,9 @@ const strapiConfig = {
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Tailwind`,
-    description: `Gatsby starter styled with Tailwind`,
-    author: `@taylorbryant`,
+    title: `Busdiness educated`,
+    description: `BE successful`,
+    author: `aiden faulconer`,
   },
   plugins: [
     // `gatsby-plugin-eslint`,
@@ -161,7 +161,13 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-env-variables',
       options: {
-        allowList: [`DOMAIN_NAME`, `SERVER_PORT`, `API_ENDPOINT`],
+        allowList: [
+          `DOMAIN_NAME`,
+          `SERVER_PORT`,
+          `API_ENDPOINT`,
+          `STRIPE_PUBLISHABLE_KEY`,
+          `YOUTUBE_CHANNEL_ID,`,
+        ],
       },
     },
     // ========================================================================== //
@@ -193,10 +199,10 @@ module.exports = {
     // ========================================================================== //
     // strapi CMS
     // ========================================================================== //
-    // {
-    //   resolve: 'gatsby-source-strapi',
-    //   options: strapiConfig,
-    // },
+    {
+      resolve: 'gatsby-source-strapi',
+      options: strapiConfig,
+    },
     // ========================================================================== //
     //     Optimization
     // ========================================================================== //

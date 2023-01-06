@@ -29,6 +29,8 @@ import BOOKING from '../../../static/assets/booking.png'
 import ASSISTANCE from '../../../static/assets/assistance.png'
 import COMPANY from '../../../static/assets/company.png'
 import TAKEOFF from '../../../static/assets/takeoff.png'
+import AIDEN_FAULCONER from '../../../static/assets/aiden.png'
+import JAMES_BOON from '../../../static/assets/james.png'
 
 function IndexPage() {
   return (
@@ -114,7 +116,9 @@ function IndexPage() {
                 {
                   name: 'companySize',
                   cols: 3,
-                  validation: Yup.string(),
+                  validation: Yup.string().required(
+                    'Please select the type of consultation service you would like',
+                  ),
                   type: 'select',
                   icon: UserGroupIcon,
                   placeholder: '',
@@ -176,9 +180,9 @@ function IndexPage() {
                 {
                   name: 'abn',
                   cols: 6,
-                  validation: Yup.number().required(
-                    'abn needed to identify your business',
-                  ),
+                  validation: Yup.string()
+                    .matches(/^(\d *?){11}$/)
+                    .required('abn needed to identify your business'),
                   type: 'number',
                   icon: BuildingOfficeIcon,
                   placeholder: '',
@@ -270,12 +274,10 @@ function IndexPage() {
                 {
                   name: 'serviceType',
                   cols: 6,
-                  validation: Yup.string().required(
-                    'please enter your first name',
-                  ),
+                  validation: Yup.string().required(),
                   type: 'select',
                   icon: BuildingStorefrontIcon,
-                  placeholder: '',
+                  placeholder: 'Business Planning & strategy',
                   required: true,
                   options: [
                     {
@@ -390,6 +392,7 @@ function IndexPage() {
                   options: [
                     {
                       name: 'Aiden Faulconer',
+                      imageSrc: AIDEN_FAULCONER,
                       role: 'Senior business consultant',
                       specialties: [
                         'software',
@@ -404,6 +407,7 @@ function IndexPage() {
                     },
                     {
                       name: 'James Boon',
+                      imageSrc: JAMES_BOON,
                       role: 'Senior business consultant',
                       specialties: [
                         'landscaping',

@@ -25,7 +25,7 @@ import RINGS_OF_POWER from '../../static/assets/rings-of-power.png'
 import HOVER_MAN from '../../static/assets/hover-man.png'
 import { ContactForm } from '../components/forms/contact'
 import { TightGrid } from '../components/grid'
-import { Link } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 
 import {
   getVideosFromChannel,
@@ -33,9 +33,10 @@ import {
 } from '../services/youtube'
 import SubscribeNewsletter from '../components/subscribe-newsletter'
 import Confetti from '../components/confetti'
+import { reShapeData, extractVideos } from '../components/util/data'
 // import INTRODUCTION_VIDEO from '../../static/videos/landing-page.mp4'
 
-function IndexPage() {
+function IndexPage({ data }) {
   const [videoPlaying, setVideoPlaying] = useState(false)
   const [videos, setVideos] = useState([
     {
@@ -49,42 +50,19 @@ function IndexPage() {
       embed: <></>,
     },
   ])
-  const [blogs, setBlogs] = useState([
-    {
-      title: '',
-      description: '',
-      categories: [],
-      imageSrc: '',
-      imageAlt: '',
-      href: '',
-    },
-  ])
+  useEffect(() => {
+    console.info('test ', data)
+    setBlogs(reShapeData(data.posts.edges))
+  }, [, data])
+
+  const [blogs, setBlogs] = useState([])
 
   const playVideo = (e) => {
     setVideoPlaying((prev) => !prev)
   }
 
-  const extractVideos = (json) => {
-    const items = json.items
-    const videos = []
-    for (let i = 0; i < items.length; i++) {
-      const item = items[i]
-      const video = {
-        // id: item.id.videoId,
-        // publishedAt: item.snippet.publishedAt,
-        name: item.snippet.title,
-        description: item.snippet.description,
-        imageSrc: item.snippet.thumbnails.default.url,
-        // channelId: item.snippet.channelId,
-        // channelTitle: item.snippet.channelTitle,
-      }
-      videos.push(video)
-    }
-    return videos
-  }
-
   useEffect(async () => {
-    // "UC82_za_dL6fHUGa30wnW3uQ"
+    process.env.YOUTUBE_CHANNEL_ID
     const d = await getVideosFromChannel(
       // 'UCNlfGuzOAKM1sycPuM_QTHg',
       'UC82_za_dL6fHUGa30wnW3uQ',
@@ -103,7 +81,7 @@ function IndexPage() {
         title="Home"
       />
 
-      <section className=" grid-cols-12 grid relative bg-white w-full mt-[11vh]">
+      <section className=" grid-cols-12 grid relative bg-black w-full mt-[11vh]">
         <div
           className={`${
             videoPlaying && 'opacity-60 transition-opacity'
@@ -114,17 +92,17 @@ function IndexPage() {
               Printing you money faster than the FDA!
             </h3> */}
 
-            <h1 className="inline-block text-black mt-8 mb-0 md:text-6xl text-5xl font-bold md:max-w-lg md:px-0 md:text-left text-center">
+            <h1 className="inline-block text-white mt-8 mb-0 md:text-6xl text-5xl font-bold md:max-w-lg md:px-0 md:text-left text-center">
               Wealth is <div className="italic inline-block">Learnt</div>. Be In
               Business
             </h1>
 
-            <p className="leading-loose text-black max-w-md md:text-lg text-md md:pr-8 pr-0 md:text-left text-center">
+            <p className="inline-block leading-loose text-white max-w-md md:text-lg md:m-0 m-auto text-md md:pr-8 pr-0 md:text-left text-center">
               Join Business Educated and learn how to build wealth through
               business consultation, podcasting, and YouTube content
             </p>
 
-            <div className="flex gap-3 md:m-0 items-center">
+            <div className="flex gap-3 md:m-0 items-center md:justify-start justify-center md:w-auto w-full">
               <Link to="/booking" replace>
                 <Button large={true}>Book Now</Button>
               </Link>
@@ -134,7 +112,7 @@ function IndexPage() {
               </Button>
 
               <p
-                className="my-auto text-black md:text-lg text-xs cursor-pointer"
+                className="my-auto text-white md:text-lg text-xs cursor-pointer"
                 onClick={playVideo}
               >
                 Play Intro Video
@@ -153,7 +131,7 @@ function IndexPage() {
 
         {/* desktop graphic / video player */}
         {(!videoPlaying && (
-          <div className="col-span-6 relative bg-white h-full w-full hidden md:block z-20 md:pr-0 pr-12">
+          <div className="col-span-6 relative bg-black h-full w-full hidden md:block z-20 md:pr-0 pr-12">
             {/* <Confetti
               colors={[
                 '#4caf50',
@@ -184,14 +162,14 @@ function IndexPage() {
           features={[
             {
               name: 'Start your business now',
-              description: `If you're ready to turn your business idea into a reality, we're here to help. Our team of experienced business consultants has helped countless entrepreneurs just like you get their businesses off the ground. Whether you need help with business planning, marketing, or financial management, we have the resources and expertise to guide you every step of the way.`,
+              description: `the first step is always the most certainly difficult, in the packages provided by BE we offer optional additional information for those who are committed to taking control of their living opportunity \n Our team of experienced business consultants has helped countless entrepreneurs just like you get their businesses off the ground. Whether you need help with business planning, marketing, or financial management, we have the resources and expertise to guide you every step of the way.`,
               imageSrc: START_BUSINESS,
               imageAlt:
                 'White canvas laptop sleeve with gray felt interior, silver zipper, and tan leather zipper pull.',
             },
             {
-              name: 'Refined your business',
-              description: `If you're looking to take your business to the next level, our team of experienced consultants is here to help. We offer a range of services to help you assess your current business strategy and identify areas for improvement. From marketing and sales to financial management and operations, we can help you optimize your business for maximum efficiency and profitability.`,
+              name: 'Refine your business',
+              description: `navigating business is one of the toughest challenges a person can go through, developing yourself along with improving your business go hand in hand and without one, the other will always be disrupted and out of sync, \n We offer a range of services to help you assess your current business strategy and identify areas for improvement. From marketing and sales to financial management and operations, we can help you optimize your business for maximum efficiency and profitability \n while also aiming to connect you to ideas in philosophy, science and taking influence from powerful figures throughout human history to most take advantage of your potential to add value to the world, change always begins on the individual level`,
               imageSrc: REFINE_BUSINESS,
               imageAlt:
                 'Detail of zipper pull with tan leather and silver rivet.',
@@ -199,9 +177,7 @@ function IndexPage() {
           ]}
           headline={{
             title: 'Welcome to Business Educated',
-            description: `
-         Welcome to Business Educated, where we believe that starting and growing a business is the path to creating the freedom you desire. Our team of experienced consultants and access to industry experts is here to help you turn your business idea into a reality and achieve your goals. We offer a range of consulting services and educational resources to guide you every step of the way. Explore our podcast, YouTube channel, and blog for valuable insights and tips on creating a successful and fulfilling business. Don't wait any longer to start living the life you want. Contact us today and let us help you create your freedom through business.
-          `,
+            description: `there has never been so much access to information in the world than rights now, the challenges the world faces currently leave many skilled and valuable people without effective compensation, capitalism rewards the bold, so why not explore the wealth of business related courses, podcasts with people not unlike yourself who are making an active effort to make their dreams a reality, its not all rainbows and ponies, but in a world of chaos education is our best weapon to compete in an ever evolving landscape,  \n to provide a plethora of free information is our main focus, to help equip learners with the practical fundamental basics of building and maintaining a business \n here we want to show than anybody can do it, with the right tools every individual has the power to take control of their destiny`,
           }}
         />
       </section>
@@ -277,5 +253,26 @@ function IndexPage() {
     </Layout>
   )
 }
+
+export const query = graphql`
+  query {
+    posts: allStrapiBlogPost(sort: { updatedAt: ASC }, limit: 6) {
+      edges {
+        node {
+          id
+          post {
+            date(formatString: "DD/MM/YYYY")
+            tags
+            category
+          }
+          seo {
+            metaTitle
+            metaDescription
+          }
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage

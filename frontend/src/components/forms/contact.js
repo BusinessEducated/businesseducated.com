@@ -8,6 +8,8 @@ export const ContactForm = () => {
     <div className="overflow-hidden bg-white pb-16 px-4 sm:px-6 lg:px-8 lg:py-24">
       {/* form */}
       <DynamicForm
+        method="POST"
+        action={`http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}${process.env.API_ENDPOINT}contact`}
         formName="contactForm"
         headline={{
           title: `Contact us`,
@@ -47,7 +49,7 @@ export const ContactForm = () => {
             name: 'phone',
             cols: 6,
             validation: Yup.string()
-              .matches(/a/, 'invalid phone number')
+              .matches(/^\d{10,15}$/, 'invalid phone number')
               .required('phone is required to contact you'),
             type: 'tel',
             icon: () => <></>,

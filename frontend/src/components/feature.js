@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from 'gatsby'
 import React from 'react'
+import { SmallBadge } from './badge'
 
 //#region two choice feature
 export const FeatureTwoChoice = ({
@@ -307,6 +308,9 @@ export const FeatureRow = ({
       imageSrc:
         'https://tailwindui.com/img/ecommerce-images/product-feature-08-detail-01.jpg',
       imageAlt: 'Green cardstock box containing white, beige, and brown cards.',
+      href: '',
+      tags: [],
+      date: '',
     },
     {
       name: 'The perfect mix',
@@ -315,6 +319,9 @@ export const FeatureRow = ({
       imageSrc:
         'https://tailwindui.com/img/ecommerce-images/product-feature-08-detail-02.jpg',
       imageAlt: 'Green cardstock box open with 50 cards inside.',
+      href: '',
+      tags: [],
+      date: '',
     },
     {
       name: 'Dot grid backs',
@@ -324,6 +331,9 @@ export const FeatureRow = ({
         'https://tailwindui.com/img/ecommerce-images/product-feature-08-detail-03.jpg',
       imageAlt:
         'Detail of white today card, beige next card, and brown someday card with dot grid.',
+      href: '',
+      tags: [],
+      date: '',
     },
     {
       name: 'Refill packs',
@@ -333,9 +343,129 @@ export const FeatureRow = ({
         'https://tailwindui.com/img/ecommerce-images/product-feature-08-detail-04.jpg',
       imageAlt:
         'Stack of three green cardstock boxes with 3 hole cutouts showing cards inside.',
+      href: '',
+      tags: [],
+      date: '',
     },
   ],
   headline = {
+    subTitle: null,
+    title: 'Simple productivity',
+    description: `Focus allows you to plan 10 daily tasks, while also thinking ahead about what's next. Forget distracting
+            digital apps and embrace these small, sturdy pieces of paper.`,
+  },
+}) => {
+  return (
+    features.length > 0 && (
+      <div className="bg-white">
+        <div className="mx-auto max-w-2xl py-24 px-4 sm:py-32 sm:px-6 lg:max-w-7xl lg:px-8">
+          <div className="max-w-3xl">
+            {headline.subTitle && (
+              <h2 id="features4-heading" className="font-medium text-gray-500">
+                Focus
+              </h2>
+            )}
+            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              {headline.title}
+            </p>
+            <p className="mt-4 text-gray-500">{headline.description}</p>
+          </div>
+
+          <div className="mt-11 grid grid-cols-1 items-start gap-y-16 gap-x-6 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8">
+            {features.map(
+              ({ href, date, tags, imageAlt, imageSrc, name, description }) => (
+                <Link
+                  to={href || ''}
+                  key={name + imageSrc}
+                  className="flex flex-col-reverse"
+                >
+                  <div className="mt-6">
+                    <h3 className="text-sm font-medium text-gray-900">
+                      {name}
+                    </h3>
+                    {date && (
+                      <time
+                        datetime={date}
+                        className="mt-2 text-sm text-gray-500"
+                      />
+                    )}
+                    <p className="mt-2 text-sm text-gray-500">{description}</p>
+                    {/* {tags?.length > 0 &&
+                    tags.forEach((tag) => <SmallBadge>{tag}</SmallBadge>)
+                  } */}
+                  </div>
+                  <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100">
+                    <img
+                      src={imageSrc}
+                      alt={imageAlt}
+                      className="hover:p-6 p-0 ease-in-out transition-all object-cover shadow-xl object-center"
+                    />
+                  </div>
+                </Link>
+              ),
+            )}
+          </div>
+        </div>
+      </div>
+    )
+  )
+}
+
+//#endregion
+
+//#region custom row/col
+export const FeatureRowCol = ({
+  row = true,
+  features = [
+    {
+      name: 'Three card types',
+      description:
+        'Today, Next, and Someday cards allow you to defer your dreams into the future.',
+      imageSrc:
+        'https://tailwindui.com/img/ecommerce-images/product-feature-08-detail-01.jpg',
+      imageAlt: 'Green cardstock box containing white, beige, and brown cards.',
+      href: '',
+      tags: [],
+      date: '',
+    },
+    {
+      name: 'The perfect mix',
+      description:
+        'Each refill pack contains plenty of cards to last you a month of procrastination.',
+      imageSrc:
+        'https://tailwindui.com/img/ecommerce-images/product-feature-08-detail-02.jpg',
+      imageAlt: 'Green cardstock box open with 50 cards inside.',
+      href: '',
+      tags: [],
+      date: '',
+    },
+    {
+      name: 'Dot grid backs',
+      description:
+        'Flip a card over to doodle during meetings when you should be listening.',
+      imageSrc:
+        'https://tailwindui.com/img/ecommerce-images/product-feature-08-detail-03.jpg',
+      imageAlt:
+        'Detail of white today card, beige next card, and brown someday card with dot grid.',
+      href: '',
+      tags: [],
+      date: '',
+    },
+    {
+      name: 'Refill packs',
+      description:
+        'Subscribe and save on routine refill packs to keep you productive all year long.',
+      imageSrc:
+        'https://tailwindui.com/img/ecommerce-images/product-feature-08-detail-04.jpg',
+      imageAlt:
+        'Stack of three green cardstock boxes with 3 hole cutouts showing cards inside.',
+      href: '',
+      tags: [],
+      date: '',
+    },
+  ],
+  headline = {
+    subTitle: null,
     title: 'Simple productivity',
     description: `Focus allows you to plan 10 daily tasks, while also thinking ahead about what's next. Forget distracting
             digital apps and embrace these small, sturdy pieces of paper.`,
@@ -343,33 +473,38 @@ export const FeatureRow = ({
 }) => {
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-2xl py-24 px-4 sm:py-32 sm:px-6 lg:max-w-7xl lg:px-8">
-        <div className="max-w-3xl">
-          <h2 id="features4-heading" className="font-medium text-gray-500">
-            Focus
-          </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            {headline.title}
-          </p>
-          <p className="mt-4 text-gray-500">{headline.description}</p>
-        </div>
-
-        <div className="mt-11 grid grid-cols-1 items-start gap-y-16 gap-x-6 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8">
-          {features.map(({ imageAlt, imageSrc, name, description }) => (
-            <div key={name + imageSrc} className="flex flex-col-reverse">
-              <div className="mt-6">
-                <h3 className="text-sm font-medium text-gray-900">{name}</h3>
-                <p className="mt-2 text-sm text-gray-500">{description}</p>
-              </div>
-              <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100">
-                <img
-                  src={imageSrc}
-                  alt={imageAlt}
-                  className="hover:p-6 p-0 ease-in-out transition-all object-cover shadow-xl object-center"
-                />
-              </div>
-            </div>
-          ))}
+      <div className="mx-auto max-w-2xl pb-12 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div className="flex flex-wrap gap-4 flex-row items-center  gap-x-6  lg:gap-x-8">
+          {features.map(
+            ({ href, date, tags, imageAlt, imageSrc, name, description }) => (
+              <Link
+                to={href || ''}
+                key={name + imageSrc}
+                className="flex flex-col-reverse"
+              >
+                <div className="mb-6">
+                  <h3 className="text-sm font-medium text-gray-900">{name}</h3>
+                  {date && (
+                    <time
+                      datetime={date}
+                      className="mt-2 text-sm text-gray-500"
+                    />
+                  )}
+                  <p className="mt-2 text-sm text-gray-500">{description}</p>
+                  {/* {tags?.length > 0 &&
+                    tags.forEach((tag) => <SmallBadge>{tag}</SmallBadge>)
+                  } */}
+                </div>
+                <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100">
+                  <img
+                    src={imageSrc}
+                    alt={imageAlt}
+                    className="hover:p-6 p-0 ease-in-out transition-all object-cover shadow-xl object-center"
+                  />
+                </div>
+              </Link>
+            ),
+          )}
         </div>
       </div>
     </div>

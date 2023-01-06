@@ -18,7 +18,7 @@ import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import { navigate } from 'gatsby'
 import { useStore } from '../../store/store'
-
+import { Checkout } from '../../components/forms/checkout'
 //#region vertical circle stepper
 
 const steps1 = [
@@ -657,14 +657,17 @@ export const ArrowStepper = ({
     },
   ],
 }) => {
-  const setForm = useStore((state) => state.forms.methods.setForm)
-  const setFormTemp = useStore((state) => state.forms.methods.setFormTemp)
+  //prettier-ignore
+  const changeFormData = useStore((state) => state.bookingForm.methods.changeFormData)
+  const formData = useStore((state) => state.bookingForm.form)
+
   // const thisForm = useStore((state) => state.forms[formName].form)
   // const tempForm = useStore((state) => state.forms[formName].temp)
 
   //step logic
   const [currentStep, setCurrentStep] = useState(0)
   const [steps, setSteps] = useState(schema)
+  const [checkout, setCheckout] = useState(true)
   const [formValues, setFormValues] = useState([])
   const maxStep = schema.length - 1
   const minStep = 0
@@ -686,17 +689,25 @@ export const ArrowStepper = ({
   )
 
   //handle validation/next/previous step & communicate with parent about the change
-  const changeStep = (newStepIdx, e, isValid = false, values = {}) => {
+  const changeStep = (
+    newStepIdx,
+    e,
+    isValid = false,
+    values = {},
+    validateForm = () => {},
+  ) => {
     e.preventDefault()
 
     //store result of values
-    setForm(formName, { form: values })
-    // setFormTemp(formName, currentStep, values)
+    changeFormData(values)
+    validateForm()
 
     //do the step change
     if (newStepIdx > maxStep) {
       return //do nothing
     } else if (newStepIdx < minStep) {
+      return //do nothing
+    } else if (!isValid) {
       return //do nothing
     }
     //start handling the step
@@ -721,14 +732,22 @@ export const ArrowStepper = ({
 
   const handleSubmit = (e, values, validateForm) => {
     e.preventDefault()
+    if (process.env.NODE_ENV === 'development') console.log(formData)
+
     if (steps.every((step) => step.isValid === true)) {
-      navigate('/booking/checkout')
+      setCheckout(true)
     }
+  }
+
+  const goBack = () => {
+    setCheckout(false)
   }
 
   // const [formInitialValues, formValidationSchema] = createFormData(schema)
 
-  return (
+  return checkout ? (
+    <Checkout goBack={goBack} />
+  ) : (
     <nav aria-label="Progress">
       <ol
         role="list"
@@ -738,7 +757,7 @@ export const ArrowStepper = ({
           <li key={name} className="relative md:flex md:flex-1">
             {status === 'complete' ? (
               <a
-                onClick={(e) => changeStep(stepIdx, e, () => {})}
+                // onClick={(e) => changeStep(stepIdx, e, () => {})}
                 className="group flex w-full items-center"
               >
                 <span className="flex items-center px-6 py-4 text-sm font-medium">
@@ -755,7 +774,7 @@ export const ArrowStepper = ({
               </a>
             ) : status === 'current' ? (
               <a
-                onClick={(e) => changeStep(stepIdx, e, () => {})}
+                // onClick={(e) => changeStep(stepIdx, e, () => {})}
                 className="flex items-center px-6 py-4 text-sm font-medium"
                 aria-current="step"
               >
@@ -768,7 +787,7 @@ export const ArrowStepper = ({
               </a>
             ) : (
               <a
-                onClick={(e) => changeStep(stepIdx, e, () => {})}
+                // onClick={(e) => changeStep(stepIdx, e, () => {})}
                 className="group flex items-center"
               >
                 <span className="flex items-center px-6 py-4 text-sm font-medium">
@@ -823,11 +842,14 @@ export const ArrowStepper = ({
           return (
             // form Step
             <Formik
+              validateOnChange
+              initialStatus={false}
               initialValues={stepInitialValues}
               validationSchema={stepValidationSchema}
               key={`${name + stepIdx} form-step`}
             >
               {({
+                isInitialValid,
                 errors,
                 handleReset,
                 isValid,
@@ -874,9 +896,15 @@ export const ArrowStepper = ({
                         >
                           {stepIdx !== minStep && (
                             <Button
-                              disabled={!isValid}
+                              disabled={!isValid && isInitialValid}
                               onClick={(e) =>
-                                changeStep(currentStep - 1, e, isValid, values)
+                                changeStep(
+                                  currentStep - 1,
+                                  e,
+                                  isValid,
+                                  values,
+                                  validateForm,
+                                )
                               }
                             >
                               Previous
@@ -884,9 +912,15 @@ export const ArrowStepper = ({
                           )}
                           {stepIdx !== maxStep && (
                             <Button
-                              disabled={!isValid}
+                              disabled={!isValid && isInitialValid}
                               onClick={(e) =>
-                                changeStep(currentStep + 1, e, isValid, values)
+                                changeStep(
+                                  currentStep + 1,
+                                  e,
+                                  isValid,
+                                  values,
+                                  validateForm,
+                                )
                               }
                             >
                               Next
@@ -904,7 +938,6 @@ export const ArrowStepper = ({
                           )}
                         </div>
                       </div>
-
                       {/* FORM IMAGE */}
                       {image && (
                         <img

@@ -38,8 +38,8 @@ router.post(
         // loadEmailTemplate('contactTemplate', {
         //   name: `${firstName} ${lastName}`,
         // }),
-        `thank you ${firstName} ${lastName} for reaching out, we will get back to you in 7 business days`,
-        '🎉 Thank you for contacting Business Educated 🎉',
+        `thank you ${firstName} ${lastName} for reaching out, we will get back to you in 7 business days, we will discuss availability`,
+        '🎉 Welcome to the Business Educated podcast 🎉',
         email,
         process.env.GMAIL_ADDRESS,
         null,
@@ -51,7 +51,7 @@ router.post(
         //   name: `${firstName} ${lastName}`,
         // }),
         comment,
-        `Contact from ${firstName} ${lastName} ${getDate()}`,
+        `Podcast Inquiry from ${firstName} ${lastName} ${getDate()}`,
         process.env.GMAIL_ADDRESS,
         process.env.GMAIL_ADDRESS,
         null,
@@ -60,14 +60,14 @@ router.post(
       // Add contact to spreadsheet
       await addToSpreadsheet(
         { firstName, lastName, email, phone, comment },
-        process.env.CONTACT_SPREADSHEET_ID,
-        'contact',
+        process.env.PODCAST_SPREADSHEET_ID,
+        'podcast',
       )
 
       // Send success response to client
       res.send({
         statusCode: 200,
-        body: JSON.stringify('successfully submitted contact inquiry'),
+        body: JSON.stringify('successfully submitted podcast inquiry'),
         isBase64Encoded: false,
         multiValueHeaders: {
           'Content-Type': 'application/json',

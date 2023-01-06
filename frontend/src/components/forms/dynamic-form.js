@@ -8,12 +8,16 @@ import DynamicField from './fields/dynamic-field'
 import { Link } from 'gatsby'
 import { useStore } from '../../store/store'
 import Button from '../button'
+import axios from 'axios'
+import { useLocalStorage } from '../util/customHooks'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export const DynamicForm = ({
+  method = 'POST',
+  action = '/api/',
   headline = {
     title: 'Join the podcast 🎙️',
     description: '',
@@ -75,7 +79,18 @@ export const DynamicForm = ({
     },
   ],
 }) => {
+  //ensure we check if the user agrees to the T&C's
   const [agreed, setAgreed] = useState(false)
+
+  // Initialize the formDisabled state variable to the value stored in local storage, or false if the value does not exist
+  const [formDisabled, setFormDisabled] = useLocalStorage(
+    `${formName}-disabled`,
+    false,
+  )
+  const [formExpiry, setFormExpiry] = useLocalStorage(
+    `${formName}-expiry`,
+    null,
+  )
 
   //generate form data for formik
   const createFormData = (_fields) => {
@@ -88,16 +103,68 @@ export const DynamicForm = ({
     })
     return [initialValues, Yup.object().shape(validationSchema)]
   }
-
   const [initialValues, validationSchema] = createFormData(fields)
 
-  const handleSubmit = (e, validate) => {
-    if (agreed) {
+  const handleForm = async (e, values, validate) => {
+    if (agreed && !formDisabled) {
+      const headers = {
+        // 'sec-fetch-mode': null,
+        // 'sec-fetch-site': null,
+        // 'referrerPolicy': null,
+        // 'Access-Control-Allow-Origin': `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}, *`,
+        'Access-Control-Allow-Methods': null, //important, only the server has the privaledge of using these headers
+        'Access-Control-Allow-Origin': null, //important, only the server has the privaledge of using these headers
+        'Content-Type': 'application/json',
+      }
+
+      const body = JSON.stringify({ ...values })
+
+      axios
+        .post(action, body, { headers })
+        .then((d) => {
+          console.log(d)
+          // Set the formDisabled state variable to true for the next 24 hours
+          // Save the current time in local storage as the expiration time for the form
+          setFormExpiry(Date.now())
+          setFormDisabled(true)
+        })
+        .catch((err) => console.error(err))
     }
   }
 
+  // Use an effect hook to check if the form is currently disabled based on the expiration time stored in local storage
+  useEffect(() => {
+    const renewalTime = 1
+    const expirationTime = formExpiry
+
+    //has 24 hours passed?
+    if (
+      expirationTime &&
+      Date.now() > expirationTime + renewalTime * 60 * 60 * 1000
+    ) {
+      // If the current time is past the expiration time, set the formDisabled state variable to false
+      setFormDisabled(false)
+
+      // Remove the formExpiration item from local storage
+      setFormExpiry(false)
+    }
+    //they are locked
+    else if (expirationTime !== null && expirationTime) {
+      setFormDisabled(true) //ensure the form stays disabled until the time is up
+    }
+    //first time, not locked
+    else {
+      setFormDisabled(false) //ensure the form stays disabled until the time is up
+      setFormExpiry(false)
+    }
+  }, [])
+
   return (
-    <div className="overflow-hidden bg-white py-16 px-4 sm:px-6 lg:px-8 lg:py-24">
+    <div
+      className={`overflow-hidden bg-white py-16 px-4 sm:px-6 lg:px-8 lg:py-24 rounded-lg ${
+        formDisabled && 'opacity-6 bg-red-200 border-3 border border-red-600'
+      }`}
+    >
       <div className="relative mx-auto max-w-xl">
         {/* pattern */}
         <svg
@@ -180,10 +247,16 @@ export const DynamicForm = ({
         </div>
 
         {/* form */}
-        <div className="mt-12">
+        <div className={`mt-12`}>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
+            //       onSubmit={(values, { setSubmitting }) => {
+            //   setTimeout(() => {
+            //     alert(JSON.stringify(values, null, 2));
+            //     setSubmitting(false);
+            //   }, 400);
+            // }}
           >
             {({
               errors,
@@ -192,11 +265,12 @@ export const DynamicForm = ({
               values,
               handleChange,
               isValidating,
+              handleSubmit,
               status,
               validateForm,
             }) => {
               return (
-                <Form>
+                <Form action={action} method={method}>
                   <div className="grid grid-cols-6 gap-6">
                     {/* generate fields from field schema defined */}
                     {fields.map((fieldSchema) => (
@@ -205,6 +279,8 @@ export const DynamicForm = ({
                         value={values[fieldSchema.name]}
                         errors={errors[fieldSchema.name]}
                         onChange={handleChange}
+                        // Disable the field if the form is disabled
+                        disabled={formDisabled}
                       />
                     ))}
                   </div>
@@ -233,6 +309,8 @@ export const DynamicForm = ({
                         <p className="text-base text-gray-500">
                           By selecting this, you agree to the{' '}
                           <Link
+                            target="_blank"
+                            rel="noopener noreferrer"
                             to="/privacy-policy"
                             className="font-medium text-gray-700 underline"
                           >
@@ -240,6 +318,8 @@ export const DynamicForm = ({
                           </Link>{' '}
                           and{' '}
                           <Link
+                            target="_blank"
+                            rel="noopener noreferrer"
                             to="/cookie-policy"
                             className="font-medium text-gray-700 underline"
                           >
@@ -250,10 +330,13 @@ export const DynamicForm = ({
                       </div>
                     </div>
                   </div>
+                  <small className="text-gray-400 text-sm italic my-6">
+                    *You can only submit this form once every 24 hours
+                  </small>
                   <div className="sm:col-span-2">
                     <Button
-                      onClick={handleSubmit}
-                      disabled={!agreed || !isValid}
+                      onClick={(e) => handleForm(e, values)}
+                      disabled={!agreed || !isValid || formDisabled}
                       type="submit"
                       className="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                     >

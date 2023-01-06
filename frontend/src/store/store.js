@@ -18,11 +18,6 @@ const useStore = create((set, get) => ({
   // temp holder for forms that have not been assigned their own store space
   bookingForm: {
     form: {
-      text: '',
-      number: '',
-      file: '',
-      date: '',
-      message: '',
       consultant: { name: 'Aiden Faulconer', rate: 150 },
       duration: 1,
     },
@@ -31,8 +26,8 @@ const useStore = create((set, get) => ({
       changeFormData: (newContext) => {
         set(
           produce((state) => {
-            state.bookingForm = {
-              ...state.bookingForm,
+            state.bookingForm.form = {
+              ...state.bookingForm.form,
               ...newContext,
             }
           }),

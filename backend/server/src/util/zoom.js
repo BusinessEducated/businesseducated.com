@@ -1,21 +1,10 @@
 const axios = require('axios')
-const { Validator } = require('jsonschema')
-const express = require('express')
-const router = express.Router()
-const jwt = require('jsonwebtoken')
 
-// Set the API endpoint and headers
-const endpoint = 'https://api.zoom.us/v2/users/me/meetings'
-const apiKey = process.env.ZOOM_API_KEY
-const apiSecret = process.env.ZOOM_CLIENT_SECRET
-
-router.post('/createZoomMeeting', async (req, res) => {
+// Get the date and time for the meeting
+const createZoomMeeting = async (date, topic, timezone = 'AEDT') => {
   try {
-    // Get the date and time for the meeting
-    const { datetime, topic, timezone = 'AEDT' } = req.body
-
     // Set the start time for the meeting in the ISO 8601 format
-    const startTime = new Date(datetime).toISOString()
+    const startTime = new Date(date).toISOString()
     const duration = 60
     const password = bcrypt.hashSync(
       process.env.SALT,
@@ -32,11 +21,11 @@ router.post('/createZoomMeeting', async (req, res) => {
     }
 
     const payload = {
-      iss: apiKey,
+      iss: process.env.ZOOM_API_KEY,
       exp: Date.now() + 5000,
     }
 
-    const token = jwt.sign(payload, apiSecret)
+    const token = jwt.sign(payload, process.env.ZOOM_CLIENT_SECRET)
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -59,11 +48,16 @@ router.post('/createZoomMeeting', async (req, res) => {
       },
     } = await axios.post(endpoint, data, { headers })
 
-    // Return the invite link to the client
-    res.json()
+    return {
+      status: 200,
+      data: { host_email, join_url, start_time, created_at, password },
+    }
   } catch (error) {
-    res.status(500).json({ error: error.message })
+    return {
+      status: 500,
+      error: error.message,
+    }
   }
-})
+}
 
-module.exports = router
+module.exports = { createZoomMeeting }
