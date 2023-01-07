@@ -7,6 +7,9 @@ RUN mkdir /server
 WORKDIR /server
 
 COPY package.json .
+COPY src .
+COPY server.js .
+COPY pm2.js .
 COPY yarn.lock .
 
 RUN yarn install

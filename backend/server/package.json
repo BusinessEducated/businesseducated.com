@@ -34,7 +34,8 @@
   "scripts": {
     "dbuild": "docker build ./ -t businesseducated-server",
     "ddev": "docker run -d -p 3169:3169 --env-file ../../.env.production businesseducated-server",
-    "start": "cross-env NODE_ENV=production nodemon ./server.js localhost",
+    "dev-start": "cross-env NODE_ENV=production nodemon ./server.js localhost",
+    "start": "cross-env NODE_ENV=production pm2 start server.js --watch --verbose",
     "dev": "cross-env NODE_ENV=development nodemon ./server.js localhost",
     "debug": "cross-env NODE_ENV=development DEBUG=app:server node --inspect ./server.js",
     "build-server": "cross-env NODE_ENV=development && netlify functions:build --src /functions.js",
