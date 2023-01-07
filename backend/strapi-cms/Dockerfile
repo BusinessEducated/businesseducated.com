@@ -9,8 +9,8 @@ COPY yarn.lock .
 COPY package.json .
 COPY yarn.lock .
 COPY config/ config/
+COPY public/ public/
 COPY database/ database/
-COPY src/ src/
 
 RUN yarn install --ignore-engines --force
 
