@@ -1,4 +1,5 @@
 import React from 'react'
+import { addSpace } from '../../util/customHooks'
 
 export const PhoneInput = ({
   name,
@@ -14,7 +15,7 @@ export const PhoneInput = ({
   return (
     <div>
       <label htmlFor={name} className="block text-sm font-medium text-gray-700">
-        Phone Number
+        {addSpace(name)}
       </label>
       <div className="relative mt-1 rounded-md shadow-sm">
         <div className="absolute inset-y-0 left-0 flex items-center">

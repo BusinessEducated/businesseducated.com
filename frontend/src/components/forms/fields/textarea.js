@@ -5,6 +5,7 @@ import {
   CodeBracketIcon,
   LinkIcon,
 } from '@heroicons/react/20/solid'
+import { addSpace } from '../../util/customHooks'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -20,6 +21,7 @@ export const TextArea = ({
   onChange,
   ...props
 }) => {
+  const Icon = icon
   return (
     <div action="#" className="w-full relative">
       <Tab.Group>
@@ -87,7 +89,7 @@ export const TextArea = ({
           <Tab.Panels className="mt-2">
             <Tab.Panel className="-m-0.5 rounded-lg p-0.5">
               <label htmlFor="comment" className="sr-only">
-                Comment
+                {addSpace(name)}
               </label>
               <div>
                 <textarea

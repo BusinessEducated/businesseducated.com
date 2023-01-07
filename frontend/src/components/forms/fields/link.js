@@ -1,9 +1,23 @@
-import React from "react";
+import React from 'react'
 
-export const LinkInput = () => {
+export const LinkInput = ({
+  name,
+  type,
+  icon,
+  placeholder,
+  required,
+  formName,
+  value,
+  onChange,
+  ...props
+}) => {
+  const Icon = icon
   return (
     <div>
-      <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
+      <label
+        htmlFor="company-website"
+        className="block text-sm font-medium text-gray-700"
+      >
         Company Website
       </label>
       <div className="mt-1 flex rounded-md shadow-sm">
@@ -22,5 +36,4 @@ export const LinkInput = () => {
   )
 }
 
-
-export default LinkInput;
+export default LinkInput

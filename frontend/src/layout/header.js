@@ -19,7 +19,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-
+import ScrollProgressBar from '../components/scroll-progress'
 // import { Popover } from '@headlessui/react'
 
 const services = [
@@ -119,8 +119,9 @@ export const Header = () => {
   return (
     <Popover className="w-[100vw] z-50 bg-white fixed">
       {/* NAV */}
-      <div className="mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between border-b-2 border-gray-100 py-2 md:justify-start md:space-x-10">
+      <div className="mx-auto">
+        <ScrollProgressBar />
+        <div className="flex items-center px-4 sm:px-6 justify-between border-b-2 border-gray-100 py-2 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link to="/">
               <span className="sr-only">Business Educated</span>

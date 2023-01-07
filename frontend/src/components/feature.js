@@ -246,9 +246,7 @@ export const Feature = ({
           <h2 className="font-bold tracking-tight text-gray-900 sm:text-5xl text-4xl mb-6">
             {headline.title}
           </h2>
-          <p className="text-center mt-4 text-gray-500">
-            {headline.description}
-          </p>
+          <p className="mt-4 text-gray-500 text-left">{headline.description}</p>
         </div>
 
         <div className="mt-16 space-y-16">

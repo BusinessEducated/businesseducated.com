@@ -17,6 +17,7 @@ import React from 'react'
 import { useState } from 'react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { Combobox } from '@headlessui/react'
+import { addSpace } from '../../util/customHooks'
 
 const people = [
   { id: 1, name: 'Leslie Alexander' },
@@ -35,15 +36,17 @@ export const CCombobox = ({
   placeholder,
   required,
   onChange,
+  options,
   ...props
 }) => {
+  const Icon = icon
   const [query, setQuery] = useState('')
   const [selectedPerson, setSelectedPerson] = useState(null)
 
-  const filteredPeople =
+  const selections =
     query === ''
-      ? people
-      : people.filter((person) => {
+      ? options
+      : options.filter((person) => {
           return person.name.toLowerCase().includes(query.toLowerCase())
         })
 
@@ -57,7 +60,7 @@ export const CCombobox = ({
       }}
     >
       <Combobox.Label className="block text-sm font-medium text-gray-700">
-        Assigned to
+        {addSpace(name)}
       </Combobox.Label>
       <div className="relative mt-1">
         <Combobox.Input
@@ -72,9 +75,9 @@ export const CCombobox = ({
           />
         </Combobox.Button>
 
-        {filteredPeople.length > 0 && (
+        {selections.length > 0 && (
           <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-            {filteredPeople.map((person) => (
+            {selections.map((person) => (
               <Combobox.Option
                 key={person.id}
                 value={person}

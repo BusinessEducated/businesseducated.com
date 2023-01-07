@@ -1,6 +1,16 @@
-import React from 'react';
+import React from 'react'
 
-export const Checkboxes = () => {
+export const Checkboxes = ({
+  name,
+  value,
+  type,
+  icon,
+  placeholder,
+  required,
+  onChange,
+  ...props
+}) => {
+  const Icon = icon
   return (
     <fieldset className="space-y-5">
       <legend className="sr-only">Notifications</legend>
@@ -65,4 +75,4 @@ export const Checkboxes = () => {
   )
 }
 
-export default Checkboxes;
+export default Checkboxes

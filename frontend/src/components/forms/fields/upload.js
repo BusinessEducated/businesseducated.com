@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Button from '../../button'
 import { LargeBadge, SmallBadge } from '../../badge'
+import { addSpace } from '../../util/customHooks'
 
 export const UploadInput = ({
   name,
@@ -84,7 +85,7 @@ export const UploadInput = ({
 
   return (
     <>
-      <label htmlFor={name}>{name}</label>
+      <label htmlFor={name}>{addSpace(name)}</label>
       <button
         // allow users to drag and drop files on this button
         {...props}

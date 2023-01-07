@@ -66,6 +66,22 @@ router.post('/create-payment-intent', async (req, res) => {
   })
 })
 
+router.post('/validate-payment', async (req, res) => {
+  // Retrieve the PaymentIntent with the specified ID
+  const paymentIntent = await stripe.paymentIntents.retrieve(
+    req.body.paymentIntentId,
+  )
+
+  // Check the PaymentIntent's status
+  if (paymentIntent.status === 'succeeded') {
+    // Payment was successful
+    res.send({ success: true })
+  } else {
+    // Payment was not successful
+    res.send({ success: false })
+  }
+})
+
 const endpointSecret = 'we_1MLcARAZwRfGaddSHTpYYC2q'
 // 'whsec_b54805899022ea533016e9a48534dce65b01d5f30ee36e787f15658b793caafe'
 

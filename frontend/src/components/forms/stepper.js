@@ -846,27 +846,29 @@ export const ArrowStepper = ({
               initialStatus={false}
               initialValues={stepInitialValues}
               validationSchema={stepValidationSchema}
+              validateOnMount
               key={`${name + stepIdx} form-step`}
             >
               {({
-                isInitialValid,
                 errors,
                 handleReset,
-                isValid,
+                isValid = false,
                 isValidating,
                 values,
                 initialStatus,
                 handleChange,
                 status,
+                initialTouched,
                 validateForm,
               }) => {
                 return (
                   stepIdx === currentStep && (
                     // CURRENT STEP FORM
                     <Form
-                      className="w-full relative h-full grid grid-cols-12"
+                      className=" border-b border-gray-300 w-full relative h-full grid grid-cols-12"
                       key={`${name} step-form`}
                     >
+                      {/* {initialTouched} */}
                       {/* FORM CONTENT */}
                       <div
                         className="w-full space-y-6 max-w-5xl mx-auto py-12 md:px-12 md:col-span-6 col-span-12"
@@ -896,7 +898,7 @@ export const ArrowStepper = ({
                         >
                           {stepIdx !== minStep && (
                             <Button
-                              disabled={!isValid && isInitialValid}
+                              disabled={!isValid}
                               onClick={(e) =>
                                 changeStep(
                                   currentStep - 1,
@@ -912,7 +914,7 @@ export const ArrowStepper = ({
                           )}
                           {stepIdx !== maxStep && (
                             <Button
-                              disabled={!isValid && isInitialValid}
+                              disabled={!isValid}
                               onClick={(e) =>
                                 changeStep(
                                   currentStep + 1,

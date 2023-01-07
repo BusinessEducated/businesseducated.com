@@ -156,6 +156,12 @@ export const useScrollProgress = () => {
   return scrollProgress
 }
 
+export const addSpace = (string) => {
+  return string.replace(/([A-Z])/g, ' $1').replace(/^./, function (str) {
+    return str.toUpperCase()
+  })
+}
+
 // INPUT: HTMLELEMENTS array
 // OUTPUT: reactive events attatched to interpolate between the elements in array from start to end based on users scroll
 export const useIntersectionObserver = (

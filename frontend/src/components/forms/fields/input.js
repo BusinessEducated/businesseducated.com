@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { ExclamationCircleIcon } from '@heroicons/react/20/solid'
+import { addSpace } from '../../util/customHooks'
 
 export const Input = ({
   name,
@@ -20,7 +21,7 @@ export const Input = ({
         htmlFor={name}
         className="flex text-sm font-medium text-gray-700 gap-1 mb-2"
       >
-        {name}
+        {addSpace(name)}
       </label>
       <div className="relative mt-1 rounded-md shadow-sm">
         <div className="absolute inset-y-0 left-0 flex items-center p-3">

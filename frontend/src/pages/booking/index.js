@@ -116,9 +116,7 @@ function IndexPage() {
                 {
                   name: 'companySize',
                   cols: 3,
-                  validation: Yup.string().required(
-                    'Please select the type of consultation service you would like',
-                  ),
+                  validation: Yup.string(),
                   type: 'select',
                   icon: UserGroupIcon,
                   placeholder: '',
@@ -128,18 +126,13 @@ function IndexPage() {
                     { name: '10-300' },
                     { name: '300-1000' },
                     { name: '1000-10000' },
+                    { name: '10000-100000' },
                   ],
                 },
                 {
                   name: 'companyType',
                   cols: 6,
-                  validation: {
-                    type: 'string',
-                    oneOf: 'this',
-                    required: true,
-                    message:
-                      'company type is required to investigate regulations involved',
-                  },
+                  validation: Yup.string(),
                   type: 'select',
                   icon: BuildingOffice2Icon,
                   placeholder: '',
@@ -202,11 +195,7 @@ function IndexPage() {
                 {
                   name: 'companyServices',
                   cols: 3,
-                  validation: {
-                    type: 'string',
-                    oneOf: 'this',
-                    message: 'services required for context around your issue',
-                  },
+                  validation: Yup.string(),
                   type: 'select',
                   icon: BriefcaseIcon,
                   placeholder: '',
@@ -274,7 +263,7 @@ function IndexPage() {
                 {
                   name: 'serviceType',
                   cols: 6,
-                  validation: Yup.string().required(),
+                  validation: Yup.string(),
                   type: 'select',
                   icon: BuildingStorefrontIcon,
                   placeholder: 'Business Planning & strategy',
@@ -379,12 +368,7 @@ function IndexPage() {
                 {
                   name: 'consultant',
                   cols: 6,
-                  validation: {
-                    type: 'string',
-                    oneOf: 'this',
-                    required: true,
-                    message: 'please select a consultant for your session',
-                  },
+                  validation: Yup.string(),
                   type: 'multiselect',
                   icon: UserIcon,
                   placeholder: 'Aiden Faulconer',
@@ -392,8 +376,9 @@ function IndexPage() {
                   options: [
                     {
                       name: 'Aiden Faulconer',
+                      email: 'aidenf09@yahoo.com',
                       imageSrc: AIDEN_FAULCONER,
-                      role: 'Senior business consultant',
+                      role: 'Senior digital business consultant',
                       specialties: [
                         'software',
                         'digital',
@@ -407,8 +392,9 @@ function IndexPage() {
                     },
                     {
                       name: 'James Boon',
+                      email: 'boongardenscapes@gmail.com',
                       imageSrc: JAMES_BOON,
-                      role: 'Senior business consultant',
+                      role: 'Senior services business consultant',
                       specialties: [
                         'landscaping',
                         'contracting',
@@ -422,7 +408,7 @@ function IndexPage() {
                   ],
                 },
                 {
-                  name: 'datetime',
+                  name: 'date',
                   cols: 6,
                   validation: '',
                   type: 'date',

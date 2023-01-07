@@ -307,7 +307,7 @@ export const Checkout = ({
                   {Object.keys(bookingForm).map((key) => (
                     <li
                       key={key}
-                      className="flex py-2 gap-4 justify-between px-2 sm:px-6 col-span-3 items-center"
+                      className="flex flex-wrap py-1 gap-2 justify-between px-2 sm:px-6 col-span-3 items-center"
                     >
                       <p className="font-bold text-lg">{key}:</p>
                       {bookingForm[key]?.name ? (
@@ -318,9 +318,12 @@ export const Checkout = ({
                             className="w-8 h-8 inline rounded-full"
                           />
                         </>
+                      ) : bookingForm[key]?.value ? (
+                        <>{bookingForm[key].value}</>
                       ) : (
                         bookingForm[key]
                       )}
+                      {JSON.stringify(bookingForm[key])}
                     </li>
                   ))}
                 </ul>

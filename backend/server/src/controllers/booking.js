@@ -4,6 +4,38 @@ const { addToSpreadsheet } = require('../util/google-spreadsheets')
 const { addToGoogleCalendar } = require('../util/google-calender')
 const router = express.Router()
 const LOOM_API_URL = 'https://api.loom.com/api'
+const { check, validationResult } = require('express-validator/check')
+
+const validate = () => {
+  //prettier-ignore
+  return [
+    //details
+    check('firstName').isString().isLength({ min: 1 }).withMessage('please enter your first name'),
+    check('lastName').isString().isLength({ min: 1 }).withMessage('please enter your last name'),
+    check('email').isString().isEmail().isLength({ min: 1 }).withMessage('invalid email address'),
+    check('phone').isString().matches(/^\d{10,15}$/, 'invalid phone number').withMessage('phone is required to contact you'),
+    //company
+    check('companyName').isString().isLength({ min: 1 }).withMessage('company name is required to investigate your issue further'),
+    check('companySize').isString().isIn(['0-10', '10-300', '300-1000', '1000-10000', '10000-100000']).withMessage('please select the company size'),
+    check('companyType').isString().isIn(['LLC', 'Cooperative', 'Nonprofit', 'Government Agency', 'Partnership', 'Sole proprietorship']).withMessage('company type is required to investigate your issue further'),
+    check('abn').isString().matches(/^(\d *?){11}$/).withMessage('abn needed to identify your business'),
+    check('role').isString().isLength({ min: 1 }).withMessage('role required for context around your issue'),
+    check('companyServices').isString().isIn(['Information Services', 'Manufacturing Services', 'Hospitality Services', 'Transportation Services', 'Education Services', 'Marketting Services', 'Graphic Design Services', 'Software Services', 'Professional Services', 'Labor Services', 'Customer Service', 'Commerce Services', 'Retail Services', 'Product Services', 'Consultation Services', 'Other']).withMessage('please select the company services'),
+    //problem
+    check('problemDescription').isString().isLength({ min: 200 }).withMessage('Use a minimum of 200 words to describe your problem').not().isEmpty().withMessage('We need to understand the issue you are seeking assistance with').trim(),
+    check('serviceType').isString().isIn(['Marketing & branding', 'Business Planning & strategy', 'Financial planning & analysis', 'Human resources & organizational development', 'Operations & process improvement', 'Business growth & expansion', 'Legal & compliance', 'Information technology & digital transformation', 'Sustainability & corporate social responsibility', 'Leadership & management development']).withMessage('please select the service type'),
+    check('attachments').isArray().custom(attachments => {
+      return attachments.every(attachment => {
+        return attachment.mimetype.match(/^application\/(pdf|msword|png|jpeg|jpg|txt)$/) && attachment.size <= 1000000;
+      });
+    }).withMessage('Invalid file type or file is too large'),
+    //consultation
+    check('duration').isInt().withMessage('you must give a duration for the consultation session'),
+    check('consultant').isString().isIn(['Aiden Faulconer', 'James Boon', 'Emily Williams', 'Thomas Rice', 'Olivia Smith', 'Lydia Kim', 'Samuel Johnson']).withMessage('please select a consultant for your session'),
+    check('date').isDate().matches(/^\d{4}-\d{2}-\d{2}$/).withMessage('invalid date format'),
+    // check('time').isString().matches(/^\d{2}:\d{2}$/).withMessage('invalid time format').required('please select a time for the consultation session'),
+  ];
+}
 
 const internalMessage = (
   {
@@ -18,7 +50,7 @@ const internalMessage = (
     companySize,
     firstName,
     lastName,
-    problem,
+    problemDescription,
   },
   { joinUrl, id, startTime, encPassword, startUrl, password },
 ) => `
@@ -58,7 +90,7 @@ const internalMessage = (
 
 
       Client name: ${firstName} ${lastName}
-      Their problem: ${problem}
+      Their problem: ${problemDescription}
 
       1. Agenda **Automated**
       2. Minutes **Automated** (current WIP)
@@ -78,7 +110,7 @@ const internalMessage = (
 
       1. How could we solve the following? Iterate until all criteria is met
 
-        ${problem} 
+        ${problemDescription} 
 
         Ensure the following is addressed in the problem
         1. What is the problem you are trying to solve?
@@ -91,10 +123,10 @@ const internalMessage = (
         Given the problem is for a business that does ${1} with abn ${1} and company size ${1}
         write 4 things...
         
-        1. business consultation assessment about ${problem}
-        2. a detailed list of 30 recommendations for ${problem} that either solve the problem completely, or advise on how to avoid further problems
-        3. a detailed list of 30 tools that may assist ${problem} that help solve the problem
-        4. a detailed plan/roadmap ahead that may assist ${problem} over a period of 1week to 6months
+        1. business consultation assessment about ${problemDescription}
+        2. a detailed list of 30 recommendations for ${problemDescription} that either solve the problem completely, or advise on how to avoid further problems
+        3. a detailed list of 30 tools that may assist ${problemDescription} that help solve the problem
+        4. a detailed plan/roadmap ahead that may assist ${problemDescription} over a period of 1week to 6months
 
 
       2. How would this problem fit into an agenda based around this template?
@@ -131,7 +163,7 @@ const externalMessage = (
     companySize,
     firstName,
     lastName,
-    problem,
+    problemDescription,
   },
   { joinUrl, id, startTime, encPassword, startUrl, password },
 ) => `
@@ -171,7 +203,7 @@ const externalMessage = (
 
 
       your name: ${firstName} ${lastName}
-      your problem: ${problem}
+      your problem: ${problemDescription}
 
       You will be presented the following for your consultation
 
@@ -192,7 +224,7 @@ const externalMessage = (
 
       1. How we could solve the following problem? ( We iterate until all criteria is met)
 
-        ${problem} 
+        ${problemDescription} 
 
         We ensure the following is addressed in the problem
         1. What is the problem you are trying to solve?
@@ -240,23 +272,17 @@ const externalMessage = (
  * @returns {object} 200 - An array of user info
  * @returns {Error}  default - Unexpected error
  */
-router.get('/', async (req, res) => {
-  const {
-    date,
-    phone,
-    firstName,
-    lastName,
-    companyName,
-    abn,
-    consultant,
-    companyServices,
-    problem,
-    serviceType,
-    attatchments: attachments,
-    ...contactFormData
-  } = req.body
+router.get('/', validate(), async (req, res) => {
+  //prettier-ignore
+  const {date,phone,firstName,lastName,companyName,abn,consultant,companyServices,problemDescription,serviceType,attatchments: attachments,...contactFormData} = req.body
 
   try {
+    // Validate request body
+    const errors = validationResult(req.body)
+    if (!errors.isEmpty()) {
+      throw new Error('Invalid request body')
+    }
+
     //create a response object to collect errors/successes for reference
     const responses = []
 
@@ -292,7 +318,7 @@ router.get('/', async (req, res) => {
       _______________________________________________________________________________________
 
       Consultation with: ${consultant.name} 
-      regarding: ${problem} 
+      regarding: ${problemDescription} 
       in the context of: ${serviceType} 
       _______________________________________________________________________________________
 

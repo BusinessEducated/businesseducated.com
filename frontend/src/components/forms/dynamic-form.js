@@ -134,7 +134,7 @@ export const DynamicForm = ({
 
   // Use an effect hook to check if the form is currently disabled based on the expiration time stored in local storage
   useEffect(() => {
-    const renewalTime = 1
+    const renewalTime = 24 //24 hours
     const expirationTime = formExpiry
 
     //has 24 hours passed?

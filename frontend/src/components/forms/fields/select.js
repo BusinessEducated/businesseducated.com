@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { addSpace } from '../../util/customHooks'
 
 const people = [
   { id: 1, name: 'Wade Cooper', online: true },
@@ -42,7 +43,7 @@ export const Select = ({
       {({ open }) => (
         <>
           <Listbox.Label className="block text-sm font-medium text-gray-700">
-            {name}
+            {addSpace(name)}
           </Listbox.Label>
           <div className="relative mt-1">
             <Listbox.Button className="py-3 pl-3 pr-10 relative w-full cursor-default rounded-md border border-gray-300 bg-white text-left shadow-sm focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 sm:text-sm">

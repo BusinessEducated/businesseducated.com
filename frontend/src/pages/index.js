@@ -61,18 +61,18 @@ function IndexPage({ data }) {
     setVideoPlaying((prev) => !prev)
   }
 
-  useEffect(async () => {
-    process.env.YOUTUBE_CHANNEL_ID
-    const d = await getVideosFromChannel(
-      // 'UCNlfGuzOAKM1sycPuM_QTHg',
-      'UC82_za_dL6fHUGa30wnW3uQ',
-      10,
-      // 'cLa-YH5H0YA&list=PLi8MopF2A5_V9DRUz8TstIKXCraJ5WzJ_',
-    )
-    const data = extractVideos(d.body)
-    console.info('test ', data)
-    setVideos(data)
-  }, [])
+  // useEffect(async () => {
+  //   process.env.YOUTUBE_CHANNEL_ID
+  //   const d = await getVideosFromChannel(
+  //     // 'UCNlfGuzOAKM1sycPuM_QTHg',
+  //     'UC82_za_dL6fHUGa30wnW3uQ',
+  //     10,
+  //     // 'cLa-YH5H0YA&list=PLi8MopF2A5_V9DRUz8TstIKXCraJ5WzJ_',
+  //   )
+  //   const data = extractVideos(d.body)
+  //   console.info('test ', data)
+  //   setVideos(data)
+  // }, [])
 
   return (
     <Layout>
