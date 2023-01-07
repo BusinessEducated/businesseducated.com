@@ -1,5 +1,7 @@
 FROM node:18-alpine as strapi-build
 
+RUN npm i -g cross-env
+
 RUN mkdir /app
 WORKDIR /app
 

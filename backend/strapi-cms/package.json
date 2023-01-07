@@ -5,8 +5,8 @@
   "description": "A Strapi application",
   "scripts": {
     "dscan": "docker scan",
-    "dbuild": "docker build ./ -t aidenfaulconer-cms",
-    "ddev": "docker run -p 1337:1337 aidenfaulconer-cms",
+    "dbuild": "docker build ./ -t businesseducated-cms",
+    "ddev": "docker run -p 1337:1337 --env-file ../../.env.production --tag businesseducated-cms",
     "dev-env": "cross-env ENV_PATH=../.env.development strapi develop",
     "dev": "strapi develop",
     "start-env": "cross-env ENV_PATH=../.env.production strapi start",

@@ -1,5 +1,7 @@
 FROM node:18-alpine
 
+RUN npm i -g cross-env
+
 RUN mkdir /server
 
 WORKDIR /server
@@ -11,7 +13,7 @@ RUN yarn install
 
 COPY . .
 
-RUN yarn build
+RUN yarn start
 
 EXPOSE 3169
 
