@@ -1,42 +1,19 @@
-load('railway', 'railway_container_registry')
 
 print("""
 -----------------------------------------------------------------
 ✨ Business Educated Backend
 -----------------------------------------------------------------
 """.strip())
-
 print('ℹ️ Open {tiltfile_path} in your favorite editor to get started...'.format(
     tiltfile_path=config.main_path))
 
-# # Build the container images for the services
-# docker_build('server', context='./backend/server')
-# docker_build('strapi-cms', context='./backend/strapi-cms')
-
-# # Load the Kubernetes configuration files
-# k8s_yaml(['./k8s/server.yaml', './k8s/strapi-cms.yaml'])
-
-# # Forward the ports for the services
-# k8s_resource(port_forwards=[3169], workload='server')
-# k8s_resource(port_forwards=[1337], workload='strapi-cms')
-
 # Build the container images for the services
-docker_build('server', context='./backend/server')
-docker_build('strapi-cms', context='./backend/strapi-cms')
-
-# Push the container images to Railway's container registry
-railway_container_registry(
-    'server',
-    '<your_railway_registry_url>/server:latest',
-)
-railway_container_registry(
-    'strapi-cms',
-    '<your_railway_registry_url>/strapi-cms:latest',
-)
+docker_build('server', context='./server')
+docker_build('strapi-cms', context='./strapi-cms')
 
 # Load the Kubernetes configuration files
 k8s_yaml(['./k8s/server.yaml', './k8s/strapi-cms.yaml'])
 
 # Forward the ports for the services
-k8s_resource(port_forwards=[1337], workload='server')
-k8s_resource(port_forwards=[3169], workload='strapi-cms')
+k8s_resource(port_forwards=[3169], workload='server')
+k8s_resource(port_forwards=[1337], workload='strapi-cms')
