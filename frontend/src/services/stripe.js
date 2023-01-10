@@ -1,7 +1,5 @@
-import axios from 'axios';
+import axios from 'axios'
 
-const baseUrl = `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}${process.env.API_ENDPOINT}stripe`;
+const baseUrl = `http://${process.env.SERVER_URL}${process.env.API_ENDPOINT}stripe`
 
-export const makePayment = async () => {
-
-}
+export const makePayment = async () => {}

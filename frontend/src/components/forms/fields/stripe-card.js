@@ -15,7 +15,7 @@ import Button from '../../button'
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
 const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY)
-const baseUrl = `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}${process.env.API_ENDPOINT}stripe`
+const baseUrl = `http://${process.env.SERVER_URL}${process.env.API_ENDPOINT}stripe`
 
 export default function App({ children, handleCheckout, disabled }) {
   const [clientSecret, setClientSecret] = useState('')

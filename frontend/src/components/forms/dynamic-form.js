@@ -111,7 +111,7 @@ export const DynamicForm = ({
         // 'sec-fetch-mode': null,
         // 'sec-fetch-site': null,
         // 'referrerPolicy': null,
-        // 'Access-Control-Allow-Origin': `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}, *`,
+        // 'Access-Control-Allow-Origin': `http://${process.env.SERVER_URL}, *`,
         'Access-Control-Allow-Methods': null, //important, only the server has the privaledge of using these headers
         'Access-Control-Allow-Origin': null, //important, only the server has the privaledge of using these headers
         'Content-Type': 'application/json',

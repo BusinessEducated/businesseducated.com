@@ -84,6 +84,7 @@
     "nbuild": "netlify env:import ../.env.development && netlify dev",
     "fix": "npm run fix:lint && npm run fix:prettier",
     "build": "cross-env NODE_ENV=production gatsby build",
+    "dev-build": "cross-env NODE_ENV=development gatsby build",
     "develop": "gatsby develop --host 0.0.0.0",
     "dev": "cross-env NODE_ENV=development npm run develop",
     "start": "cross-env NODE_ENV=production npm run develop",

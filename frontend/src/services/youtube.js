@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}${process.env.API_ENDPOINT}youtube`
+const baseUrl = `http://${process.env.SERVER_URL}${process.env.API_ENDPOINT}youtube`
 
 export const getVideosFromChannelByCategory = async (
   channelId,
@@ -9,7 +9,7 @@ export const getVideosFromChannelByCategory = async (
 ) => {
   // Set up the headers for the API request
   const headers = {
-    // 'Access-Control-Allow-Origin': `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}, *`,
+    // 'Access-Control-Allow-Origin': `http://${process.env.SERVER_URL}, *`,
     'Access-Control-Allow-Methods': null, //important, only the server has the privaledge of using these headers
     'Access-Control-Allow-Origin': null, //important, only the server has the privaledge of using these headers
     'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ export const getVideosFromChannel = async (channelId, maxResults) => {
     'sec-fetch-mode': null,
     'sec-fetch-site': null,
     // referrerPolicy: null,
-    'Access-Control-Allow-Origin': `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}, *`,
+    'Access-Control-Allow-Origin': `http://${process.env.SERVER_URL}, *`,
     'Access-Control-Allow-Methods': null, //important, only the server has the privaledge of using these headers
     'Access-Control-Allow-Origin': null, //important, only the server has the privaledge of using these headers
     'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export const subscribeToChannel = async (
 
   // Set up the headers for the API request
   const headers = {
-    'Access-Control-Allow-Origin': `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}, *`,
+    'Access-Control-Allow-Origin': `http://${process.env.SERVER_URL}, *`,
     'Access-Control-Allow-Methods': null, //important, only the server has the privaledge of using these headers
     'Access-Control-Allow-Origin': null, //important, only the server has the privaledge of using these headers
     'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ export const likeVideo = async (videoId, accessToken) => {
 
   // Set up the headers for the API request
   const headers = {
-    'Access-Control-Allow-Origin': `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}, *`,
+    'Access-Control-Allow-Origin': `http://${process.env.SERVER_URL}, *`,
     'Access-Control-Allow-Methods': null, //important, only the server has the privaledge of using these headers
     'Access-Control-Allow-Origin': null, //important, only the server has the privaledge of using these headers
     'Content-Type': 'application/json',

@@ -88,5 +88,5 @@ yarn-error.log
 .yarn-integrity
 .env.production
 .env.development
-frontend/src/pages/index.js
+# frontend/src/pages/index.js
 .env.production

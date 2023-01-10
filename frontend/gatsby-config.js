@@ -10,7 +10,6 @@ require('dotenv').config({
 })
 
 // console.log('test ', `${__dirname}/../.env.${process.env.NODE_ENV}`, process.env.YOUTUBE_API_KEY)
-
 // ========================================================================== //
 // Strapi configuration
 // ========================================================================== //
@@ -54,6 +53,13 @@ module.exports = {
       },
     },
     // ========================================================================== //
+    // strapi CMS
+    // ========================================================================== //
+    {
+      resolve: 'gatsby-source-strapi',
+      options: strapiConfig,
+    },
+    // ========================================================================== //
     //     Image compression
     // ========================================================================== //
     'gatsby-plugin-image',
@@ -64,7 +70,7 @@ module.exports = {
         stripMetadata: true,
         defaultQuality: 75,
         defaults: {
-          formats: ['webp', 'auto'],
+          formats: ['webp', 'auto', 'png', 'jpg'],
           placeholder: 'dominantColor',
           quality: 50,
           breakpoints: [750, 1080, 1366, 1920],
@@ -79,6 +85,7 @@ module.exports = {
       },
     },
     'gatsby-transformer-sharp',
+    'gatsby-transformer-remark',
     // ========================================================================== //
     //       Consume markdown from netlify
     // ========================================================================== //
@@ -164,6 +171,7 @@ module.exports = {
         allowList: [
           `DOMAIN_NAME`,
           `SERVER_PORT`,
+          `SERVER_URL`,
           `API_ENDPOINT`,
           `STRIPE_PUBLISHABLE_KEY`,
           `YOUTUBE_CHANNEL_ID,`,
@@ -195,13 +203,6 @@ module.exports = {
       options: {
         crossOrigin: 'use-credentials',
       },
-    },
-    // ========================================================================== //
-    // strapi CMS
-    // ========================================================================== //
-    {
-      resolve: 'gatsby-source-strapi',
-      options: strapiConfig,
     },
     // ========================================================================== //
     //     Optimization

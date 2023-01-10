@@ -1,12 +1,12 @@
-import axios from 'axios';
+import axios from 'axios'
 
-const baseUrl = `http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}${process.env.API_ENDPOINT}loom`;
+const baseUrl = `http://${process.env.SERVER_URL}${process.env.API_ENDPOINT}loom`
 
 async function createBooking(date) {
   try {
     // Set the date and time for the booking
-    const startDate = new Date(date);
-    const endDate = new Date(startDate.getTime() + 30 * 60 * 1000); // 30 minutes
+    const startDate = new Date(date)
+    const endDate = new Date(startDate.getTime() + 30 * 60 * 1000) // 30 minutes
 
     // Set the booking data
     const bookingData = {
@@ -27,12 +27,15 @@ async function createBooking(date) {
           last_name: 'Two',
         },
       ],
-    };
+    }
 
     // Make the API request to create the booking
-    const response = await axios.post(`${process.env.LOOM_API_URL}/bookings`,bookingData);
-    return response;
-  } catch (err){
+    const response = await axios.post(
+      `${process.env.LOOM_API_URL}/bookings`,
+      bookingData,
+    )
+    return response
+  } catch (err) {
     console.error(err)
   }
 }

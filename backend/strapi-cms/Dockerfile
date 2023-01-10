@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:14-alpine
 
 RUN mkdir /cms
 
@@ -11,6 +11,11 @@ COPY yarn.lock .
 COPY config/ config/
 COPY public/ public/
 COPY database/ database/
+COPY .env .
+COPY favicon.png .
+COPY README.md .
+COPY .editorconfig .
+
 
 RUN yarn install --ignore-engines --force
 

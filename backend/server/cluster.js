@@ -25,8 +25,8 @@ if (cluster.isMaster) {
   // In this case it is an HTTP server
   app.listen(process.env.SERVER_PORT, () =>
     console.log(`
-    HTTP server listening: http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}!\n
-    SWAGGER: http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}/api-docs!\n
+    HTTP server listening: http://${process.env.SERVER_URL}!\n
+    SWAGGER: http://${process.env.SERVER_URL}/api-docs!\n
 `),
   )
 
@@ -53,11 +53,11 @@ module.exports.handler = serverless(app, {
 // ========================================================================== //
 // Main server *redirects to https*
 // ========================================================================== //
-// app.all('*', (req, res) => res.redirect(`http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}`, 200));
+// app.all('*', (req, res) => res.redirect(`http://${process.env.SERVER_URL}`, 200));
 app.listen(process.env.SERVER_PORT, () =>
   console.log(`
-    HTTP server listening: http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}!\n
-    SWAGGER: http://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}/api-docs!\n
+    HTTP server listening: http://${process.env.SERVER_URL}!\n
+    SWAGGER: http://${process.env.SERVER_URL}/api-docs!\n
 `),
 )
 
@@ -70,5 +70,5 @@ app.listen(process.env.SERVER_PORT, () =>
 //   key: fs.readFileSync(path.join(process.cwd(), 'netlify/functions/src/', 'server.key')),
 //   cert: fs.readFileSync(path.join(process.cwd(), 'netlify/functions/src/', 'server.cert')),
 // }, app);
-// app.all('*', (req, res) => res.redirect(`https://${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}`, 200));
+// app.all('*', (req, res) => res.redirect(`https://${process.env.SERVER_URL}`, 200));
 // httpsServer.listen(443, () => console.log('HTTPS server listening: https://localhost:443'));

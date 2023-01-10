@@ -3,10 +3,10 @@ FROM node:18-alpine as nodejs-app
 
 RUN npm i -g cross-env
 RUN npm i -g pm2
+
 RUN yarn add global cross-env
 RUN yarn add global pm2
-run apk add yarn
-# run apk add 
+# run apk add yarn
 
 RUN mkdir /server
 
