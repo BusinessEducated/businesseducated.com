@@ -11,7 +11,7 @@ COPY yarn.lock .
 COPY config/ config/
 COPY public/ public/
 COPY database/ database/
-COPY .env .
+# COPY .env .
 COPY favicon.png .
 COPY README.md .
 COPY .editorconfig .
