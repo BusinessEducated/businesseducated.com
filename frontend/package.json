@@ -81,7 +81,7 @@
     "ddev": "docker run -p 8000:8000 businesseducated-com",
     "debug": "set DEBUG=* gatsby develop --host 0.0.0.0",
     "ndev": "netlify env:import ../.env.development && netlify dev",
-    "nbuild": "netlify env:import ../.env.development && netlify dev",
+    "nbuild": "netlify env:import ../.env.production && netlify dev",
     "fix": "npm run fix:lint && npm run fix:prettier",
     "build": "cross-env NODE_ENV=production gatsby build",
     "dev-build": "cross-env NODE_ENV=development gatsby build",
