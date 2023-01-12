@@ -158,6 +158,29 @@ function IndexPage({ data }) {
       </section>
 
       <section className="bg-red">
+        <div className="w-full h-full bg-black">
+          <div className="mx-auto max-w-3xl text-left py-28">
+            <h2 className="font-bold tracking-tight text-white sm:text-5xl text-4xl mb-6">
+              Welcome to Business Educated 🎯
+            </h2>
+            <p className="mt-4 text-white text-left">
+              there has never been so much access to information in the world
+              than rights now, the challenges the world faces currently leave
+              many skilled and valuable people without effective compensation,
+              capitalism rewards the bold, so why not explore the wealth of
+              business related courses, podcasts with people not unlike yourself
+              who are making an active effort to make their dreams a reality,
+              its not all rainbows and ponies, but in a world of chaos education
+              is our best weapon to compete in an ever evolving landscape, \n to
+              provide a plethora of free information is our main focus, to help
+              equip learners with the practical fundamental basics of building
+              and maintaining a business \n here we want to show than anybody
+              can do it, with the right tools every individual has the power to
+              take control of their destiny
+            </p>
+          </div>
+        </div>
+
         <Feature
           features={[
             {
@@ -175,15 +198,16 @@ function IndexPage({ data }) {
                 'Detail of zipper pull with tan leather and silver rivet.',
             },
           ]}
-          headline={{
-            title: 'Welcome to Business Educated',
-            description: `there has never been so much access to information in the world than rights now, the challenges the world faces currently leave many skilled and valuable people without effective compensation, capitalism rewards the bold, so why not explore the wealth of business related courses, podcasts with people not unlike yourself who are making an active effort to make their dreams a reality, its not all rainbows and ponies, but in a world of chaos education is our best weapon to compete in an ever evolving landscape,  \n to provide a plethora of free information is our main focus, to help equip learners with the practical fundamental basics of building and maintaining a business \n here we want to show than anybody can do it, with the right tools every individual has the power to take control of their destiny`,
-          }}
+          // headline={{
+          //   title: 'Welcome to Business Educated',
+          //   description: `there has never been so much access to information in the world than rights now, the challenges the world faces currently leave many skilled and valuable people without effective compensation, capitalism rewards the bold, so why not explore the wealth of business related courses, podcasts with people not unlike yourself who are making an active effort to make their dreams a reality, its not all rainbows and ponies, but in a world of chaos education is our best weapon to compete in an ever evolving landscape,  \n to provide a plethora of free information is our main focus, to help equip learners with the practical fundamental basics of building and maintaining a business \n here we want to show than anybody can do it, with the right tools every individual has the power to take control of their destiny`,
+          // }}
         />
       </section>
 
       <section className="border-gray-100 border-t-2 rounded-md border-b-2 mx-auto max-w-2xl my-12 md:max-w-7xl">
         <TightGrid
+          dark={true}
           actions={[
             {
               title: 'Consultation',
@@ -264,6 +288,12 @@ export const query = graphql`
             date(formatString: "DD/MM/YYYY")
             tags
             category
+            thumbnail {
+              localFile {
+                absolutePath
+                url
+              }
+            }
           }
           seo {
             metaTitle

@@ -161,6 +161,7 @@ function classNames2(...classes) {
 }
 
 export const TightGrid = ({
+  dark = false,
   actions = [
     {
       title: 'Request time off',
@@ -216,11 +217,11 @@ export const TightGrid = ({
             <div
               key={title}
               className={classNames2(
-                actionIdx === 0 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none' : '',
-                actionIdx === 1 ? 'sm:rounded-tr-lg' : '',
-                actionIdx === actions.length - 2 ? 'sm:rounded-bl-lg' : '',
-                actionIdx === actions.length - 1 ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none' : '',
-                'relative group bg-white ring-gray-200 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-red-500',
+                actionIdx === 0 ? 'rounded-tl-lg rounded-tr-xl sm:rounded-tr-none' : '',
+                actionIdx === 1 ? 'sm:rounded-tr-xl' : '',
+                actionIdx === actions.length - 2 ? 'sm:rounded-bl-xl' : '',
+                actionIdx === actions.length - 1 ? 'rounded-bl-xl rounded-br-xl sm:rounded-bl-none' : '',
+                `relative group ${dark && 'bg-black text-white' || 'bg-white text-gray' } ring-gray-200 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-red-500`,
               )}
             >
               <div>
@@ -242,14 +243,14 @@ export const TightGrid = ({
                     {title}
                   </a>
                 </h3>
-                <p className="mt-2 text-sm text-gray-500">
+                <p className={`mt-2 text-sm ${dark && 'text-gray-400' || 'text-gray-500'}`}>
                   Doloribus dolores nostrum quia qui natus officia quod et
                   dolorem. Sit repellendus qui ut at blanditiis et quo et
                   molestiae.
                 </p>
               </div>
               <span
-                className="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400"
+                className={`pointer-events-none absolute top-6 right-6 ${dark && 'text-white' || 'text-gray-300' } group-hover:text-gray-400`}
                 aria-hidden="true"
               >
                 <svg

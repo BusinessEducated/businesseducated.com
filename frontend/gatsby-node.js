@@ -1,79 +1,8 @@
-const path = require('path')
-
-// exports.createPages = async ({ graphql, actions, reporter }) => {
-//   const { createPage } = actions
-
-//   // Define a template for blog post
-//   const articlePost = path.resolve("./src/templates/article-post.js")
-
-//   const result = await graphql(
-//     `
-//       {
-//         allStrapiArticle {
-//           nodes {
-//             title
-//             slug
-//           }
-//         }
-//       }
-//     `
-//   )
-
-//   if (result.errors) {
-//     reporter.panicOnBuild(
-//       `There was an error loading your Strapi articles`,
-//       result.errors
-//     )
-
-//     return
-//   }
-
-//   const articles = result.data.allStrapiArticle.nodes
-
-//   if (articles.length > 0) {
-//     articles.forEach((article) => {
-//       createPage({
-//         path: `/article/${article.slug}`,
-//         component: articlePost,
-//         context: {
-//           slug: article.slug,
-//         },
-//       })
-//     })
-//   }
-// }
-
-// query MyQuery {
-//   allStrapiBlogPost {
-//     edges {
-//       node {
-//         id
-//         post {
-//           content {
-//             data {
-//               id
-//             }
-//           }
-//           date(formatString: "DD/MM/YYYY")
-//           tags
-//           category
-//         }
-//       }
-//       next {
-//         id
-//       }
-//       previous {
-//         id
-//       }
-//     }
-//   }
-// }
-
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-throw-literal */
 /* eslint-disable no-plusplus */
-const pth = require('path')
+const path = require('path')
 const chunk = require('lodash/chunk')
 const _ = require('lodash')
 
@@ -138,8 +67,8 @@ const { date } = require('yup')
 //         path: getPagePath(pageNumber),
 
 //         // use the blog post archive template as the page component
-//         // component: pth.resolve('./src/template/blog-post-archive.jsx'),
-//         component: pth.resolve('./src/template/project-template.jsx'),
+//         // component: path.resolve('./src/template/blog-post-archive.jsx'),
+//         component: path.resolve('./src/template/project-template.jsx'),
 
 //         // `context` is available in the template as a prop and
 //         // as a variable in GraphQL.
@@ -196,6 +125,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
                             date(formatString: "DD/MM/YYYY")
                             tags
                             category
+                            thumbnail {
+                              localFile {
+                                absolutePath
+                                url
+                              }
+                            }
                         }
                         seo {
                             metaTitle
@@ -267,63 +202,63 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   // Build pages
-  await buildPageFromQuery(1000, pth.resolve('src/template/blog.js')) // build project pages
+  await buildPageFromQuery(1000, path.resolve('src/template/blog.js')) // build project pages
 }
 
 // webpack configuration
-exports.onCreateWebpackConfig = ({
-  stage,
-  rules,
-  loaders,
-  plugins,
-  actions,
-}) => {
-  actions.setWebpackConfig({
-    devtool:
-      process.env.NODE_ENV === 'development'
-        ? 'eval' /** 'eval-source-map' */
-        : process.env.NODE_ENV === 'devbuild'
-        ? 'source-map'
-        : 'hidden-source-map', // for debugging processes, production debug with source-map, source-map for most efficient production buildz
-    resolve: {
-      extensions: [
-        '.mjs',
-        '.js',
-        '.jsx',
-        '.json',
-        '.gltf',
-        '.png',
-        '.jpg',
-        '.jpeg',
-        '.gif',
-        '.svg',
-        '.otf',
-      ],
-    },
-    module: {
-      rules: [
-        { test: /\.(glb|gltf)$/i, use: 'file-loader' }, // or gltf-webpack-loader
-        { test: /react-hot-loader/, use: [loaders.js()] },
-        {
-          test: /\.(pdf|gif|svg|json|png|jpg)$/,
-          use: 'file-loader?name=[path][name].[ext]',
-          include: pth.resolve(__dirname, 'static/assets'),
-        },
-        {
-          test: /\.mjs$/,
-          include: /node_modules/,
-          type: 'javascript/auto',
-        },
-      ],
-    },
-    plugins: [],
-    // externals: [ nodeExternals() ],
-    resolve: {
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.png', '.jpg'],
-      symlinks: true,
-    },
-  })
-}
+// exports.onCreateWebpackConfig = ({
+//   stage,
+//   rules,
+//   loaders,
+//   plugins,
+//   actions,
+// }) => {
+//   actions.setWebpackConfig({
+//     devtool:
+//       process.env.NODE_ENV === 'development'
+//         ? 'eval' /** 'eval-source-map' */
+//         : process.env.NODE_ENV === 'devbuild'
+//         ? 'source-map'
+//         : 'hidden-source-map', // for debugging processes, production debug with source-map, source-map for most efficient production buildz
+//     resolve: {
+//       extensions: [
+//         '.mjs',
+//         '.js',
+//         '.jsx',
+//         '.json',
+//         '.gltf',
+//         '.png',
+//         '.jpg',
+//         '.jpeg',
+//         '.gif',
+//         '.svg',
+//         '.otf',
+//       ],
+//     },
+//     module: {
+//       rules: [
+//         { test: /\.(glb|gltf)$/i, use: 'file-loader' }, // or gltf-webpack-loader
+//         { test: /react-hot-loader/, use: [loaders.js()] },
+//         {
+//           test: /\.(pdf|gif|svg|json|png|jpg)$/,
+//           use: 'file-loader?name=[path][name].[ext]',
+//           include: path.resolve(__dirname, 'static/assets'),
+//         },
+//         {
+//           test: /\.mjs$/,
+//           include: /node_modules/,
+//           type: 'javascript/auto',
+//         },
+//       ],
+//     },
+//     plugins: [],
+//     // externals: [ nodeExternals() ],
+//     resolve: {
+//       extensions: ['.js', '.jsx', '.ts', '.tsx', '.png', '.jpg'],
+//       symlinks: true,
+//     },
+//   })
+// }
 //   const posts = result.data.allMarkdownRemark.edges;
 //   posts.forEach(async ({ node }, i) => {
 //     // calculate which posts are previous and next
@@ -463,7 +398,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
 
   const typeDefs = `
-    type strapiBlogPosts implements Node {
+    type allStrapiBlogPost implements Node {
       toc: JSON
       post: JSON
     }

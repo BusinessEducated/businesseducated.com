@@ -234,20 +234,25 @@ export const Feature = ({
     },
   ],
   headline = {
-    title: 'Protect your device',
-    description: `As a digital creative, your laptop or tablet is at the center of your work. Keep your device safe with a
-            fabric sleeve that matches in quality and looks.`,
+    // title: 'Protect your device',
+    // description: `As a digital creative, your laptop or tablet is at the center of your work. Keep your device safe with a
+    //         fabric sleeve that matches in quality and looks.`,
   },
 }) => {
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-2xl py-24 px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
-        <div className="mx-auto max-w-3xl text-center mb-6">
-          <h2 className="font-bold tracking-tight text-gray-900 sm:text-5xl text-4xl mb-6">
-            {headline.title}
-          </h2>
-          <p className="mt-4 text-gray-500 text-left">{headline.description}</p>
-        </div>
+      <div className="mx-auto max-w-2xl py-12 px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
+        {headline?.title ||
+          (headline?.description && (
+            <div className="mx-auto max-w-3xl text-center mb-36">
+              <h2 className="font-bold tracking-tight text-gray-900 sm:text-5xl text-4xl mb-6">
+                {headline.title}
+              </h2>
+              <p className="mt-4 text-gray-500 text-left">
+                {headline.description}
+              </p>
+            </div>
+          ))}
 
         <div className="mt-16 space-y-16">
           {features.map(
@@ -356,7 +361,7 @@ export const FeatureRow = ({
   return (
     features.length > 0 && (
       <div className="bg-white">
-        <div className="mx-auto max-w-2xl py-24 px-4 sm:py-32 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div className="mx-auto max-w-2xl py-12 px-4 sm:py-12 sm:px-6 lg:max-w-7xl lg:px-8">
           <div className="max-w-3xl">
             {headline.subTitle && (
               <h2 id="features4-heading" className="font-medium text-gray-500">
@@ -471,16 +476,16 @@ export const FeatureRowCol = ({
 }) => {
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-2xl pb-12 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-        <div className="flex flex-wrap gap-4 flex-row items-center  gap-x-6  lg:gap-x-8">
+      <div className="mx-auto max-w-2xl pb-12 lg:max-w-7xl">
+        <div className="flex justify-center flex-wrap gap-4 flex-row items-center gap-x-6 lg:gap-x-8">
           {features.map(
             ({ href, date, tags, imageAlt, imageSrc, name, description }) => (
               <Link
                 to={href || ''}
                 key={name + imageSrc}
-                className="flex flex-col-reverse"
+                className="flex flex-col-reverse w-full"
               >
-                <div className="mb-6">
+                <div className="mb-6 w-full">
                   <h3 className="text-sm font-medium text-gray-900">{name}</h3>
                   {date && (
                     <time
@@ -493,7 +498,7 @@ export const FeatureRowCol = ({
                     tags.forEach((tag) => <SmallBadge>{tag}</SmallBadge>)
                   } */}
                 </div>
-                <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100">
+                <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 w-full">
                   <img
                     src={imageSrc}
                     alt={imageAlt}

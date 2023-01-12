@@ -234,8 +234,8 @@ export const Checkout = ({
                   disabled={!agreed}
                 />
 
-                <div className="sm:col-span-2 my-6">
-                  <div className="flex items-start">
+                <div className="sm:col-span-2 my-6 flex-nowrap flex">
+                  <div className="flex items-start flex-nowrap">
                     <div className="flex-shrink-0">
                       <Switch
                         checked={agreed}
@@ -256,7 +256,7 @@ export const Checkout = ({
                       </Switch>
                     </div>
                   </div>
-                  <div className="ml-3">
+                  <div className="ml-3 w-full">
                     <p className="text-base text-gray-500">
                       By selecting this, you agree to the{' '}
                       <Link

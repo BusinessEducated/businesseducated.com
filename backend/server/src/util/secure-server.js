@@ -66,16 +66,17 @@ const secureServer = (
     app.use(cors(corsOptions))
 
     //manual testing of cors below
-    // app.use(function (req, res, next) {
-    //   res.header('Access-Control-Allow-Origin', whitelist.join(', '))
-    //   res.header('Access-Control-Allow-Credentials', 'true')
-    //   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
-    //   res.header(
-    //     'Access-Control-Allow-Headers',
-    //     'Origin, X-Requested-With, Content-Type, Accept, My-Custom-Header',
-    //   )
-    //   next()
-    // })
+    // if (process.env.NODE_ENV === 'development')
+    //   app.use(function (req, res, next) {
+    //     res.header('Access-Control-Allow-Origin', '*')
+    //     res.header('Access-Control-Allow-Credentials', 'true')
+    //     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+    //     res.header(
+    //       'Access-Control-Allow-Headers',
+    //       'Origin, X-Requested-With, Content-Type, Accept, My-Custom-Header',
+    //     )
+    //     next()
+    //   })
   }
   // Enable HTTPS
   if (enable.https) {

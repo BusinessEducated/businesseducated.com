@@ -10,7 +10,7 @@ export const reShapeData = (data) =>
     category: node?.post?.category || 'other',
     name: node?.seo[0]?.metaTitle || '',
     description: node?.post?.excerpt || '',
-    imageSrc: '',
+    imageSrc: node?.post?.thumbnail?.localFile?.url,
     imageAlt: '',
     // metaRobots: node?.seo[0]?.metaRobots,
     keywords: node?.seo[0]?.keywords || [],

@@ -17,8 +17,34 @@ const strapiConfig = {
   apiURL: process.env.STRAPI_API_URL,
   accessToken: process.env.STRAPI_TOKEN,
   collectionTypes: [
-    'blog-post',
-    'pricing-page',
+    {
+      singularName: 'blog-post',
+      queryParams: {
+        // publicationState: process.env.GATSBY_IS_PREVIEW === "true" ? "preview" : "live",
+        populate: {
+          seo: { populate: '*' },
+          thumbnail: { populate: '*' },
+          post: { populate: '*' },
+          blocks: {
+            populate: '*',
+          },
+        },
+      },
+    },
+    {
+      singularName: 'pricing-page',
+      queryParams: {
+        // publicationState: process.env.GATSBY_IS_PREVIEW === "true" ? "preview" : "live",
+        populate: {
+          seo: { populate: '*' },
+          thumbnail: { populate: '*' },
+          post: { populate: '*' },
+          blocks: {
+            populate: '*',
+          },
+        },
+      },
+    },
     'landing-page',
     'booking-page',
     'project-post',
@@ -174,7 +200,8 @@ module.exports = {
           `SERVER_URL`,
           `API_ENDPOINT`,
           `STRIPE_PUBLISHABLE_KEY`,
-          `YOUTUBE_CHANNEL_ID,`,
+          `YOUTUBE_CHANNEL_ID`,
+          `STRAPI_API_URL`,
         ],
       },
     },

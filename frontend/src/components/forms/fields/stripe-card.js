@@ -17,18 +17,35 @@ import Button from '../../button'
 const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY)
 const baseUrl = `http://${process.env.SERVER_URL}${process.env.API_ENDPOINT}stripe`
 
-export default function App({ children, handleCheckout, disabled }) {
+export default function App({
+  children,
+  handleCheckout,
+  disabled,
+  consultantName = 'Aiden Faulconer',
+}) {
   const [clientSecret, setClientSecret] = useState('')
 
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    axios(`${baseUrl}/create-payment-intent`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: [{ id: 'xl-tshirt' }] }),
-    }).then(({ data: { clientSecret } }) => {
-      setClientSecret(clientSecret)
+    const headers = {
+      'sec-fetch-mode': null,
+      'sec-fetch-site': null,
+      'Access-Control-Allow-Methods': null, //important, only the server has the privilege of using these headers
+      'Access-Control-Allow-Origin': null, //important, only the server has the privilege of using these headers
+      'Content-Type': 'application/json',
+    }
+    const data = JSON.stringify({
+      items: [{ id: `consultation-${consultantName}` }],
     })
+
+    // Create PaymentIntent as soon as the page loads
+    axios
+      .post(`${baseUrl}/create-payment-intent`, data, {
+        // method: 'POST',
+        headers,
+      })
+      .then(({ data: { clientSecret } }) => {
+        setClientSecret(clientSecret)
+      })
   }, [])
 
   const appearance = {

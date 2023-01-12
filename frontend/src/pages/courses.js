@@ -10,6 +10,7 @@ import { PlayIcon } from '@heroicons/react/24/outline'
 import COURSE_JOURNEY from '../../static/assets/course-journey.png'
 import { ContactForm } from '../components/forms/contact'
 import PageBanner from '../layout/page-banner'
+import COURSE_DEFAULT_IMAGE from '../../static/assets/courses.png'
 
 function IndexPage() {
   // const { site } = useStaticQuery(graphql`
@@ -53,7 +54,7 @@ function IndexPage() {
             {
               name: 'Psycology Course',
               description: 'Coming Soon! 📚',
-              imageSrc: '',
+              imageSrc: COURSE_DEFAULT_IMAGE,
               imageAlt: '',
               // href: "",
               // tags: [],
@@ -61,7 +62,7 @@ function IndexPage() {
             {
               name: 'Psycology Course',
               description: 'Coming Soon! 📚',
-              imageSrc: '',
+              imageSrc: COURSE_DEFAULT_IMAGE,
               imageAlt: '',
               // href: "",
               // tags: [],
@@ -69,7 +70,7 @@ function IndexPage() {
             {
               name: 'Software Course',
               description: 'Coming Soon! 📚',
-              imageSrc: '',
+              imageSrc: COURSE_DEFAULT_IMAGE,
               imageAlt: '',
               // href: "",
               // tags: [],
@@ -77,7 +78,7 @@ function IndexPage() {
             {
               name: 'Sales Course',
               description: 'Coming Soon! 📚',
-              imageSrc: '',
+              imageSrc: COURSE_DEFAULT_IMAGE,
               imageAlt: '',
               // href: "",
               // tags: [],
@@ -85,7 +86,7 @@ function IndexPage() {
             {
               name: 'Power Course',
               description: 'Coming Soon! 📚',
-              imageSrc: '',
+              imageSrc: COURSE_DEFAULT_IMAGE,
               imageAlt: '',
               // href: "",
               // tags: [],
@@ -93,7 +94,7 @@ function IndexPage() {
             {
               name: 'Marketing Course',
               description: 'Coming Soon! 📚',
-              imageSrc: '',
+              imageSrc: COURSE_DEFAULT_IMAGE,
               imageAlt: '',
               // href: "",
               // tags: [],
@@ -101,7 +102,7 @@ function IndexPage() {
             {
               name: 'Graphic Design Course',
               description: 'Coming Soon! 📚',
-              imageSrc: '',
+              imageSrc: COURSE_DEFAULT_IMAGE,
               imageAlt: '',
               // href: "",
               // tags: [],

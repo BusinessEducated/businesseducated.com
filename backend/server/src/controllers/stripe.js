@@ -44,7 +44,7 @@ const calculateOrderAmount = (items) => {
   // Replace this constant with a calculation of the order's amount
   // Calculate the order total on the server to prevent
   // people from directly manipulating the amount on the client
-  return 1400
+  return 16000 //160$
 }
 
 router.post('/create-payment-intent', async (req, res) => {
@@ -62,6 +62,7 @@ router.post('/create-payment-intent', async (req, res) => {
   console.log(paymentIntent)
 
   res.send({
+    status: 200,
     clientSecret: paymentIntent.client_secret,
   })
 })

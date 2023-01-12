@@ -83,7 +83,7 @@ export const BlogTemplate = ({
   const socials = [
     {
       name: 'Facebook',
-      href: '#',
+      href: 'https://www.facebook.com/businesseducated',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -96,7 +96,7 @@ export const BlogTemplate = ({
     },
     {
       name: 'Instagram',
-      href: '#',
+      href: 'https://www.instagram.com/businesseducated/',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -109,17 +109,23 @@ export const BlogTemplate = ({
     },
     {
       name: 'Linkedin',
-      href: '#',
+      href: 'https://linkedin.com/company/businesseducated',
       icon: (props) => (
-        <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
-          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+        <svg
+          fill="currentColor"
+          {...props}
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M19 3C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19ZM18.5 18.5V13.2C18.5 12.3354 18.1565 11.5062 17.5452 10.8948C16.9338 10.2835 16.1046 9.94 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17C14.6813 12.17 15.0374 12.3175 15.2999 12.5801C15.5625 12.8426 15.71 13.1987 15.71 13.57V18.5H18.5ZM6.88 8.56C7.32556 8.56 7.75288 8.383 8.06794 8.06794C8.383 7.75288 8.56 7.32556 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19C6.43178 5.19 6.00193 5.36805 5.68499 5.68499C5.36805 6.00193 5.19 6.43178 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56ZM8.27 18.5V10.13H5.5V18.5H8.27Z"
+            fill="black"
+            fillOpacity="0.6"
+          />
         </svg>
       ),
-    },
-    {
-      name: '',
-      href: '#',
-      icon: (props) => {},
     },
   ]
   console.log(post)
@@ -141,29 +147,31 @@ export const BlogTemplate = ({
   return (
     <Layout>
       <SEO
-        title={seo?.metaTitle || ''}
-        keywords={seo?.keywords || []}
-        description={seo?.metaDescription || 'loreum ipsum'}
+        title={seo[0]?.metaTitle || ''}
+        keywords={seo[0]?.keywords || []}
+        description={seo[0]?.metaDescription || 'loreum ipsum'}
       />
-      <div className="flex space-x-6 md:order-2 mt-32 w-full px-4 sm:px-6 lg:px-8 justify-end">
-        {/* <ContentAudioPlayer content={parsedContent} /> */}
-        {/* {post.tags.map((tag) => ( */}
-        <LargeBadge>{post.tags}</LargeBadge>
-        {/* ))} */}
-        {socials.map((item) => (
-          <a
-            key={item.name}
-            href={item.href}
-            className="text-gray-500 hover:text-gray-500"
-          >
-            <span className="sr-only">{item.name}</span>
-            <item.icon className="h-6 w-6" aria-hidden="true" />
-          </a>
-        ))}
-      </div>
-
-      <article className="grid grid-cols-10 sm:divide-x xs:divide-none divide-gray-500 mt-12">
-        <section className="md:col-span-8 col-span-12 px-4 sm:px-6 lg:px-8 border-t border-gray-500">
+      <br className="mt-14" />
+      <article className="grid grid-cols-10 sm:divide-x xs:divide-none divide-gray-300">
+        <section className="md:col-span-8 col-span-12 px-4 sm:px-6 lg:px-8 border-t border-gray-300">
+          <div className="flex flex-start gap-6 flex-col flex-nowrap my-4 border-b border-gray-300 py-6">
+            {/* post thumbnail */}
+            <img
+              src={post.thumbnail.localFile.url}
+              className="w-auto object-contain aspect-1 md:max-h-[600px] max-h-[500px] md:order-0 order-1"
+            />
+            {/* post meta */}
+            <div className="md:order-1 order-0 relative">
+              <h1 className="text-xl">{seo[0]?.metaTitle}</h1>
+              <p>{seo[0]?.metaDescription}</p>
+            </div>
+            {/* tags */}
+            <div>
+              {/* {post.tags.map((tag) => ( */}
+              <LargeBadge>{post.tags}</LargeBadge>
+              {/* ))} */}
+            </div>
+          </div>
           {parsedContent.map((htmlBlock) => (
             <div
               className="relative mb-12"
@@ -172,15 +180,33 @@ export const BlogTemplate = ({
           ))}
         </section>
 
-        <section className="md:col-span-4 col-span-12 px-4 sm:px-6 lg:px-8 border-t border-gray-500">
-          <h4 className="font-bold tracking-tight text-gray-700 text-left">
-            More from business educated
-          </h4>
-          <FeatureRowCol features={blogPosts} />
+        <section className="md:col-span-4 col-span-12  border-t border-gray-300 items-center">
+          {/* socials */}
+          <div className="flex space-x-6 md:order-2 mt-20 w-full justify-start border-b border-gray-300 p-6">
+            {/* <ContentAudioPlayer content={parsedContent} /> */}
+            {socials.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-gray-500 hover:text-gray-500"
+              >
+                <span className="sr-only">{item.name}</span>
+                <item.icon className="h-6 w-6" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+
+          <div className="px-4 sm:px-6 lg:px-8">
+            {/* more posts */}
+            <h4 className="font-bold tracking-tight text-gray-700 text-left my-6">
+              More from business educated
+            </h4>
+            <FeatureRowCol features={blogPosts} />
+          </div>
         </section>
 
         <section className="col-span-12  border-none">
-          <article className="border-t border-gray-500">
+          <article className="border-t border-gray-300">
             <FeatureRow
               features={nextPrevPosts}
               headline={{
@@ -210,6 +236,12 @@ export const templatePageQuery = graphql`
             date(formatString: "DD/MM/YYYY")
             tags
             category
+            thumbnail {
+              localFile {
+                absolutePath
+                url
+              }
+            }
           }
           seo {
             metaTitle
@@ -226,6 +258,12 @@ export const templatePageQuery = graphql`
             date(formatString: "DD/MM/YYYY")
             tags
             category
+            thumbnail {
+              localFile {
+                absolutePath
+                url
+              }
+            }
           }
           seo {
             metaTitle
