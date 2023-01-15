@@ -21,7 +21,7 @@ router.post(
     check('lastName').isString().isLength({ min: 1 }),
     check('email').isString().isEmail().isLength({ min: 1 }),
     check('phone').isString().isLength({ min: 1 }),
-    check('comment').isString().isLength({ min: 1 }),
+    check('message').isString().isLength({ min: 1 }),
   ],
   async (req, res) => {
     try {
@@ -31,7 +31,7 @@ router.post(
         throw new Error('Invalid request body')
       }
 
-      const { firstName, lastName, email, phone, comment, tc } = req.body
+      const { firstName, lastName, email, phone, message, tc } = req.body
 
       // Send email to recipient
       await sendGmail(
@@ -50,7 +50,7 @@ router.post(
         // loadEmailTemplate('contactTemplate', {
         //   name: `${firstName} ${lastName}`,
         // }),
-        comment,
+        message,
         `Podcast Inquiry from ${firstName} ${lastName} ${getDate()}`,
         process.env.GMAIL_ADDRESS,
         process.env.GMAIL_ADDRESS,
@@ -59,7 +59,7 @@ router.post(
 
       // Add contact to spreadsheet
       await addToSpreadsheet(
-        { firstName, lastName, email, phone, comment },
+        { firstName, lastName, email, phone, message },
         process.env.PODCAST_SPREADSHEET_ID,
         'podcast',
       )
