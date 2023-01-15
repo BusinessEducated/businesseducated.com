@@ -9,7 +9,7 @@ const buildControllers = require('./util/build-controllers')
 const secureServer = require('./util/secure-server')
 const monitorServer = require('./util/monitor-server')
 const generateSwaggerApi = require('./util/build-services')
-
+const compression = require('compression')
 if (process.env.NODE_ENV === 'development') require('debug')('app:server')
 
 // const buildGraphqlSchemas = require('./util/build-graphql-schemas');
@@ -38,7 +38,7 @@ secureServer(app, {
 // Base Middleware
 // router.use(awsServerlessExpressMiddleware.eventContext())
 // app.use(morgan({ format: 'dev', immediate: true }));
-// router.use(compression());
+router.use(compression())
 app.use(bodyParser.urlencoded({ extended: false }))
 // app.use(bodyParser.json())
 app.use(express.json())
