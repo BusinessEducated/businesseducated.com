@@ -31,7 +31,7 @@ import { useStore } from '../../store/store'
 
 function CheckoutPage({ location }) {
   //TODO: dont use three sources of bookingData, we only need one
-  const urlParams = new URLSearchParams(window.location.search)
+  const urlParams = new URLSearchParams(typeof window !== 'undefined' && window.location.search)
   const bookingData =
     location?.state?.bookingData || JSON.parse(urlParams.get('bookingData'))
   const bookingForm = useStore((state) => state.bookingForm.form)

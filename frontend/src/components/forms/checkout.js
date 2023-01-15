@@ -34,7 +34,13 @@ export const Checkout = ({
   goBack = () => {},
 }) => {
   const [agreed, setAgreed] = useState(false)
-  const [bookingState, setBookingState] = useLocalStorage(`booking-state`, {})
+  const [bookingState, setBookingState] = useLocalStorage(`booking-state`, {
+    consultant: {
+      name: 'Aiden Faulconer',
+      rate: 150,
+      email: 'aidenf09@yshoo.com',
+    },
+  })
   const [paymentState, setPaymentState] = useLocalStorage(`payment-state`, {
     paymentIntent: '',
     redirectStatus: '',
@@ -126,7 +132,7 @@ export const Checkout = ({
                     disabled={agreed}
                     data={bookingState}
                     consultation={{
-                      name: bookingState.consultant.name,
+                      name: bookingState?.consultant?.name,
                       duration: bookingState.duration,
                     }}
                   />

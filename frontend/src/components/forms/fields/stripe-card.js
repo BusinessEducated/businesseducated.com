@@ -105,16 +105,18 @@ export const CheckoutForm = ({
   useEffect(() => {
     if (!stripe) return
 
-    const clientSecret = new URLSearchParams(window.location.search).get(
-      'payment_intent_client_secret',
-    )
+    const clientSecret = new URLSearchParams(
+      typeof window !== 'undefined' && window.location.search,
+    ).get('payment_intent_client_secret')
 
     if (!clientSecret) return
 
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       switch (paymentIntent.status) {
         case 'succeeded':
-          const urlParams = new URLSearchParams(window.location.search)
+          const urlParams = new URLSearchParams(
+            typeof window !== 'undefined' && window.location.search,
+          )
           //prettier-ignore
           const paymentIntentClientSecret = urlParams.get('payment_intent_client_secret')
           const paymentIntent = urlParams.get('payment_intent')
