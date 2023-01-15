@@ -82,10 +82,24 @@ const secureServer = (
   }
   // Enable HTTPS
   if (enable.https) {
-    const httpsOptions = {
-      key: fs.readFileSync('../certs/key.pem'),
-      cert: fs.readFileSync('../certs/cert.pem'),
-    }
+    let httpsOptions
+
+    //use certbot in production if needed
+    if (process.env.NODE_ENV === 'production')
+      httpsOptions = {
+        key: fs.readFileSync(
+          '/etc/letsencrypt/live/yourdomain.com/privkey.pem',
+        ),
+        cert: fs.readFileSync(
+          '/etc/letsencrypt/live/yourdomain.com/fullchain.pem',
+        ),
+      }
+    //manually create certificates to test in localhost
+    else
+      httpsOptions = {
+        key: fs.readFileSync('../certs/key.pem'),
+        cert: fs.readFileSync('../certs/cert.pem'),
+      }
     https.createServer(httpsOptions, app).listen(443)
   }
 
