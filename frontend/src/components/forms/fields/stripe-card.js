@@ -2,13 +2,15 @@ import {
   PaymentElement,
   LinkAuthenticationElement,
   useStripe,
+  Elements,
   useElements,
 } from '@stripe/react-stripe-js'
 import React, { useState, useEffect } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
-import { Elements } from '@stripe/react-stripe-js'
 import axios from 'axios'
 import Button from '../../button'
+import { useStore } from '../../../store/store'
+import { useLocalStorage } from '../../util/customHooks'
 // import './App.css'
 
 // Make sure to call loadStripe outside of a component’s render to avoid
@@ -17,24 +19,31 @@ import Button from '../../button'
 const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY)
 const baseUrl = `http://${process.env.SERVER_URL}${process.env.API_ENDPOINT}stripe`
 
-export default function App({
-  children,
-  handleCheckout,
-  disabled,
-  consultantName = 'Aiden Faulconer',
-}) {
+export default function StripeCard({ children, handleCheckout, disabled }) {
   const [clientSecret, setClientSecret] = useState('')
+  const [amount, setAmount] = useState(0)
+  const [bookingState, setBookingState] = useLocalStorage(`booking-state`, {
+    name: 'Aiden Faulconer',
+    duration: 1,
+  })
 
   useEffect(() => {
     const headers = {
       'sec-fetch-mode': null,
       'sec-fetch-site': null,
-      'Access-Control-Allow-Methods': null, //important, only the server has the privilege of using these headers
-      'Access-Control-Allow-Origin': null, //important, only the server has the privilege of using these headers
+      // 'Access-Control-Allow-Methods': null, //important, only the server has the privilege of using these headers
+      // 'Access-Control-Allow-Origin': null, //important, only the server has the privilege of using these headers
       'Content-Type': 'application/json',
     }
     const data = JSON.stringify({
-      items: [{ id: `consultation-${consultantName}` }],
+      items: [
+        {
+          id: `consultant-${bookingState.consultant?.name
+            ?.toLowerCase()
+            ?.replace(' ', '')}`,
+          duration: bookingState?.duration,
+        },
+      ],
     })
 
     // Create PaymentIntent as soon as the page loads
@@ -43,8 +52,9 @@ export default function App({
         // method: 'POST',
         headers,
       })
-      .then(({ data: { clientSecret } }) => {
+      .then(({ data: { clientSecret, amount, currency, status } }) => {
         setClientSecret(clientSecret)
+        setAmount(amount)
       })
   }, [])
 
@@ -63,37 +73,57 @@ export default function App({
     <div className="stripe-checkout">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm handleCheckout={handleCheckout} disabled={disabled} />
+          <CheckoutForm
+            amount={amount}
+            handleCheckout={handleCheckout}
+            disabled={disabled}
+            bookingData={bookingState}
+          />
         </Elements>
       )}
     </div>
   )
 }
 
-export const CheckoutForm = ({ handleCheckout, disabled }) => {
+export const CheckoutForm = ({
+  amount = 0,
+  handleCheckout,
+  disabled,
+  bookingData = {},
+}) => {
   const stripe = useStripe()
   const elements = useElements()
-
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [paymentState, setPaymentState] = useLocalStorage(`payment-state`, {
+    paymentIntent: '',
+    redirectStatus: '',
+    paymentIntentClientSecret: '',
+  })
 
   useEffect(() => {
-    if (!stripe) {
-      return
-    }
+    if (!stripe) return
 
     const clientSecret = new URLSearchParams(window.location.search).get(
       'payment_intent_client_secret',
     )
 
-    if (!clientSecret) {
-      return
-    }
+    if (!clientSecret) return
 
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       switch (paymentIntent.status) {
         case 'succeeded':
+          const urlParams = new URLSearchParams(window.location.search)
+          //prettier-ignore
+          const paymentIntentClientSecret = urlParams.get('payment_intent_client_secret')
+          const paymentIntent = urlParams.get('payment_intent')
+          const redirectStatus = urlParams.get('redirect_status') || 'none'
+          setPaymentState({
+            paymentIntent,
+            redirectStatus,
+            paymentIntentClientSecret,
+          })
           setMessage('Payment succeeded!')
           break
         case 'processing':
@@ -120,11 +150,18 @@ export const CheckoutForm = ({ handleCheckout, disabled }) => {
 
     setIsLoading(true)
 
+    const redirectUrl =
+      process.env.NODE_ENV === 'development'
+        ? //prettier-ignore
+          `http://localhost:8000/booking/checkout`
+        : //prettier-ignore
+          `https://${process.env.DOMAIN_NAME}/booking/checkout`
+
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `https://${process.env.DOMAIN_NAME}:${process.env.APP_PORT}/booking/checkout`,
+        return_url: redirectUrl,
       },
     })
 
@@ -141,6 +178,15 @@ export const CheckoutForm = ({ handleCheckout, disabled }) => {
 
     setIsLoading(false)
   }
+
+  const formatCurrency = React.useCallback(
+    (amount) => {
+      return (
+        '$' + (amount / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
+      )
+    },
+    [amount],
+  )
 
   const paymentElementOptions = {
     layout: 'tabs',
@@ -159,17 +205,17 @@ export const CheckoutForm = ({ handleCheckout, disabled }) => {
       />
 
       <div className="border-t border-gray-200 py-6">
-        <button
-          onClick={handleCheckout}
-          className="w-full rounded-md border border-transparent bg-red-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+        <Button
+          onClick={handleSubmit}
+          className="w-full rounded-md border border-transparent bg-red-600 py-3 px-4 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50"
           disabled={disabled || isLoading || !stripe || !elements}
           id="submit"
         >
-          Confirm Order
+          Confirm Order {formatCurrency(amount)}
           <span id="button-text">
             {isLoading && <div className="spinner" id="spinner"></div>}
           </span>
-        </button>
+        </Button>
       </div>
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
