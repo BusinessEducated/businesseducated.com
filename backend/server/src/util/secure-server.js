@@ -52,8 +52,8 @@ const secureServer = (
     const whitelist = JSON.parse(process.env.CORS_WHITELIST).whitelist
     const corsOptions = {
       origin: function (origin, callback) {
-        if (process.env.NODE_ENV === 'development')
-          console.info(origin, whitelist.indexOf(origin), whitelist)
+        // if (process.env.NODE_ENV === 'development')
+        console.info(origin, whitelist.indexOf(origin), whitelist)
 
         if (whitelist.indexOf(origin) !== -1) callback(null, true)
         else callback(new Error('Not allowed by CORS'))
