@@ -7,7 +7,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 function WordFinder() {
   const [result, setResult] = useState('')
-  const [letters, setLetters] = useState('scrabble'.split(''))
+  const [letters, setLetters] = useState('your letters')
   const [maxSize, setMaxSize] = useState(7)
   const [words, setWords] = useState(['', ''])
 
@@ -131,22 +131,22 @@ function WordFinder() {
   return (
     <div className="min-h-[600px] max-w-4xl mx-auto w-full flex flex-col justify-center items-center gap-5 p-12">
       <div className="w-full relative shadow-md rounded-2xl p-6 bg-gray-50 flex flex-col gap-4 items-center justify-center">
-        <div className="w-full relative shadow-md rounded-2xl p-6 bg-gray-50 flex flex-row gap-4 items-center justify-center">
-          <label className="flex text-sm font-medium text-gray-700 gap-1 mb-2">
+        <div className="w-full relative shadow-md rounded-2xl p-6 bg-white flex flex-col gap-4 items-center justify-center">
+          <label className="w-full flex text-sm font-medium text-gray-700 gap-1 mb-2">
             Letters
           </label>
           <input
-            className="flex text-sm font-medium text-gray-700 gap-1 mb-2 rounded-md"
+            className="flex text-sm font-medium text-gray-700 gap-1 mb-2 rounded-md w-full"
             type="text"
             value={letters}
             placeholder="scrabble"
             onChange={(e) => setLetters(e.target.value)?.split('')}
           />
-          <label className="flex text-sm font-medium text-gray-700 gap-1 mb-2">
+          <label className="w-full flex text-sm font-medium text-gray-700 gap-1 mb-2">
             Max Length
           </label>
           <input
-            className="flex text-sm font-medium text-gray-700 gap-1 mb-2 rounded-md"
+            className="flex text-sm font-medium text-gray-700 gap-1 mb-2 rounded-md w-full"
             type="number"
             value={maxSize}
             onChange={(e) => setMaxSize(e.target.value)}
