@@ -19,7 +19,7 @@ function WordFinder() {
       const response = await fetch(dictionaryUrl)
       const data = await response.text()
       // split the text by newline characters to get an array of words
-      const words = data.split('\n', 5000000)
+      const words = data.split('\n', 22200000)
       return words
     } catch (error) {
       console.log(error)
