@@ -17,7 +17,7 @@ function classNames(...classes) {
 
 export const DynamicForm = ({
   method = 'POST',
-  action = '/api/',
+  action = `${process.env.SERVER_API_URL}podcast`,
   headline = {
     title: 'Join the podcast 🎙️',
     description: '',
