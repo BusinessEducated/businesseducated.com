@@ -9,7 +9,7 @@ export const ContactForm = () => {
       {/* form */}
       <DynamicForm
         method="POST"
-        action={`${SERVER_API_URL}contact`}
+        action={`${process.env.SERVER_API_URL}contact`}
         formName="contactForm"
         headline={{
           title: `Contact us`,

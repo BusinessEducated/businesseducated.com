@@ -1,4 +1,4 @@
-const baseUrl = `${SERVER_API_URL}zoom`
+const baseUrl = `${process.env.SERVER_API_URL}zoom`
 
 const getDurationInMinutes = (start, end) =>
   Math.abs(new Date(end) - new Date(start)) / 60000

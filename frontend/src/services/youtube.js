@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = `${SERVER_API_URL}youtube`
+const baseUrl = `${process.env.SERVER_API_URL}youtube`
 
 export const getVideosFromChannelByCategory = async (
   channelId,

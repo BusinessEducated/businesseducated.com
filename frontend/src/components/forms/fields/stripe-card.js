@@ -17,7 +17,7 @@ import { useLocalStorage } from '../../util/customHooks'
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
 const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY)
-const baseUrl = `${SERVER_API_URL}stripe`
+const baseUrl = `${process.env.SERVER_API_URL}stripe`
 
 export default function StripeCard({ children, handleCheckout, disabled }) {
   const [clientSecret, setClientSecret] = useState('')

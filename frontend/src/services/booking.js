@@ -1,3 +1,3 @@
-const baseUrl = `${SERVER_API_URL}booking`
+const baseUrl = `${process.env.SERVER_API_URL}booking`
 
 const makeBooking = async () => {}

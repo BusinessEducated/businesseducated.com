@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = `${SERVER_API_URL}loom`
+const baseUrl = `${process.env.SERVER_API_URL}loom`
 
 async function createBooking(date) {
   try {

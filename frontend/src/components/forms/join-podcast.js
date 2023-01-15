@@ -9,7 +9,7 @@ export const JoinPodcast = () => {
       {/* form */}
       <DynamicForm
         method="POST"
-        action={`${SERVER_API_URL}podcast`}
+        action={`${process.env.SERVER_API_URL}podcast`}
         formName={'podcastForm'}
         headline={{
           title: `Join the podcast`,
