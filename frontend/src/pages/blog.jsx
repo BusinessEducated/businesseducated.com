@@ -21,10 +21,11 @@ import { ContactForm } from '../components/forms/contact'
 import { TightGrid } from '../components/grid'
 import { ContentThreeRow } from '../components/content'
 import SubscribeNewsletter from '../components/subscribe-newsletter'
-import { useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import PageBanner from '../layout/page-banner'
+import { reShapeData } from '../components/util/data'
 
-function IndexPage() {
+function IndexPage({ data }) {
   //     const { site } = useStaticQuery(graphql`
   //     query DefaultBlogsQuery {
   //       site {
@@ -36,6 +37,12 @@ function IndexPage() {
   //       }
   //     }
   //   `);
+  useEffect(() => {
+    console.info('test ', data)
+    setBlogs(reShapeData(data.posts.edges))
+  }, [, data])
+
+  const [blogs, setBlogs] = useState([])
 
   const [search, setSearch] = useState('')
   const [searchResults, setSearchResults] = useState([])
@@ -63,7 +70,7 @@ function IndexPage() {
       />
 
       {/* Sidebar Search */}
-      <div className="mt-5 px-3">
+      {/* <div className="mt-5 px-3">
         <label htmlFor="search" className="sr-only">
           Search
         </label>
@@ -86,12 +93,12 @@ function IndexPage() {
             placeholder="Search"
           />
         </div>
-      </div>
+      </div> */}
 
       <section id="#courses">
-        <ContentThreeRow
-          categories={[]}
-          headline={{ title: '', description: '' }}
+        <FeatureRow
+          features={blogs}
+          headline={{ title: 'Blog', description: 'Read our content, succeed' }}
         />
       </section>
 
@@ -108,5 +115,32 @@ function IndexPage() {
     </Layout>
   )
 }
+
+export const query = graphql`
+  query {
+    posts: allStrapiBlogPost(sort: { updatedAt: ASC }, limit: 20) {
+      edges {
+        node {
+          id
+          post {
+            date(formatString: "DD/MM/YYYY")
+            tags
+            category
+            thumbnail {
+              localFile {
+                absolutePath
+                url
+              }
+            }
+          }
+          seo {
+            metaTitle
+            metaDescription
+          }
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage

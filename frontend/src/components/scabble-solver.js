@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { SmallBadge } from '../../badge'
 
 // function flattenArray(arr) {
 //   let flat = [].concat(...arr)
