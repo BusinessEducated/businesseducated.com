@@ -195,6 +195,7 @@ module.exports = {
           `DOMAIN_NAME`,
           `SERVER_PORT`,
           `SERVER_URL`,
+          `SERVER_API_URL`,
           `APP_PORT`,
           `API_ENDPOINT`,
           `STRIPE_PUBLISHABLE_KEY`,

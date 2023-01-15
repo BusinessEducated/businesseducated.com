@@ -26,7 +26,6 @@ COPY . .
 EXPOSE 3169
 
 CMD ["yarn", "start"]
-# CMD ["cross-env","NODE_ENV=production","pm2-runtime", "start", "index.js"]
 
 
 # Stage 2: build the Nginx image
@@ -45,3 +44,5 @@ CMD ["yarn", "start"]
 # EXPOSE 80
 
 # CMD ["nginx", "-g", "daemon off;"]
+
+# stage 3 configure certbot for certificates

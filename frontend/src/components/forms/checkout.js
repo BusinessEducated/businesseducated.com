@@ -30,7 +30,7 @@ function classNames(...classes) {
 }
 
 export const Checkout = ({
-  action = `http://${process.env.SERVER_URL}${process.env.API_ENDPOINT}booking`,
+  action = `${SERVER_API_URL}booking`,
   goBack = () => {},
 }) => {
   const [agreed, setAgreed] = useState(false)

@@ -1,5 +1,5 @@
 import axios from 'axios'
 
-const baseUrl = `http://${process.env.SERVER_URL}${process.env.API_ENDPOINT}stripe`
+const baseUrl = `${SERVER_API_URL}stripe`
 
 export const makePayment = async () => {}
