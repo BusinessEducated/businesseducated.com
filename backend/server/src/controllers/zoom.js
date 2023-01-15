@@ -3,6 +3,7 @@ const { Validator } = require('jsonschema')
 const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
 
 // Set the API endpoint and headers
 const endpoint = 'https://api.zoom.us/v2/users/me/meetings'

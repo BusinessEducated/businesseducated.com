@@ -109,7 +109,7 @@ const sendGmail = async (
       to,
       subject,
       text: message,
-      attachments: (report && [report, ...attachments]) || attachments,
+      // attachments: (report && [report, ...attachments]) || attachments,
       // report && {
       //   filename: `report-${new Date().toDateString()}.pdf`,
       //   content: report,
@@ -120,7 +120,8 @@ const sendGmail = async (
     const emailTransporter = await createTransporter()
     return emailTransporter.sendMail(mailOptions, (err, info) => {
       if (err) {
-        return console.log(err)
+        console.log(err)
+        return err
       } else {
         // console.log(info)
         return info
@@ -135,7 +136,8 @@ const sendGmail = async (
       }
     })
   } catch (error) {
-    return console.log(error)
+    console.log(error)
+    return error
   }
 }
 

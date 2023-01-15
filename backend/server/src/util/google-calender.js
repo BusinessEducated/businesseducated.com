@@ -1,15 +1,32 @@
 const { google } = require('googleapis')
 
-const credentials = JSON.parse(process.env.GOOGLE_PRIVATE_KEY)
+// Pull out OAuth2 from googleapis
+const OAuth2 = google.auth.OAuth2
 
-// Create a new client for interacting with the Google Calendar API
-const calendarClient = new google.auth.JWT(
-  credentials.client_email,
-  null,
-  credentials.private_key,
-  ['https://www.googleapis.com/auth/calendar'],
-)
+const authenticate = async () => {
+  //connect us to the oauth playground
+  const oauth2Client = new OAuth2(
+    process.env.GOOGLE_OAUTH_CLIENT_ID,
+    process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+    'https://developers.google.com/oauthplayground',
+  )
 
+  // keep refreshing our token from https://developers.google.com/oauthplayground/
+  oauth2Client.setCredentials({
+    refresh_token: process.env.GOOGLE_OAUTH_CLIENT_REFRESH_TOKEN,
+  })
+
+  const accessToken = await new Promise((resolve, reject) => {
+    oauth2Client.getAccessToken((err, token) => {
+      if (err) {
+        reject('Failed to create access token :( ' + err)
+      }
+      resolve(token)
+    })
+  })
+
+  return oauth2Client
+}
 //SHAPE OF DATA FOR EVENTDATA
 // {
 //   summary: string, // Title of the event
@@ -44,8 +61,11 @@ const addToGoogleCalendar = async (
 ) => {
   try {
     // Authenticate and initialize the Calendar API
-    await calendarClient.authorize()
-    const calendar = google.calendar({ version: 'v3', auth: calendarClient })
+    // await calendarClient.authorize()
+    const calendar = google.calendar({
+      version: 'v3',
+      auth: await authenticate(),
+    })
 
     // Create the event
     const response = await calendar.events.insert({
@@ -79,7 +99,10 @@ const getFromGoogleCalendar = async (
   try {
     // Authenticate and initialize the Calendar API
     await calendarClient.authorize()
-    const calendar = google.calendar({ version: 'v3', auth: calendarClient })
+    const calendar = google.calendar({
+      version: 'v3',
+      auth: await authenticate(),
+    })
 
     // Get the events
     const response = await calendar.events.list({
@@ -114,7 +137,10 @@ const getUnavailableDates = async (
   try {
     // Authenticate and initialize the Calendar API
     await calendarClient.authorize()
-    const calendar = google.calendar({ version: 'v3', auth: calendarClient })
+    const calendar = google.calendar({
+      version: 'v3',
+      auth: await authenticate(),
+    })
 
     // Get the events
     const response = await calendar.events.list({

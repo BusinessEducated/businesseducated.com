@@ -49,7 +49,7 @@ export const DynamicField = ({
         <div className={`sm:col-span-${cols} col-span-6 relative`} key={`field-${name} form-field`}>
             <InputComponent error={errors.length > 0} onChange={onChange} value={value} {...fieldSchema}  />
             {errors.length > 0 && (
-                <span className="rounded-md text-red-500 flex gap-3 absolute right-0 -top-[.15rem] items-center">
+                <span key={`field-error-${name}`} className="rounded-md text-red-500 flex gap-3 absolute right-0 -top-[.15rem] items-center">
                     {/* <ExclamationCircleIcon className="w-4 h-4 fill-BEred" /> */} 
                     {errors}
                 </span>

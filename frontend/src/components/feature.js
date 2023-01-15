@@ -388,7 +388,7 @@ export const FeatureRow = ({
                     </h3>
                     {date && (
                       <time
-                        datetime={date}
+                        dateTime={date}
                         className="mt-2 text-sm text-gray-500"
                       />
                     )}
@@ -489,7 +489,7 @@ export const FeatureRowCol = ({
                   <h3 className="text-sm font-medium text-gray-900">{name}</h3>
                   {date && (
                     <time
-                      datetime={date}
+                      dateTime={date}
                       className="mt-2 text-sm text-gray-500"
                     />
                   )}

@@ -206,59 +206,59 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 }
 
 // webpack configuration
-// exports.onCreateWebpackConfig = ({
-//   stage,
-//   rules,
-//   loaders,
-//   plugins,
-//   actions,
-// }) => {
-//   actions.setWebpackConfig({
-//     devtool:
-//       process.env.NODE_ENV === 'development'
-//         ? 'eval' /** 'eval-source-map' */
-//         : process.env.NODE_ENV === 'devbuild'
-//         ? 'source-map'
-//         : 'hidden-source-map', // for debugging processes, production debug with source-map, source-map for most efficient production buildz
-//     resolve: {
-//       extensions: [
-//         '.mjs',
-//         '.js',
-//         '.jsx',
-//         '.json',
-//         '.gltf',
-//         '.png',
-//         '.jpg',
-//         '.jpeg',
-//         '.gif',
-//         '.svg',
-//         '.otf',
-//       ],
-//     },
-//     module: {
-//       rules: [
-//         { test: /\.(glb|gltf)$/i, use: 'file-loader' }, // or gltf-webpack-loader
-//         { test: /react-hot-loader/, use: [loaders.js()] },
-//         {
-//           test: /\.(pdf|gif|svg|json|png|jpg)$/,
-//           use: 'file-loader?name=[path][name].[ext]',
-//           include: path.resolve(__dirname, 'static/assets'),
-//         },
-//         {
-//           test: /\.mjs$/,
-//           include: /node_modules/,
-//           type: 'javascript/auto',
-//         },
-//       ],
-//     },
-//     plugins: [],
-//     // externals: [ nodeExternals() ],
-//     resolve: {
-//       extensions: ['.js', '.jsx', '.ts', '.tsx', '.png', '.jpg'],
-//       symlinks: true,
-//     },
-//   })
-// }
+exports.onCreateWebpackConfig = ({
+  stage,
+  rules,
+  loaders,
+  plugins,
+  actions,
+}) => {
+  actions.setWebpackConfig({
+    devtool:
+      process.env.NODE_ENV === 'development'
+        ? 'eval' /** 'eval-source-map' */
+        : process.env.NODE_ENV === 'production'
+        ? 'source-map'
+        : 'hidden-source-map', // for debugging processes, production debug with source-map, source-map for most efficient production buildz
+    resolve: {
+      extensions: [
+        '.mjs',
+        '.js',
+        '.jsx',
+        '.json',
+        '.gltf',
+        '.png',
+        '.jpg',
+        '.jpeg',
+        '.gif',
+        '.svg',
+        '.otf',
+      ],
+    },
+    module: {
+      rules: [
+        { test: /\.(glb|gltf)$/i, use: 'file-loader' }, // or gltf-webpack-loader
+        { test: /react-hot-loader/, use: [loaders.js()] },
+        // {
+        //   test: /\.(pdf|gif|svg|json|png|jpg)$/,
+        //   use: 'file-loader?name=[path][name].[ext]',
+        //   include: path.resolve(__dirname, 'static/assets'),
+        // },
+        {
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: 'javascript/auto',
+        },
+      ],
+    },
+    plugins: [],
+    // externals: [ nodeExternals() ],
+    // resolve: {
+    //   extensions: ['.js', '.jsx', '.ts', '.tsx', '.png', '.jpg'],
+    //   symlinks: true,
+    // },
+  })
+}
 //   const posts = result.data.allMarkdownRemark.edges;
 //   posts.forEach(async ({ node }, i) => {
 //     // calculate which posts are previous and next

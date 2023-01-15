@@ -1,0 +1,22 @@
+.anim-hover {
+  animation: hover-anim 2s ease-in-out infinite;
+}
+
+@keyframes hover-anim {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.anim-scroll {
+  animation: scroll-img 20s linear infinite;
+}
+
+@keyframes scroll-img {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

@@ -5,6 +5,9 @@ const { addToGoogleCalendar } = require('../util/google-calender')
 const router = express.Router()
 const LOOM_API_URL = 'https://api.loom.com/api'
 const { check, validationResult } = require('express-validator/check')
+const { validatePayment } = require('../util/stripe')
+const { createZoomMeeting } = require('../util/zoom')
+const { getDate } = require('../util/date')
 
 const validate = () => {
   //prettier-ignore
@@ -13,7 +16,7 @@ const validate = () => {
     check('firstName').isString().isLength({ min: 1 }).withMessage('please enter your first name'),
     check('lastName').isString().isLength({ min: 1 }).withMessage('please enter your last name'),
     check('email').isString().isEmail().isLength({ min: 1 }).withMessage('invalid email address'),
-    check('phone').isString().matches(/^\d{10,15}$/, 'invalid phone number').withMessage('phone is required to contact you'),
+    check('phone').isString().matches(/^\d{10,15}$/).withMessage('phone is required to contact you'),
     //company
     check('companyName').isString().isLength({ min: 1 }).withMessage('company name is required to investigate your issue further'),
     check('companySize').isString().isIn(['0-10', '10-300', '300-1000', '1000-10000', '10000-100000']).withMessage('please select the company size'),
@@ -52,7 +55,7 @@ const internalMessage = (
     lastName,
     problemDescription,
   },
-  { joinUrl, id, startTime, encPassword, startUrl, password },
+  { joinUrl, startTime, password },
 ) => `
       _______________________________________________________________________________________
       
@@ -68,12 +71,9 @@ const internalMessage = (
 
       Zoom Meeting Information
 
-      join: ${join_url}
-      meeting id: ${id}
+      join: ${joinUrl}
       start time: ${startTime}
-      start url: ${startUrl}
       password: ${password}
-      password alternative: ${encPassword}
       _______________________________________________________________________________________
 
       Business Information
@@ -165,7 +165,7 @@ const externalMessage = (
     lastName,
     problemDescription,
   },
-  { joinUrl, id, startTime, encPassword, startUrl, password },
+  { joinUrl, startTime, password },
 ) => `
       _______________________________________________________________________________________
       
@@ -181,13 +181,9 @@ const externalMessage = (
 
       Zoom Meeting Information
 
-      join: ${join_url}
-      meeting id: ${id}
+      join: ${joinUrl}
       start time: ${startTime}
-      start url: ${startUrl}
       password: ${password}
-      password alternative: ${encPassword}
-      
       _______________________________________________________________________________________
 
       Your business information
@@ -272,10 +268,10 @@ const externalMessage = (
  * @returns {object} 200 - An array of user info
  * @returns {Error}  default - Unexpected error
  */
-router.get('/', validate(), async (req, res) => {
+router.post('/', validate(), async (req, res) => {
   //prettier-ignore
-  const {date,phone,firstName,lastName,companyName,abn,consultant,companyServices,problemDescription,serviceType,attatchments: attachments,...contactFormData} = req.body
-
+  const {date=Date.now(),phone,firstName,lastName,companyName,abn,consultant,companyServices,problemDescription,serviceType,duration, attachments=[],role,email} = req.body
+  const { paymentIntentClientSecret, paymentIntent } = req.query
   try {
     // Validate request body
     const errors = validationResult(req.body)
@@ -283,149 +279,177 @@ router.get('/', validate(), async (req, res) => {
       throw new Error('Invalid request body')
     }
 
-    //create a response object to collect errors/successes for reference
-    const responses = []
-
-    // Set the date and time for the booking
-    const minuteMultiplier = duration * 60
-    const startDate = new Date(date)
-    const endDate = new Date(startDate.getTime() + minuteMultiplier * 60 * 1000) // x minutes
-
     //verify payment
+    if (await validatePayment(paymentIntentClientSecret, paymentIntent)) {
+      //create a response object to collect errors/successes for reference
+      const responses = []
 
-    //create the zoom meeting
-    const zoomBooking = await createZoomMeeting(
-      startDate,
-      `Business Educated Consultation with ${consultant.name}`,
-      'AEDT',
-    )
-    //get zoom meeting details
-    const {
-      join_url,
-      id,
-      start_time,
-      encrypted_password,
-      start_url,
-      password,
-    } = zoomBooking?.data
-    responses.push(zoomBooking)
+      // Set the date and time for the booking
+      const minuteMultiplier = duration * 60
+      const startDate = new Date(date)
+      //prettier-ignore
+      const endDate = new Date(startDate.getTime() + minuteMultiplier * 60 * 1000) // x minutes
+      const timezone = 'AEDT'
 
-    //book appointment on google calender
-    const calenderDate = await addToGoogleCalendar({
-      summary: `Consultation with ${consultant.name} for: ${firstName} ${lastName} topic: ${serviceType} `,
-      location: 'Virtual',
-      description: `
-      _______________________________________________________________________________________
-
-      Consultation with: ${consultant.name} 
-      regarding: ${problemDescription} 
-      in the context of: ${serviceType} 
-      _______________________________________________________________________________________
-
-      zoom link: ${join_url}
-      start link: ${start_url}
-      password: ${password}
-      password alternative: ${encrypted_password}
-      _______________________________________________________________________________________
-      `,
-      start: {
-        dateTime: startDate,
+      //create the zoom meeting
+      const zoomBooking = await createZoomMeeting(
+        startDate,
+        `Business Educated Consultation with ${consultant.name}`,
         timezone,
-      },
-      end: {
-        dateTime: endDate,
-        timezone,
-      },
-      // reminders: {}
-      // recurrance: [],
-    })
-    responses.push(calenderDate)
-
-    // Send email to client
-    await sendGmail(
-      // loadEmailTemplate('booking-template-client', {
-      //   name: `${firstName} ${lastName}`,
-      // }),
-      externalMessage(req.body, {
-        joinUrl: join_url,
-        id,
-        startTime: start_time,
-        encPassword: encrypted_password,
-        startUrl: start_url,
+      )
+      // get zoom meeting details
+      const {
+        join_url,
+        // id,
+        start_time,
+        // encrypted_password,
+        // start_url,
         password,
-      }),
-      `🛩️ Your booking with Business Educated 🛩️`,
-      email,
-      process.env.GMAIL_ADDRESS,
-      null,
-      attachments,
-    )
+      } = zoomBooking?.data
+      responses.push(zoomBooking)
 
-    // Send email to Business Educated
-    //TODO: add automated minutes, presentations, and agenda
-    await sendGmail(
-      // loadEmailTemplate('booking-template-vendor', {
-      //   name: `${firstName} ${lastName}`,
-      // }),
-      internalMessage(req.body),
-      `⚠️ BOOKING from ${firstName} ${lastName} at ${companyName} from: ${startDate}-${endDate} ⚠️`,
-      process.env.GMAIL_ADDRESS,
-      process.env.GMAIL_ADDRESS,
-      null,
-      attachments,
-    )
+      const zoomDetails = {
+        joinUrl: join_url,
+        startTime: start_time,
+        password,
+      }
 
-    // Send email to the consultant
-    await sendGmail(
-      // loadEmailTemplate('booking-template-vendor', {
-      //   name: `${firstName} ${lastName}`,
-      // }),
-      internalMessage(req.body),
-      `⚠️ BOOKING from ${firstName} ${lastName} ${getDate()} ⚠️`,
-      consultant.email,
-      process.env.GMAIL_ADDRESS,
-      null,
-      attachments,
-    )
+      //book appointment on google calender
+      const calenderDate = await addToGoogleCalendar(
+        {
+          summary: `Consultation with ${consultant.name} for: ${firstName} ${lastName} topic: ${serviceType} `,
+          location: 'Virtual',
+          description: `
+          _______________________________________________________________________________________
 
-    //send sms's (WIP)
-    //recipient
-    //await sendSms(phone,message)
-    //business educated
-    //await sendSms(0475565709,message)
-    //consultant
-    //await sendSms(consultant.phone,message)
+          Consultation with: ${consultant.name} 
+          regarding: ${problemDescription} 
+          in the context of: ${serviceType} 
+          _______________________________________________________________________________________
 
-    // Add booking to spreadsheet
-    await addToSpreadsheet(
-      {
-        ...req.body,
-        ...{
-          join_url,
-          id,
-          start_time,
-          encrypted_password,
-          start_url,
-          password,
+          zoom link: ${join_url}
+          password: ${password}
+          _______________________________________________________________________________________
+          `,
+          start: {
+            dateTime: startDate,
+            timezone,
+          },
+          end: {
+            dateTime: endDate,
+            timezone,
+          },
+          // recurrance: [],
+          //'attendees': [
+          //   {'email': 'lpage@example.com'},
+          //   {'email': 'sbrin@example.com'},
+          // ],
+          // 'reminders': {
+          //   'useDefault': false,
+          //   'overrides': [
+          //     {'method': 'email', 'minutes': 24 * 60},
+          //     {'method': 'popup', 'minutes': 10},
+          //   ],
+          // },
         },
-      },
-      process.env.BOOKING_SPREADSHEET_ID,
-      'booking',
-    )
+        process.env.GOOGLE_CALENDER_ID,
+      )
+      responses.push(calenderDate)
 
-    if (process.env.NODE_ENV === 'development')
-      console.log(JSON.stringify(responses, null, 2))
+      // Send email to client
+      const clientMessage = await sendGmail(
+        // loadEmailTemplate('booking-template-client', {
+        //   name: `${firstName} ${lastName}`,
+        // }),
+        externalMessage(req.body, zoomDetails),
+        `🛩️ Your booking with Business Educated 🛩️`,
+        email,
+        process.env.GMAIL_ADDRESS,
+        null,
+        attachments,
+      )
+      responses.push(clientMessage)
 
-    res.send({
-      statusCode: 200,
-      body: JSON.stringify(
-        '🛩️ Thank you for booking with Business Educated, check your email for an invoice and the next steps forward 🛩️',
-      ),
-      isBase64Encoded: false,
-      multiValueHeaders: {
-        'Content-Type': 'application/json',
-      },
-    })
+      // Send email to Business Educated
+      //TODO: add automated minutes, presentations, and agenda
+      const ourMessage = await sendGmail(
+        // loadEmailTemplate('booking-template-vendor', {
+        //   name: `${firstName} ${lastName}`,
+        // }),
+        internalMessage(req.body, zoomDetails),
+        `⚠️ BOOKING from ${firstName} ${lastName} at ${companyName} from: ${startDate}-${endDate} ⚠️`,
+        process.env.GMAIL_ADDRESS,
+        process.env.GMAIL_ADDRESS,
+        null,
+        attachments,
+      )
+      responses.push(ourMessage)
+
+      // Send email to the consultant
+      const consultantMessage = await sendGmail(
+        // loadEmailTemplate('booking-template-vendor', {
+        //   name: `${firstName} ${lastName}`,
+        // }),
+        internalMessage(req.body, zoomDetails),
+        `⚠️ BOOKING from ${firstName} ${lastName} ${getDate()} ⚠️`,
+        consultant.email,
+        process.env.GMAIL_ADDRESS,
+        null,
+        attachments,
+      )
+      responses.push(consultantMessage)
+
+      //TODO: send sms's (WIP)
+      //recipient
+      //await sendSms(phone,message)
+      //business educated
+      //await sendSms(0475565709,message)
+      //consultant
+      //await sendSms(consultant.phone,message)
+
+      // Add booking to spreadsheet
+      const spreadSheetEntry = await addToSpreadsheet(
+        {
+          ...req.body,
+          ...zoomDetails,
+        },
+        process.env.BOOKING_SPREADSHEET_ID,
+        'booking',
+      )
+      responses.push(spreadSheetEntry)
+
+      if (process.env.NODE_ENV === 'development')
+        console.log(JSON.stringify(responses, null, 2))
+
+      const result = {
+        consultantName: consultant.name,
+        problem: problemDescription,
+        joinUrl: join_url,
+        password,
+        paymentNo: paymentIntent,
+      }
+      res.send({
+        statusCode: 200,
+        body: JSON.stringify(result),
+        isBase64Encoded: false,
+        multiValueHeaders: {
+          'Content-Type': 'application/json',
+        },
+      })
+    } else {
+      res.send({
+        statusCode: 500,
+        body: `⚠️ Invalid payment, retry ⚠️
+          if you've made a payment and this persists...
+          call us at 0475565709 or...
+          email us at businesseducatedofficial@gmail.com 
+          let us know, we will get back to you immediately`,
+        isBase64Encoded: false,
+        multiValueHeaders: {
+          'Content-Type': 'application/json',
+        },
+      })
+    }
   } catch (error) {
     console.error(error)
     res.send({

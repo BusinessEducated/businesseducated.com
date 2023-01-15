@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const fs = require('fs')
 
 require('dotenv').config({
   path: `${__dirname}/../../../.env.${process.env.NODE_ENV}`,
@@ -40,46 +41,52 @@ router.post('/create-checkout-session', async (req, res) => {
   res.redirect(303, session.url)
 })
 
+const products = {
+  'consultant-aidenfaulconer': 150,
+  'consultant-jamesboon': 150,
+  'consultant-': 150,
+}
+
 const calculateOrderAmount = (items) => {
+  const price =
+    items.reduce((pre, consultant) => {
+      return pre + products[consultant.id] * consultant.duration
+    }, 0) * 100 //* 100 because the value is actually in decimals without .'s
   // Replace this constant with a calculation of the order's amount
   // Calculate the order total on the server to prevent
   // people from directly manipulating the amount on the client
-  return 16000 //160$
+  //prettier-ignore
+  return (price * 0.1) + price //GST + 160$
 }
 
 router.post('/create-payment-intent', async (req, res) => {
-  const { items } = req.body
+  try {
+    const { items } = req.body
 
-  // Create a PaymentIntent with the order amount and currency
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: calculateOrderAmount(items),
-    currency: 'aud',
-    automatic_payment_methods: {
-      enabled: true,
-    },
-  })
+    // Create a PaymentIntent with the order amount and currency
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: calculateOrderAmount(items),
+      currency: 'aud',
+      // payment_method_types: ['card'],
+      automatic_payment_methods: {
+        enabled: true,
+      },
+      // transfer_data: {
+      //   destination: `${process.env.STRIPE_ACCOUNT_ID}`,
+      // },
+    })
 
-  console.log(paymentIntent)
+    console.log(paymentIntent)
 
-  res.send({
-    status: 200,
-    clientSecret: paymentIntent.client_secret,
-  })
-})
-
-router.post('/validate-payment', async (req, res) => {
-  // Retrieve the PaymentIntent with the specified ID
-  const paymentIntent = await stripe.paymentIntents.retrieve(
-    req.body.paymentIntentId,
-  )
-
-  // Check the PaymentIntent's status
-  if (paymentIntent.status === 'succeeded') {
-    // Payment was successful
-    res.send({ success: true })
-  } else {
-    // Payment was not successful
-    res.send({ success: false })
+    res.send({
+      status: 200,
+      amount: paymentIntent.amount,
+      currency: paymentIntent.currency,
+      status: paymentIntent.status,
+      clientSecret: paymentIntent.client_secret,
+    })
+  } catch (err) {
+    console.log(err)
   }
 })
 
@@ -108,5 +115,15 @@ router.post(
     response.send()
   },
 )
+
+// const fp = fs.readFileSync('/path/to/a/file.jpg')
+// const upload = await stripe.files.create({
+//   file: {
+//     data: fp,
+//     name: 'file.jpg',
+//     type: 'application.octet-stream',
+//   },
+//   purpose: 'dispute_evidence',
+// })
 
 module.exports = router

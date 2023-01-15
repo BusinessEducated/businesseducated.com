@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'development') require('debug')('app:server')
 // const buildSqlSchemas = require('./util/build-sql-schemas');
 // const morgan = require('morgan');
 // const contentSecurityPolicy = require('helmet-csp');
-console.log(JSON.stringify(process.env, null, 2))
+// console.log(JSON.stringify(process.env, null, 2))
 
 // Secure server
 secureServer(app, {

@@ -34,7 +34,7 @@
   "scripts": {
     "dbuild": "docker build ./ -t businesseducated-server",
     "ddev": "docker run -d -p 3169:3169 --env-file ../../.env.production --restart always businesseducated-server",
-    "dev-start": "cross-env NODE_ENV=production nodemon ./index.js localhost",
+    "dev-start": "cross-env NODE_ENV=development nodemon ./index.js localhost",
     "start": "cross-env NODE_ENV=production pm2-runtime start index.js",
     "debug-start": "cross-env NODE_ENV=production node ./index.js --trace-warnings",
     "kill": "pm2 delete all",

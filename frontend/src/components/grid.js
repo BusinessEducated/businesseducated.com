@@ -208,9 +208,12 @@ export const TightGrid = ({
   ],
 }) => {
   return (
-    <div className="divide-y divide-gray-200 overflow-hidden rounded-lg  shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">
+    <div className="grid divide-solid border border-gray-400 divide-y-0 divide-gray-700 overflow-hidden rounded-lg sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">
       {actions.map(
-        ({ title, iconBackground, href, icon, iconForeground }, actionIdx) => {
+        (
+          { title, iconBackground, href, icon, iconForeground, description },
+          actionIdx,
+        ) => {
           const Icon = icon
           return (
             // prettier-ignore
@@ -221,7 +224,8 @@ export const TightGrid = ({
                 actionIdx === 1 ? 'sm:rounded-tr-xl' : '',
                 actionIdx === actions.length - 2 ? 'sm:rounded-bl-xl' : '',
                 actionIdx === actions.length - 1 ? 'rounded-bl-xl rounded-br-xl sm:rounded-bl-none' : '',
-                `relative group ${dark && 'bg-black text-white' || 'bg-white text-gray' } ring-gray-200 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-red-500`,
+                dark && 'bg-red-600 text-white' || 'bg-white text-gray',
+                `relative group ring-gray-600 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-BEred group-hover:ring-BEred`,
               )}
             >
               <div>
@@ -243,10 +247,8 @@ export const TightGrid = ({
                     {title}
                   </a>
                 </h3>
-                <p className={`mt-2 text-sm ${dark && 'text-gray-400' || 'text-gray-500'}`}>
-                  Doloribus dolores nostrum quia qui natus officia quod et
-                  dolorem. Sit repellendus qui ut at blanditiis et quo et
-                  molestiae.
+                <p className={`mt-2 text-sm ${dark && 'text-gray-200' || 'text-gray-500'}`}>
+                  {description}
                 </p>
               </div>
               <span

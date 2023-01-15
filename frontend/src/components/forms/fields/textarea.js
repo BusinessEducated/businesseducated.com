@@ -93,8 +93,8 @@ export const TextArea = ({
               </label>
               <div>
                 <textarea
-                  inlist={true}
-                  wrap={true}
+                  // inlist={true}
+                  wrap={'pre-line'}
                   onChange={onChange}
                   value={value}
                   rows={5}

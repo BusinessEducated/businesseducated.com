@@ -54,11 +54,7 @@ const strapiConfig = {
 }
 
 module.exports = {
-  siteMetadata: {
-    title: `Busdiness educated`,
-    description: `BE successful`,
-    author: `aiden faulconer`,
-  },
+  siteMetadata: require('./site-meta-data.json'),
   plugins: [
     // `gatsby-plugin-eslint`,
     // ========================================================================== //
@@ -188,6 +184,7 @@ module.exports = {
     //     ],
     //   },
     // },
+    'gatsby-plugin-use-query-params',
     // ========================================================================== //
     //     env variables
     // ========================================================================== //
@@ -198,6 +195,7 @@ module.exports = {
           `DOMAIN_NAME`,
           `SERVER_PORT`,
           `SERVER_URL`,
+          `APP_PORT`,
           `API_ENDPOINT`,
           `STRIPE_PUBLISHABLE_KEY`,
           `YOUTUBE_CHANNEL_ID`,

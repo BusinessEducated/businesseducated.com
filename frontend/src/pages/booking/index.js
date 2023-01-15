@@ -421,7 +421,6 @@ function IndexPage() {
                   name: 'messageToConsultant',
                   cols: 6,
                   validation: '',
-
                   type: 'textarea',
                   icon: ChatBubbleOvalLeftIcon,
                   placeholder: '',

@@ -1,4 +1,11 @@
 const axios = require('axios')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+
+// Set the API endpoint and headers
+const endpoint = 'https://api.zoom.us/v2/users/me/meetings'
+const apiKey = process.env.ZOOM_API_KEY
+const apiSecret = process.env.ZOOM_CLIENT_SECRET
 
 // Get the date and time for the meeting
 const createZoomMeeting = async (date, topic, timezone = 'AEDT') => {
@@ -6,10 +13,15 @@ const createZoomMeeting = async (date, topic, timezone = 'AEDT') => {
     // Set the start time for the meeting in the ISO 8601 format
     const startTime = new Date(date).toISOString()
     const duration = 60
-    const password = bcrypt.hashSync(
-      process.env.SALT,
-      'businessEducatedZoomPassword007169',
-    )
+
+    const saltRounds = 1
+    const plaintextPassword = 'businessEducatedZoomPassword007169'
+
+    const salt = bcrypt.genSaltSync(saltRounds)
+    const hashedPassword = bcrypt.hashSync(plaintextPassword, salt)
+
+    // Extract the first 10 characters of the hashed password (10 max allowed for zoom passwords)
+    const password = hashedPassword.substring(0, 10)
 
     // Set the request body for the API call
     const data = {
@@ -21,11 +33,11 @@ const createZoomMeeting = async (date, topic, timezone = 'AEDT') => {
     }
 
     const payload = {
-      iss: process.env.ZOOM_API_KEY,
+      iss: apiKey,
       exp: Date.now() + 5000,
     }
 
-    const token = jwt.sign(payload, process.env.ZOOM_CLIENT_SECRET)
+    const token = jwt.sign(payload, apiSecret)
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,

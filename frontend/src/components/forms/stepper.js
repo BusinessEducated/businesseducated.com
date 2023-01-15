@@ -18,7 +18,7 @@ import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import { navigate } from 'gatsby'
 import { useStore } from '../../store/store'
-import { Checkout } from '../../components/forms/checkout'
+import { useLocalStorage } from '../util/customHooks'
 //#region vertical circle stepper
 
 const steps1 = [
@@ -672,6 +672,17 @@ export const ArrowStepper = ({
   const maxStep = schema.length - 1
   const minStep = 0
 
+  //global store booking form state
+  const bookingForm = useStore((state) => state.bookingForm.form)
+
+  //checkout/booking state
+  const [bookingState, setBookingState] = useLocalStorage(`booking-state`, {})
+  const [paymentState, setPaymentState] = useLocalStorage(`payment-state`, {})
+  const [checkoutState, setCheckoutState] = useLocalStorage(
+    `checkout-state`,
+    'pending',
+  )
+
   //generate form data for formik
   const createFormData = useCallback(
     ({ fields }) => {
@@ -702,21 +713,25 @@ export const ArrowStepper = ({
     changeFormData(values)
     validateForm()
 
-    //do the step change
-    if (newStepIdx > maxStep) {
-      return //do nothing
-    } else if (newStepIdx < minStep) {
+    //do we handle the step change?
+    if (newStepIdx < minStep) {
       return //do nothing
     } else if (!isValid) {
       return //do nothing
     }
-    //start handling the step
+    //start handling the step change
     else {
+      // handle the status of steps
       setSteps(
         steps.map((step, idx) => {
+          //set validity state for current step
+          if (idx === currentStep) {
+            step.isValid = isValid
+          }
+
+          //handle the step status
           if (idx == newStepIdx) {
             step.status = 'current'
-            step.isValid = isValid
           } else if (idx < newStepIdx) {
             step.status = 'complete'
           } else {
@@ -726,109 +741,125 @@ export const ArrowStepper = ({
         }),
       )
 
-      setCurrentStep(newStepIdx)
+      //call handleSubmit at final step
+      if (newStepIdx > maxStep) {
+        handleSubmit(e)
+      }
+      //otherwise set the next step
+      else {
+        setCurrentStep(newStepIdx)
+      }
     }
   }
 
-  const handleSubmit = (e, values, validateForm) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    if (process.env.NODE_ENV === 'development') console.log(formData)
+
+    if (process.env.NODE_ENV === 'development') console.log(formData, steps)
 
     if (steps.every((step) => step.isValid === true)) {
-      setCheckout(true)
+      //reset payment state for a previous booking
+      setPaymentState({
+        paymentIntent: '',
+        redirectStatus: '',
+        paymentIntentClientSecret: '',
+      })
+      //set a new booking state for checkout
+      setBookingState(bookingForm)
+      //reset the checkout state
+      setCheckoutState('none')
+      //navigate to checkout
+      navigate(`/booking/checkout`)
     }
   }
 
-  const goBack = () => {
-    setCheckout(false)
-  }
-
+  //TODO: get pre-filled booking data from a previous booking
   // const [formInitialValues, formValidationSchema] = createFormData(schema)
-
-  return checkout ? (
-    <Checkout goBack={goBack} />
-  ) : (
-    <nav aria-label="Progress">
-      <ol
-        role="list"
-        className="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0"
-      >
-        {steps.map(({ name, status, step }, stepIdx) => (
-          <li key={name} className="relative md:flex md:flex-1">
-            {status === 'complete' ? (
-              <a
-                // onClick={(e) => changeStep(stepIdx, e, () => {})}
-                className="group flex w-full items-center"
-              >
-                <span className="flex items-center px-6 py-4 text-sm font-medium">
-                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-emerald-600 group-hover:bg-emerald-800">
-                    <CheckIcon
-                      className="h-6 w-6 text-white"
-                      aria-hidden="true"
-                    />
-                  </span>
-                  <span className="ml-4 text-sm font-medium text-gray-900">
-                    {name}
-                  </span>
-                </span>
-              </a>
-            ) : status === 'current' ? (
-              <a
-                // onClick={(e) => changeStep(stepIdx, e, () => {})}
-                className="flex items-center px-6 py-4 text-sm font-medium"
-                aria-current="step"
-              >
-                <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-emerald-600">
-                  <span className="text-emerald-600">{stepIdx}</span>
-                </span>
-                <span className="ml-4 text-sm font-medium text-emerald-600">
-                  {name}
-                </span>
-              </a>
-            ) : (
-              <a
-                // onClick={(e) => changeStep(stepIdx, e, () => {})}
-                className="group flex items-center"
-              >
-                <span className="flex items-center px-6 py-4 text-sm font-medium">
-                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
-                    <span className="text-gray-500 group-hover:text-gray-900">
-                      {stepIdx}
+  return (
+    <div>
+      {/* steps */}
+      <nav aria-label="Progress">
+        <ol
+          role="list"
+          className="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0"
+        >
+          {steps.map(({ name, status, step }, stepIdx) => (
+            <li key={name} className="relative md:flex md:flex-1">
+              {status === 'complete' ? (
+                <a
+                  // onClick={(e) => changeStep(stepIdx, e, () => {})}
+                  className="group flex w-full items-center"
+                >
+                  <span className="flex items-center px-6 py-4 text-sm font-medium">
+                    <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-emerald-600 group-hover:bg-emerald-800">
+                      <CheckIcon
+                        className="h-6 w-6 text-white"
+                        aria-hidden="true"
+                      />
+                    </span>
+                    <span className="ml-4 text-sm font-medium text-gray-900">
+                      {name}
                     </span>
                   </span>
-                  <span className="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">
+                </a>
+              ) : status === 'current' ? (
+                <a
+                  // onClick={(e) => changeStep(stepIdx, e, () => {})}
+                  className="flex items-center px-6 py-4 text-sm font-medium"
+                  aria-current="step"
+                >
+                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-emerald-600">
+                    <span className="text-emerald-600">{stepIdx}</span>
+                  </span>
+                  <span className="ml-4 text-sm font-medium text-emerald-600">
                     {name}
                   </span>
-                </span>
-              </a>
-            )}
-
-            {stepIdx !== steps.length - 1 ? (
-              <>
-                {/* Arrow separator for lg screens and up */}
-                <div
-                  className="absolute top-0 right-0 hidden h-full w-5 md:block"
-                  aria-hidden="true"
+                </a>
+              ) : (
+                <a
+                  // onClick={(e) => changeStep(stepIdx, e, () => {})}
+                  className="group flex items-center"
                 >
-                  <svg
-                    className="h-full w-full text-gray-300"
-                    viewBox="0 0 22 80"
-                    fill="none"
-                    preserveAspectRatio="none"
+                  <span className="flex items-center px-6 py-4 text-sm font-medium">
+                    <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
+                      <span className="text-gray-500 group-hover:text-gray-900">
+                        {stepIdx}
+                      </span>
+                    </span>
+                    <span className="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">
+                      {name}
+                    </span>
+                  </span>
+                </a>
+              )}
+
+              {stepIdx !== steps.length - 1 ? (
+                <>
+                  {/* Arrow separator for lg screens and up */}
+                  <div
+                    className="absolute top-0 right-0 hidden h-full w-5 md:block"
+                    aria-hidden="true"
                   >
-                    <path
-                      d="M0 -2L20 40L0 82"
-                      vectorEffect="non-scaling-stroke"
-                      stroke="currentcolor"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-              </>
-            ) : null}
-          </li>
-        ))}
-      </ol>
+                    <svg
+                      className="h-full w-full text-gray-300"
+                      viewBox="0 0 22 80"
+                      fill="none"
+                      preserveAspectRatio="none"
+                    >
+                      <path
+                        d="M0 -2L20 40L0 82"
+                        vectorEffect="non-scaling-stroke"
+                        stroke="currentcolor"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </>
+              ) : null}
+            </li>
+          ))}
+        </ol>
+      </nav>
 
       {/* dynamic stepper form with validation */}
       <>
@@ -839,8 +870,8 @@ export const ArrowStepper = ({
             schema[stepIdx],
           )
 
+          // form Step
           return (
-            // form Step
             <Formik
               validateOnChange
               initialStatus={false}
@@ -932,7 +963,13 @@ export const ArrowStepper = ({
                             <Button
                               disabled={!isValid}
                               onClick={(e) =>
-                                handleSubmit(e, values, validateForm)
+                                changeStep(
+                                  currentStep + 1,
+                                  e,
+                                  isValid,
+                                  values,
+                                  validateForm,
+                                )
                               }
                             >
                               Checkout
@@ -954,10 +991,8 @@ export const ArrowStepper = ({
             </Formik>
           )
         })}
-        {/* </Form> */}
-        {/* </Formik> */}
       </>
-    </nav>
+    </div>
   )
 }
 

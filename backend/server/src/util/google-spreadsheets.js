@@ -10,6 +10,23 @@ const client = new google.auth.JWT(
   ['https://www.googleapis.com/auth/spreadsheets'],
 )
 
+function flattenObject(obj) {
+  let values = []
+
+  function flatten(obj) {
+    for (let key in obj) {
+      if (typeof obj[key] === 'object') {
+        flatten(obj[key])
+      } else {
+        values.push(obj[key])
+      }
+    }
+  }
+
+  flatten(obj)
+  return [values]
+}
+
 // POST route for posting data to Google Sheets
 const addToSpreadsheet = async (sheetData, sheetId, sheetName) => {
   // console.log(credentials)
@@ -19,6 +36,7 @@ const addToSpreadsheet = async (sheetData, sheetId, sheetName) => {
     // Authenticate and initialize the Sheets API
     await client.authorize()
     const sheets = google.sheets({ version: 'v4', auth: client })
+    const values = flattenObject(sheetData)
 
     // Append the data to the sheet
     const response = await sheets.spreadsheets.values.append({
@@ -27,7 +45,7 @@ const addToSpreadsheet = async (sheetData, sheetId, sheetName) => {
       valueInputOption: 'USER_ENTERED',
       insertDataOption: 'INSERT_ROWS',
       resource: {
-        values: [Object.values(sheetData)],
+        values,
       },
     })
 
