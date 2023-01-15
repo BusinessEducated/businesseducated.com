@@ -193,7 +193,7 @@ module.exports = {
         allowList: [
           `DOMAIN_NAME`,
           `SERVER_PORT`,
-          `process.env.SERVER_API_URL`,
+          `SERVER_API_URL`,
           `SERVER_URL`,
           `APP_PORT`,
           `API_ENDPOINT`,
