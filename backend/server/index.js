@@ -8,11 +8,11 @@ require('dotenv').config({
 // ========================================================================== //
 // Main server *redirects to https*
 // ========================================================================== //
-app.listen(process.env.SERVER_PORT, () =>
+app.listen(process.env.PORT, () =>
   console.log(`
     HTTP server listening: http://${process.env.SERVER_URL}!\n
     SWAGGER: http://${process.env.SERVER_URL}/api-docs!\n
-    PORT: ${process.env.SERVER_PORT}\n
+    PORT: ${process.env.PORT}\n
 `),
 )
 
